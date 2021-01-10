@@ -1,0 +1,7 @@
+name: Layout
+main: net.astrocube.game.layout.LayoutBukkit
+version: 1.0
+load: POSTWORLD
+depend:
+  - Commons
+author: Astrocube Network

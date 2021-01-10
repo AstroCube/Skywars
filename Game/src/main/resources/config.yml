@@ -1,0 +1,3 @@
+centauri:
+  mode: 0123456789abcdef                         # Mode to be paired with Centauri
+  subMode: 0123456789abcdef                      # SubMode to be paired with Centauri
