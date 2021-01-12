@@ -1,0 +1,5 @@
+team:
+  error:
+    comparing: "%%red%%Ha ocurrido un error al establecerte en un grupo. Por favor intenta unirte a otra partida."
+match:
+  cages: "%%blue%%¡Las cápsulas se abrirán en %%white%%%%seconds%% %%blue%%segundos!"

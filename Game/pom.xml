@@ -3,12 +3,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>GameLayout</artifactId>
+        <artifactId>SkyWars</artifactId>
         <groupId>net.astrocube</groupId>
         <version>1.0</version>
     </parent>
 
-    <artifactId>layout-game</artifactId>
+    <artifactId>SkyWars-Game</artifactId>
 
     <dependencies>
         <dependency>
@@ -19,13 +19,19 @@
         </dependency>
         <dependency>
             <groupId>net.astrocube</groupId>
-            <artifactId>layout-api</artifactId>
+            <artifactId>SkyWars-API</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.16</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>net.astrocube</groupId>
-            <artifactId>PaperSpigot</artifactId>
-            <version>1.8-20201112.225727-1</version>
+            <artifactId>gammaspigot</artifactId>
+            <version>1.8-20210105.052811-1</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
