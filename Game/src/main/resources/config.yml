@@ -3,3 +3,5 @@ centauri:
   subMode: 0123456789abcdef                      # SubMode to be paired with Centauri
 wars:
   cage-area: 1
+  refills: 1
+  interval: 60

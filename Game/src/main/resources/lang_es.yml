@@ -3,3 +3,5 @@ team:
     comparing: "%%red%%Ha ocurrido un error al establecerte en un grupo. Por favor intenta unirte a otra partida."
 match:
   cages: "%%blue%%¡Las cápsulas se abrirán en %%white%%%%seconds%% %%blue%%segundos!"
+  refill: "%%blue%%¡Los cofres se rellenarán en %%white%%%%seconds%% %%blue%%segundos!"
+  refilled: "%%blue%%¡Se han rellenado todos los cofres!"

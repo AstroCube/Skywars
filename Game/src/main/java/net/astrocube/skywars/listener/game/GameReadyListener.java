@@ -1,4 +1,4 @@
-package net.astrocube.skywars.listener;
+package net.astrocube.skywars.listener.game;
 
 import com.google.inject.Inject;
 import net.astrocube.api.bukkit.game.event.game.GameReadyEvent;
@@ -11,6 +11,8 @@ import net.astrocube.api.core.service.find.FindService;
 import net.astrocube.skywars.api.cage.MatchCageSpawner;
 import net.astrocube.skywars.api.chest.ChestSpawner;
 import net.astrocube.skywars.api.map.MapConfiguration;
+import net.astrocube.skywars.api.refill.RefillScheduler;
+import net.astrocube.skywars.api.team.MatchStartProcessor;
 import net.astrocube.skywars.api.team.ProvisionedTeam;
 import net.astrocube.skywars.api.team.TeamMatcher;
 import net.astrocube.skywars.api.team.TeamSpawner;
@@ -29,8 +31,10 @@ public class GameReadyListener implements Listener {
     private @Inject Plugin plugin;
 
     private @Inject MatchCageSpawner matchCageSpawner;
+    private @Inject MatchStartProcessor matchStartProcessor;
     private @Inject TeamSpawner teamSpawner;
     private @Inject TeamMatcher teamMatcher;
+    private @Inject RefillScheduler refillScheduler;
 
     private @Inject ChestSpawner chestSpawner;
 
@@ -52,6 +56,8 @@ public class GameReadyListener implements Listener {
                 matchCageSpawner.spawn(event.getMatch(), provisionedTeams);
                 teamSpawner.spawn(provisionedTeams, event.getMatch());
                 chestSpawner.spawnChests(event.getMatch(), configuration.getChests());
+                refillScheduler.scheduleRefill(event.getMatch(), configuration.getChests(), provisionedTeams);
+                matchStartProcessor.scheduleStart(provisionedTeams, event.getMatch());
                 
             } catch (Exception e) {
                 plugin.getLogger().log(Level.SEVERE, "There was an error processing game ready event.", e);

@@ -1,4 +1,4 @@
-package net.astrocube.skywars.listener;
+package net.astrocube.skywars.listener.game;
 
 import com.google.inject.Inject;
 import net.astrocube.api.bukkit.game.event.game.GameModePairEvent;

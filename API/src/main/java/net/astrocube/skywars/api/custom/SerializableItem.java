@@ -2,6 +2,7 @@ package net.astrocube.skywars.api.custom;
 
 import org.bukkit.Material;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -36,6 +37,25 @@ public interface SerializableItem {
          */
         int getLevel();
 
+    }
+
+    static SerializableItem getAir() {
+        return new SerializableItem() {
+            @Override
+            public Material getMaterial() {
+                return Material.AIR;
+            }
+
+            @Override
+            public int getNumber() {
+                return 0;
+            }
+
+            @Override
+            public Set<EnchantmentCompound> getEnchantments() {
+                return new HashSet<>();
+            }
+        };
     }
 
 }
