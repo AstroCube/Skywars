@@ -2,6 +2,7 @@ package net.astrocube.skywars.loader;
 
 import com.google.inject.Inject;
 import net.astrocube.api.core.loader.Loader;
+import net.astrocube.skywars.listener.damage.PlayerDeathListener;
 import net.astrocube.skywars.listener.damage.PlayerFallListener;
 import net.astrocube.skywars.listener.damage.PlayerItemDamageListener;
 import net.astrocube.skywars.listener.game.GameInvalidationListener;
@@ -19,6 +20,7 @@ public class ListenerLoader implements Loader {
     private @Inject Plugin plugin;
 
     private @Inject PlayerItemDamageListener playerItemDamageListener;
+    private @Inject PlayerDeathListener playerDeathListener;
     private @Inject PlayerFallListener playerFallListener;
 
     private @Inject BlockPlaceListener blockPlaceListener;
@@ -33,6 +35,7 @@ public class ListenerLoader implements Loader {
         plugin.getLogger().log(Level.INFO, "Initializing event listeners");
 
         registerEvent(playerItemDamageListener);
+        registerEvent(playerDeathListener);
         registerEvent(playerFallListener);
 
         registerEvent(blockPlaceListener);

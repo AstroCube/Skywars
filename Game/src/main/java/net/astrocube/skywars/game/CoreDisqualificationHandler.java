@@ -1,12 +1,15 @@
 package net.astrocube.skywars.game;
 
 import com.google.inject.Singleton;
+import net.astrocube.api.bukkit.game.event.match.MatchFinishEvent;
 import net.astrocube.skywars.api.game.DisqualificationHandler;
 import net.astrocube.skywars.api.team.ProvisionedTeam;
+import org.bukkit.Bukkit;
 
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Singleton
 public class CoreDisqualificationHandler implements DisqualificationHandler {
@@ -50,6 +53,7 @@ public class CoreDisqualificationHandler implements DisqualificationHandler {
 
             Set<String> remainingTeams = new HashSet<>();
 
+            // Check if there is only one team at remaining teams
             for (Registry in : registries) {
                 if (in.getTeam().equalsIgnoreCase(registry.getTeam())) {
                     remainingTeams.add(in.getTeam());
@@ -57,6 +61,19 @@ public class CoreDisqualificationHandler implements DisqualificationHandler {
             }
 
             if (remainingTeams.size() == 1) {
+
+                // Call victory event and remove all remaining registries
+                Bukkit.getPluginManager().callEvent(
+                        new MatchFinishEvent(
+                                registry.getMatch(),
+                                registries.stream()
+                                        .filter(t -> remainingTeams.contains(t.getTeam()))
+                                        .map(Registry::getUser)
+                                        .collect(Collectors.toSet())
+                        )
+                );
+
+                registries.removeIf(reg -> reg.getMatch().equalsIgnoreCase(registry.getTeam()));
 
             }
 
