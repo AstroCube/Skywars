@@ -8,8 +8,8 @@ public interface ScoreboardModifier {
 
     void createBoard(Set<ProvisionedTeam> players);
 
-    void updateAlive(Set<ProvisionedTeam> players);
+    void updateAlive(Set<ProvisionedTeam> players, int alive);
 
-    void updateRefillCountdown(Set<ProvisionedTeam> players);
+    void updateRefillCountdown(Set<ProvisionedTeam> players, int seconds);
 
 }

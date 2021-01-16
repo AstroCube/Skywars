@@ -8,9 +8,10 @@ match:
 scoreboard:
   solo:
     title: "SkyWars SOLO"
+    empty: "N/A"
     board:
       - "%%green%%"
-      - "Sobrevivientes: %%survivors%%"
+      - "Quedan: %%survivors%%"
       - "Recarga: %%time%%"
       - "%%yellow%%"
       - "Mapa:"

@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import net.astrocube.api.bukkit.util.CountdownTimer;
 import net.astrocube.skywars.api.chest.ChestSpawner;
+import net.astrocube.skywars.api.game.ScoreboardModifier;
 import net.astrocube.skywars.api.map.MapConfiguration;
 import net.astrocube.skywars.api.refill.RefillAnnouncer;
 import net.astrocube.skywars.api.refill.RefillScheduler;
@@ -20,16 +21,20 @@ public class CoreRefillScheduler implements RefillScheduler {
     private final Plugin plugin;
     private final ChestSpawner chestSpawner;
     private final RefillAnnouncer refillAnnouncer;
+    private final ScoreboardModifier scoreboardModifier;
 
     private final int refills;
     private final int interval;
     private final Map<String, CountdownTimer> timerMap;
 
     @Inject
-    public CoreRefillScheduler(Plugin plugin, RefillAnnouncer refillAnnouncer, ChestSpawner chestSpawner) {
+    public CoreRefillScheduler(
+            Plugin plugin, RefillAnnouncer refillAnnouncer,
+            ChestSpawner chestSpawner, ScoreboardModifier scoreboardModifier) {
         this.plugin = plugin;
         this.refillAnnouncer = refillAnnouncer;
         this.chestSpawner = chestSpawner;
+        this.scoreboardModifier = scoreboardModifier;
 
         this.timerMap = new HashMap<>();
         this.refills = plugin.getConfig().getInt("wars.refills", 0);
@@ -49,7 +54,7 @@ public class CoreRefillScheduler implements RefillScheduler {
                             refillAnnouncer.announceRefill(teams, second.getSecondsLeft());
                         }
 
-                        //this.gameScoreboard.updateRefillSecond(match, second.getSecondsLeft());
+                        scoreboardModifier.updateRefillCountdown(teams, second.getSecondsLeft());
 
                     },
                     () -> {
