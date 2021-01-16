@@ -5,6 +5,8 @@ match:
   cages: "%%blue%%¡Las cápsulas se abrirán en %%white%%%%seconds%% %%blue%%segundos!"
   refill: "%%blue%%¡Los cofres se rellenarán en %%white%%%%seconds%% %%blue%%segundos!"
   refilled: "%%blue%%¡Se han rellenado todos los cofres!"
+  death-player: "%%blue%%¡%%killer%% %%blue%%ha asesinado a %%target%%%%blue%%!"
+  death-natural: "%%blue%%¡%%target%% %%blue%%ha muerto!"
 scoreboard:
   solo:
     title: "SkyWars SOLO"

@@ -5,6 +5,7 @@ import net.astrocube.api.core.loader.Loader;
 import net.astrocube.skywars.listener.damage.PlayerDeathListener;
 import net.astrocube.skywars.listener.damage.PlayerFallListener;
 import net.astrocube.skywars.listener.damage.PlayerItemDamageListener;
+import net.astrocube.skywars.listener.game.GameDisqualificationListener;
 import net.astrocube.skywars.listener.game.GameInvalidationListener;
 import net.astrocube.skywars.listener.game.GamePairEnableListener;
 import net.astrocube.skywars.listener.game.GameReadyListener;
@@ -29,6 +30,7 @@ public class ListenerLoader implements Loader {
     private @Inject GameReadyListener gameReadyListener;
     private @Inject GameInvalidationListener gameInvalidationListener;
     private @Inject GamePairEnableListener gamePairEnableListener;
+    private @Inject GameDisqualificationListener gameDisqualificationListener;
 
     @Override
     public void load() {
@@ -44,6 +46,7 @@ public class ListenerLoader implements Loader {
         registerEvent(gameReadyListener);
         registerEvent(gameInvalidationListener);
         registerEvent(gamePairEnableListener);
+        registerEvent(gameDisqualificationListener);
     }
 
     private void registerEvent(Listener listener) {

@@ -1,8 +1,13 @@
 package net.astrocube.skywars.game;
 
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import me.yushust.message.MessageHandler;
 import me.yushust.message.StringList;
+import net.astrocube.api.bukkit.virtual.game.map.GameMap;
+import net.astrocube.api.bukkit.virtual.game.match.Match;
+import net.astrocube.api.bukkit.virtual.game.match.MatchDoc;
+import net.astrocube.api.core.service.find.FindService;
 import net.astrocube.skywars.api.game.ScoreboardModifier;
 import net.astrocube.skywars.api.team.ProvisionedTeam;
 import net.astrocube.skywars.team.TeamUtils;
@@ -17,19 +22,32 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.logging.Level;
 
+@Singleton
 public class CoreScoreboardModifier implements ScoreboardModifier {
 
     private @Inject MessageHandler<Player> messageHandler;
+    private @Inject FindService<GameMap> findService;
     private @Inject Plugin plugin;
 
     @Override
-    public void createBoard(Set<ProvisionedTeam> players) {
-        
+    public void createBoard(Set<ProvisionedTeam> players, Match match) throws Exception {
+
+        GameMap gameMap = findService.findSync(match.getMap());
+
+        TeamUtils.getMatchPlayers(players).forEach(player ->
+                setupScoreboard(
+                        player,
+                        gameMap.getName(),
+                        getRemainingFromSeconds(plugin.getConfig().getInt("wars.interval")),
+                        players.size() + ""
+                )
+        );
+
     }
 
     @Override
-    public void updateAlive(Set<ProvisionedTeam> players, int alive) {
-        TeamUtils.getMatchPlayers(players).forEach(player -> fieldUpdate(player, "%%survivors%%", alive + ""));
+    public void updateAlive(Set<Player> players) {
+        players.forEach(player -> fieldUpdate(player, "%%survivors%%", (players.size() - 1) + ""));
     }
 
     @Override
@@ -46,7 +64,6 @@ public class CoreScoreboardModifier implements ScoreboardModifier {
             fieldUpdate(player, "%%time%%", timer);
 
         });
-
 
     }
 

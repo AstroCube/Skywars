@@ -1,11 +1,17 @@
 package net.astrocube.skywars.game;
 
+import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import me.yushust.message.MessageHandler;
 import net.astrocube.api.bukkit.game.event.match.MatchFinishEvent;
+import net.astrocube.api.bukkit.translation.mode.AlertMode;
 import net.astrocube.skywars.api.game.DisqualificationHandler;
 import net.astrocube.skywars.api.team.ProvisionedTeam;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 
+import javax.annotation.Nullable;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -15,9 +21,12 @@ import java.util.stream.Collectors;
 public class CoreDisqualificationHandler implements DisqualificationHandler {
 
     private final Set<Registry> registries;
+    private final MessageHandler<Player> messageHandler;
 
-    public CoreDisqualificationHandler() {
+    @Inject
+    public CoreDisqualificationHandler(MessageHandler<Player> messageHandler) {
         this.registries = new HashSet<>();
+        this.messageHandler = messageHandler;
     }
 
     @Override
@@ -78,6 +87,25 @@ public class CoreDisqualificationHandler implements DisqualificationHandler {
             }
 
         });
+
+    }
+
+    @Override
+    public void alertDisqualify(Player player, Player target, @Nullable Player killer) {
+
+        if (killer != null) {
+            messageHandler.sendReplacing(
+                    player, AlertMode.MUTED, "match.death-player",
+                    "%%killer%%", ChatColor.WHITE + killer.getName(),
+                    "%%target%%", ChatColor.WHITE + target.getName()
+            );
+            return;
+        }
+
+        messageHandler.send(
+                player, AlertMode.MUTED, "match.death-natural",
+                "%%target%%", ChatColor.WHITE + target.getName()
+        );
 
     }
 
