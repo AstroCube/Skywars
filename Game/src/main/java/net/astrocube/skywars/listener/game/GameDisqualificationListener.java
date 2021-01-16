@@ -37,7 +37,6 @@ public class GameDisqualificationListener implements Listener {
 
                 players.forEach(player ->
                         disqualificationHandler.alertDisqualify(player, event.getPlayer(), event.getKiller()));
-
             }
 
         } catch (Exception e) {

@@ -10,11 +10,6 @@ import java.util.Set;
 public interface MapConfiguration extends GameMapConfiguration {
 
     /**
-     * @return spawn for an awesome {@link GameMode}
-     */
-    CoordinatePoint getSpawn();
-
-    /**
      * @return set of configurable teams for the map.
      */
     @Override
