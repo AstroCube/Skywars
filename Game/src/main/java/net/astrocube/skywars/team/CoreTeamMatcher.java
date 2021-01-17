@@ -25,7 +25,7 @@ public class CoreTeamMatcher implements TeamMatcher {
         return matchTeam.stream().map(team -> {
 
             Optional<MapConfiguration.ConfigurableTeam> configurableTeam = configuration
-                    .getTeams().stream().filter(c -> c.getName().equalsIgnoreCase(c.getName())).findFirst();
+                    .getTeams().stream().filter(c -> c.getName().equalsIgnoreCase(team.getName())).findFirst();
 
             if (!configurableTeam.isPresent()) {
                 TeamUtils.kickVoidedPlayers(team.getMembers(), messageHandler, "team.error.comparing");

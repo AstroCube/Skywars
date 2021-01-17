@@ -26,7 +26,6 @@ public class CoreTeamSpawner implements TeamSpawner {
         provisioned.forEach(team ->
                 team.getMembers().forEach(teamMember ->  {
                     Player player = Bukkit.getPlayerByIdentifier(teamMember.getUser());
-
                     if (player != null) {
                         player.teleport(TeamUtils.generateSpawn(team.getSpawn(), world));
                     }
