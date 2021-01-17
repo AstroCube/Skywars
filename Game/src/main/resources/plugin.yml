@@ -1,5 +1,5 @@
-name: Layout
-main: net.astrocube.game.layout.LayoutBukkit
+name: SkyWars
+main: net.astrocube.skywars.SkyWars
 version: 1.0
 load: POSTWORLD
 depend:

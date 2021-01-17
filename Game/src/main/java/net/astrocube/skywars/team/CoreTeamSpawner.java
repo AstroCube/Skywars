@@ -2,11 +2,9 @@ package net.astrocube.skywars.team;
 
 import com.google.inject.Singleton;
 import net.astrocube.api.bukkit.game.event.match.MatchInvalidateEvent;
-import net.astrocube.api.bukkit.game.map.configuration.CoordinatePoint;
 import net.astrocube.skywars.api.team.ProvisionedTeam;
 import net.astrocube.skywars.api.team.TeamSpawner;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 

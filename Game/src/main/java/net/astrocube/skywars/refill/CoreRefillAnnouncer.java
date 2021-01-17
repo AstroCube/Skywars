@@ -20,7 +20,10 @@ public class CoreRefillAnnouncer implements RefillAnnouncer {
     public void announceRefill(Set<ProvisionedTeam> teams, int seconds) {
         TeamUtils.getMatchPlayers(teams).forEach(user -> {
             if (seconds != 0) {
-                messageHandler.send(user, AlertMode.MUTED, "match.refill");
+                messageHandler.sendFormatting(
+                        user, AlertMode.MUTED, "match.refill",
+                        "%%seconds%%", seconds + ""
+                );
             } else {
                 messageHandler.send(user, AlertMode.INFO, "match.refilled");
             }

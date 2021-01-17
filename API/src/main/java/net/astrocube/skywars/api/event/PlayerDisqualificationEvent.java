@@ -21,6 +21,10 @@ public class PlayerDisqualificationEvent extends PlayerEvent {
         return HANDLER_LIST;
     }
 
+    public static HandlerList getHandlerList() {
+        return HANDLER_LIST;
+    }
+
     public @Nullable Player getKiller() {
         return killer;
     }

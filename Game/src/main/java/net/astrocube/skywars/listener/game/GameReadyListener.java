@@ -3,7 +3,6 @@ package net.astrocube.skywars.listener.game;
 import com.google.inject.Inject;
 import net.astrocube.api.bukkit.game.event.game.GameReadyEvent;
 import net.astrocube.api.bukkit.game.event.match.MatchInvalidateEvent;
-import net.astrocube.api.bukkit.game.event.match.MatchStartEvent;
 import net.astrocube.api.bukkit.game.exception.GameControlException;
 import net.astrocube.api.bukkit.game.map.MapConfigurationProvider;
 import net.astrocube.api.bukkit.virtual.game.match.Match;
@@ -53,11 +52,18 @@ public class GameReadyListener implements Listener {
 
                 Set<ProvisionedTeam> provisionedTeams = teamMatcher.linkTeams(event.getTeams(), configuration);
 
-                matchCageSpawner.spawn(event.getMatch(), provisionedTeams);
-                teamSpawner.spawn(provisionedTeams, event.getMatch());
-                chestSpawner.spawnChests(event.getMatch(), configuration.getChests());
-                refillScheduler.scheduleRefill(event.getMatch(), configuration.getChests(), provisionedTeams);
-                matchStartProcessor.scheduleStart(provisionedTeams, event.getMatch());
+                Bukkit.getScheduler().runTask(plugin, () -> {
+                    matchCageSpawner.spawn(event.getMatch(), provisionedTeams);
+                    teamSpawner.spawn(provisionedTeams, event.getMatch());
+                    chestSpawner.spawnChests(event.getMatch(), configuration.getChests());
+                    matchStartProcessor.scheduleStart(provisionedTeams, event.getMatch());
+                });
+
+                Bukkit.getScheduler().runTaskLater(
+                        plugin,
+                        () -> refillScheduler.scheduleRefill(event.getMatch(), configuration.getChests(), provisionedTeams),
+                        200L
+                );
                 
             } catch (Exception e) {
                 plugin.getLogger().log(Level.SEVERE, "There was an error processing game ready event.", e);

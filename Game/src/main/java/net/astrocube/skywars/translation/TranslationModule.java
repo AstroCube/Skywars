@@ -1,6 +1,5 @@
 package net.astrocube.skywars.translation;
 
-import com.google.inject.Exposed;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import me.fixeddev.inject.ProtectedModule;
@@ -16,7 +15,7 @@ import org.bukkit.plugin.Plugin;
 
 public class TranslationModule extends ProtectedModule {
 
-    @Provides @Singleton @Exposed
+    @Provides @Singleton
     public MessageHandler<Player> provideMessageProvider(Plugin plugin, CoreLanguageProvider languageProvider) {
         return MessageHandler.builder(Player.class)
                 .setRepository(
