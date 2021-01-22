@@ -16,9 +16,14 @@ public interface SerializableItem {
     Material getMaterial();
 
     /**
+     * @return material code
+     */
+    Short getCode();
+
+    /**
      * @return item quantity
      */
-    int getNumber();
+    Integer getNumber();
 
     /**
      * @return enchantments of the item
@@ -47,7 +52,12 @@ public interface SerializableItem {
             }
 
             @Override
-            public int getNumber() {
+            public Short getCode() {
+                return 0;
+            }
+
+            @Override
+            public Integer getNumber() {
                 return 0;
             }
 

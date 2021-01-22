@@ -1,18 +1,25 @@
 package net.astrocube.skywars.custom;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.module.mrbean.MrBeanModule;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import net.astrocube.skywars.SkyWars;
 import net.astrocube.skywars.api.custom.CustomItemRepository;
 import net.astrocube.skywars.api.custom.Customizable;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.IOUtils;
 import org.bukkit.plugin.Plugin;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 import java.util.logging.Level;
 
 @RequiredArgsConstructor
@@ -29,6 +36,8 @@ public class CoreItemRepository<T extends Customizable> implements CustomItemRep
     @Override
     public void generate() {
 
+        mapper.registerModule(new MrBeanModule());
+
         if (generated) {
             throw new UnsupportedOperationException("Can not re-create repository");
         }
@@ -39,11 +48,13 @@ public class CoreItemRepository<T extends Customizable> implements CustomItemRep
 
             for (File file : folder.listFiles()) {
 
-                if (!file.isDirectory() && FilenameUtils.getExtension(file.getName()).equalsIgnoreCase(".json")) {
+                if (!file.isDirectory() && FilenameUtils.getExtension(file.getName()).equalsIgnoreCase("json")) {
+
                     try {
                         cache.add(mapper.readValue(file, clazz));
-                    } catch (IOException info) {
+                    } catch (IOException ex) {
                         plugin.getLogger().log(Level.WARNING, "Error while parsing {0}", file.getName());
+                        ex.printStackTrace();
                     }
                 }
 

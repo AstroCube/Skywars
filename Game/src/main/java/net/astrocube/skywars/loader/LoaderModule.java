@@ -9,8 +9,9 @@ public class LoaderModule extends ProtectedModule {
 
     @Override
     public void configure() {
-        bind(Loader.class).to(LayoutLoader.class).in(Scopes.SINGLETON);
+        bind(Loader.class).to(GameLoader.class).in(Scopes.SINGLETON);
         bind(Loader.class).annotatedWith(Names.named("listener")).to(ListenerLoader.class);
+        bind(Loader.class).annotatedWith(Names.named("repository")).to(RepositoryLoader.class);
     }
 
 }
