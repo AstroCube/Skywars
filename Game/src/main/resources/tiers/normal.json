@@ -1,0 +1,219 @@
+{
+  "tier": "NORMAL",
+  "probabilities": [
+    {
+      "item": {
+        "material": "IRON_CHESTPLATE",
+        "number": 0,
+        "enchantments": []
+      },
+      "minimum": 1,
+      "maximum": 1,
+      "chance": 40
+    },
+    {
+      "item": {
+        "material": "IRON_LEGGINGS",
+        "number": 0,
+        "enchantments": []
+      },
+      "minimum": 1,
+      "maximum": 1,
+      "chance": 50
+    },
+    {
+      "item": {
+        "material": "ENDER_PEARL",
+        "number": 0,
+        "enchantments": []
+      },
+      "minimum": 1,
+      "maximum": 2,
+      "chance": 10
+    },
+    {
+      "item": {
+        "material": "GOLDEN_APPLE",
+        "number": 0,
+        "enchantments": []
+      },
+      "minimum": 2,
+      "maximum": 4,
+      "chance": 35
+    },
+    {
+      "item": {
+        "material": "SNOW_BALL",
+        "number": 0,
+        "enchantments": []
+      },
+      "minimum": 15,
+      "maximum": 15,
+      "chance": 30
+    },
+    {
+      "item": {
+        "material": "BOW",
+        "number": 0,
+        "enchantments": []
+      },
+      "minimum": 1,
+      "maximum": 1,
+      "chance": 40
+    },
+    {
+      "item": {
+        "material": "ARROW",
+        "number": 0,
+        "enchantments": []
+      },
+      "minimum": 64,
+      "maximum": 64,
+      "chance": 60
+    },
+    {
+      "item": {
+        "material": "LAVA_BUCKET",
+        "number": 0,
+        "enchantments": []
+      },
+      "minimum": 1,
+      "maximum": 1,
+      "chance": 10
+    },
+    {
+      "item": {
+        "material": "EXP_BOTTLE",
+        "number": 0,
+        "enchantments": []
+      },
+      "minimum": 5,
+      "maximum": 10,
+      "chance": 40
+    },
+    {
+      "item": {
+        "material": "COMPASS",
+        "number": 0,
+        "enchantments": []
+      },
+      "minimum": 1,
+      "maximum": 1,
+      "chance": 10
+    },
+    {
+      "item": {
+        "material": "TNT",
+        "number": 0,
+        "enchantments": []
+      },
+      "minimum": 2,
+      "maximum": 10,
+      "chance": 30
+    },
+    {
+      "item": {
+        "material": "FLINT_AND_STEEL",
+        "number": 0,
+        "enchantments": []
+      },
+      "minimum": 1,
+      "maximum": 1,
+      "chance": 25
+    },
+    {
+      "item": {
+        "material": "WOOD",
+        "number": 0,
+        "enchantments": []
+      },
+      "minimum": 10,
+      "maximum": 64,
+      "chance": 25
+    },
+    {
+      "item": {
+        "material": "COBBLESTONE",
+        "number": 0,
+        "enchantments": []
+      },
+      "minimum": 10,
+      "maximum": 64,
+      "chance": 60
+    },
+    {
+      "item": {
+        "material": "COBBLESTONE",
+        "number": 0,
+        "enchantments": []
+      },
+      "minimum": 10,
+      "maximum": 64,
+      "chance": 60
+    },
+    {
+      "item": {
+        "material": "IRON_AXE",
+        "number": 0,
+        "enchantments": [
+          {
+            "type": "DIG_SPEED",
+            "level": 3
+          }
+        ]
+      },
+      "minimum": 1,
+      "maximum": 1,
+      "chance": 50
+    },
+    {
+      "item": {
+        "material": "IRON_PICKAXE",
+        "number": 0,
+        "enchantments": [
+          {
+            "type": "DIG_SPEED",
+            "level": 3
+          }
+        ]
+      },
+      "minimum": 1,
+      "maximum": 1,
+      "chance": 50
+    },
+    {
+      "item": {
+        "material": "FISHING_ROD",
+        "number": 0,
+        "enchantments": [
+          {
+            "type": "KNOCKBACK",
+            "level": 1
+          }
+        ]
+      },
+      "minimum": 1,
+      "maximum": 1,
+      "chance": 20
+    },
+    {
+      "item": {
+        "material": "DIAMOND_BOOTS",
+        "number": 0,
+        "enchantments": [
+          {
+            "type": "PROTECTION_FIRE",
+            "level": 2
+          },
+          {
+            "type": "PROTECTION_ENVIRONMENTAL",
+            "level": 5
+          }
+        ]
+      },
+      "minimum": 1,
+      "maximum": 1,
+      "chance": 20
+    }
+  ]
+}

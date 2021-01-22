@@ -18,6 +18,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.scoreboard.GameBoard;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 import java.util.logging.Level;
@@ -26,14 +27,10 @@ import java.util.logging.Level;
 public class CoreScoreboardModifier implements ScoreboardModifier {
 
     private @Inject MessageHandler<Player> messageHandler;
-    private @Inject FindService<GameMap> findService;
     private @Inject Plugin plugin;
 
     @Override
-    public void createBoard(Set<ProvisionedTeam> players, Match match) throws Exception {
-
-        GameMap gameMap = findService.findSync(match.getMap());
-
+    public void createBoard(Set<ProvisionedTeam> players, GameMap gameMap) {
         TeamUtils.getMatchPlayers(players).forEach(player ->
                 setupScoreboard(
                         player,
@@ -85,7 +82,9 @@ public class CoreScoreboardModifier implements ScoreboardModifier {
                 "%%survivors%%", survivors
         );
 
-        for (int i = (list.size() - 1); i == 0; i--) {
+        Collections.reverse(list);
+
+        for (int i = (list.size() - 1); i >= 0; i--) {
             board.addLine(i, list.get(i));
         }
 
@@ -113,17 +112,20 @@ public class CoreScoreboardModifier implements ScoreboardModifier {
         String subMode = plugin.getConfig().getString("centauri.subMode", "");
 
         GameBoard board = player.getAttachedBoard();
-        Optional<String> replacing = messageHandler.getMany(player, "scoreboard." + subMode + ".board")
-                .stream()
-                .filter(s -> s.contains(field))
-                .findAny();
+        StringList list = messageHandler.getMany(player, "scoreboard." + subMode + ".board");
 
-        if (board != null && replacing.isPresent()) {
-            board.getLines().forEach(boardLine -> {
-                if ((boardLine.getText().getPrefix() + boardLine.getText().getSuffix()).contains(field)) {
-                    board.setLine(boardLine.getPosition(), replacing.get().replace(field, value));
+        Collections.reverse(list);
+
+        if (board != null) {
+
+            for (int i = (list.size() - 1); i >= 0; i--) {
+
+                if (list.get(i).contains(field)) {
+                    board.setLine(i, list.get(i).replace(field, value));
                 }
-            });
+
+            }
+
         }
 
     }

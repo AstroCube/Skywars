@@ -8,15 +8,15 @@ match:
   death-player: "%%blue%%¡%%killer%% %%blue%%ha asesinado a %%target%%%%blue%%!"
   death-natural: "%%blue%%¡%%target%% %%blue%%ha muerto!"
 scoreboard:
-  solo:
-    title: "SkyWars SOLO"
+  5e2dd6b99536bff847f528af:
+    title: "%%aqua%%%%bold%%SkyWars SOLO"
     empty: "N/A"
     board:
       - "%%green%%"
-      - "Quedan: %%survivors%%"
-      - "Recarga: %%time%%"
+      - "%%aqua%%%%bold%%| %%white%%Quedan: %%survivors%%"
+      - "%%dark_blue%%%%bold%%| %%white%%Recarga: %%time%%"
       - "%%yellow%%"
-      - "Mapa:"
-      - "%%map%%"
+      - "%%aqua%%%%bold%%| %%white%%Mapa:"
+      - "%%dark_blue%%%%bold%%|%%white%%%%map%%"
       - "%%blue%%"
       - "%%blue%%www.astrocube.net"

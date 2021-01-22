@@ -5,10 +5,13 @@ import net.astrocube.api.bukkit.game.event.game.GameReadyEvent;
 import net.astrocube.api.bukkit.game.event.match.MatchInvalidateEvent;
 import net.astrocube.api.bukkit.game.exception.GameControlException;
 import net.astrocube.api.bukkit.game.map.MapConfigurationProvider;
+import net.astrocube.api.bukkit.virtual.game.map.GameMap;
 import net.astrocube.api.bukkit.virtual.game.match.Match;
 import net.astrocube.api.core.service.find.FindService;
 import net.astrocube.skywars.api.cage.MatchCageSpawner;
 import net.astrocube.skywars.api.chest.ChestSpawner;
+import net.astrocube.skywars.api.game.ScoreboardModifier;
+import net.astrocube.skywars.api.game.SpawnProtectionChecker;
 import net.astrocube.skywars.api.map.MapConfiguration;
 import net.astrocube.skywars.api.refill.RefillScheduler;
 import net.astrocube.skywars.api.team.MatchStartProcessor;
@@ -26,11 +29,14 @@ import java.util.logging.Level;
 public class GameReadyListener implements Listener {
 
     private @Inject FindService<Match> findService;
+    private @Inject FindService<GameMap> gameMapFindService;
     private @Inject MapConfigurationProvider configurationProvider;
     private @Inject Plugin plugin;
 
     private @Inject MatchCageSpawner matchCageSpawner;
     private @Inject MatchStartProcessor matchStartProcessor;
+    private @Inject SpawnProtectionChecker spawnProtectionChecker;
+    private @Inject ScoreboardModifier scoreboardModifier;
     private @Inject TeamSpawner teamSpawner;
     private @Inject TeamMatcher teamMatcher;
     private @Inject RefillScheduler refillScheduler;
@@ -52,12 +58,24 @@ public class GameReadyListener implements Listener {
 
                 Set<ProvisionedTeam> provisionedTeams = teamMatcher.linkTeams(event.getTeams(), configuration);
 
+                GameMap gameMap = gameMapFindService.findSync(response.getResponse().get().getMap());
+
                 Bukkit.getScheduler().runTask(plugin, () -> {
                     matchCageSpawner.spawn(event.getMatch(), provisionedTeams);
                     teamSpawner.spawn(provisionedTeams, event.getMatch());
                     chestSpawner.spawnChests(event.getMatch(), configuration.getChests());
+                    spawnProtectionChecker.registerMatch(provisionedTeams);
+
+                    // Will not stop the game when failed
+                    try {
+                        scoreboardModifier.createBoard(provisionedTeams, gameMap);
+                    } catch (Exception e) {
+                        plugin.getLogger().log(Level.WARNING, "Error while generating scoreboard", e);
+                    }
+
                     matchStartProcessor.scheduleStart(provisionedTeams, event.getMatch());
                 });
+
 
                 Bukkit.getScheduler().runTaskLater(
                         plugin,
