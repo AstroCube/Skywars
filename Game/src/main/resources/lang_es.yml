@@ -7,6 +7,9 @@ match:
   refilled: "%%blue%%¡Se han rellenado todos los cofres!"
   death-player: "%%blue%%¡%%killer%% %%blue%%ha asesinado a %%target%%%%blue%%!"
   death-natural: "%%blue%%¡%%target%% %%blue%%ha muerto!"
+  victory:
+    title: "%%blue%%¡Haz ganado!"
+    sub: "Enhorabuena, ganaste la partida..."
 scoreboard:
   5e2dd6b99536bff847f528af:
     title: "%%aqua%%%%bold%%SkyWars SOLO"

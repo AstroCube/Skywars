@@ -10,6 +10,7 @@ import net.astrocube.api.bukkit.virtual.game.match.Match;
 import net.astrocube.api.core.service.find.FindService;
 import net.astrocube.skywars.api.cage.MatchCageSpawner;
 import net.astrocube.skywars.api.chest.ChestSpawner;
+import net.astrocube.skywars.api.game.DisqualificationHandler;
 import net.astrocube.skywars.api.game.ScoreboardModifier;
 import net.astrocube.skywars.api.game.SpawnProtectionChecker;
 import net.astrocube.skywars.api.map.MapConfiguration;
@@ -40,7 +41,7 @@ public class GameReadyListener implements Listener {
     private @Inject TeamSpawner teamSpawner;
     private @Inject TeamMatcher teamMatcher;
     private @Inject RefillScheduler refillScheduler;
-
+    private @Inject DisqualificationHandler disqualificationHandler;
     private @Inject ChestSpawner chestSpawner;
 
     @EventHandler
@@ -65,6 +66,7 @@ public class GameReadyListener implements Listener {
                     teamSpawner.spawn(provisionedTeams, event.getMatch());
                     chestSpawner.spawnChests(event.getMatch(), configuration.getChests());
                     spawnProtectionChecker.registerMatch(provisionedTeams);
+                    disqualificationHandler.ensureTeams(event.getMatch(), provisionedTeams);
 
                     // Will not stop the game when failed
                     try {

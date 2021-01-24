@@ -22,6 +22,8 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 import java.util.logging.Level;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 @Singleton
 public class CoreScoreboardModifier implements ScoreboardModifier {
@@ -36,7 +38,8 @@ public class CoreScoreboardModifier implements ScoreboardModifier {
                         player,
                         gameMap.getName(),
                         getRemainingFromSeconds(plugin.getConfig().getInt("wars.interval")),
-                        players.size() + ""
+                        players.stream().filter(t -> t.getMembers().size() > 0)
+                                .collect(Collectors.toSet()).size() + ""
                 )
         );
 

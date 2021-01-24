@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 
 import javax.annotation.Nullable;
 import java.util.Set;
+import java.util.UUID;
 
 public interface DisqualificationHandler {
 
@@ -15,6 +16,8 @@ public interface DisqualificationHandler {
     void alertDisqualify(Player player, Player target, @Nullable Player killer);
 
     interface Registry {
+
+        UUID getUUID();
 
         String getMatch();
 

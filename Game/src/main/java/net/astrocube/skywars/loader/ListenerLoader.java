@@ -5,10 +5,7 @@ import net.astrocube.api.core.loader.Loader;
 import net.astrocube.skywars.listener.damage.PlayerDeathListener;
 import net.astrocube.skywars.listener.damage.PlayerFallListener;
 import net.astrocube.skywars.listener.damage.PlayerItemDamageListener;
-import net.astrocube.skywars.listener.game.GameDisqualificationListener;
-import net.astrocube.skywars.listener.game.GameInvalidationListener;
-import net.astrocube.skywars.listener.game.GamePairEnableListener;
-import net.astrocube.skywars.listener.game.GameReadyListener;
+import net.astrocube.skywars.listener.game.*;
 import net.astrocube.skywars.listener.ignite.BlockPlaceListener;
 import net.astrocube.skywars.listener.ignite.EntityExplodeListener;
 import org.bukkit.event.Listener;
@@ -31,6 +28,7 @@ public class ListenerLoader implements Loader {
     private @Inject GameInvalidationListener gameInvalidationListener;
     private @Inject GamePairEnableListener gamePairEnableListener;
     private @Inject GameDisqualificationListener gameDisqualificationListener;
+    private @Inject MatchFinishListener matchFinishListener;
 
     @Override
     public void load() {
@@ -47,6 +45,7 @@ public class ListenerLoader implements Loader {
         registerEvent(gameInvalidationListener);
         registerEvent(gamePairEnableListener);
         registerEvent(gameDisqualificationListener);
+        registerEvent(matchFinishListener);
     }
 
     private void registerEvent(Listener listener) {

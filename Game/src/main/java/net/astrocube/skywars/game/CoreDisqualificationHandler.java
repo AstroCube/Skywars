@@ -15,6 +15,7 @@ import javax.annotation.Nullable;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Singleton
@@ -32,6 +33,11 @@ public class CoreDisqualificationHandler implements DisqualificationHandler {
     @Override
     public void ensureTeams(String match, Set<ProvisionedTeam> teams) {
         teams.forEach(team -> team.getMembers().forEach(teamMember -> registries.add(new Registry() {
+            @Override
+            public UUID getUUID() {
+                return UUID.randomUUID();
+            }
+
             @Override
             public String getMatch() {
                 return match;
@@ -56,15 +62,23 @@ public class CoreDisqualificationHandler implements DisqualificationHandler {
                 .filter(registry -> registry.getUser().equalsIgnoreCase(user))
                 .findFirst();
 
-        userRegistry.ifPresent(registry -> {
+        if (userRegistry.isPresent()) {
 
-            registries.remove(registry);
+            Registry temporal = userRegistry.get();
+
+            System.out.println("Registry is present");
+
+            System.out.println(userRegistry.get().getUser());
+
+            registries.removeIf(reg -> reg.getUUID() == userRegistry.get().getUUID());
+
+            registries.forEach(reg -> System.out.println(reg.getUser()));
 
             Set<String> remainingTeams = new HashSet<>();
 
             // Check if there is only one team at remaining teams
             for (Registry in : registries) {
-                if (in.getTeam().equalsIgnoreCase(registry.getTeam())) {
+                if (in.getTeam().equalsIgnoreCase(temporal.getTeam())) {
                     remainingTeams.add(in.getTeam());
                 }
             }
@@ -74,7 +88,7 @@ public class CoreDisqualificationHandler implements DisqualificationHandler {
                 // Call victory event and remove all remaining registries
                 Bukkit.getPluginManager().callEvent(
                         new MatchFinishEvent(
-                                registry.getMatch(),
+                                temporal.getMatch(),
                                 registries.stream()
                                         .filter(t -> remainingTeams.contains(t.getTeam()))
                                         .map(Registry::getUser)
@@ -82,11 +96,11 @@ public class CoreDisqualificationHandler implements DisqualificationHandler {
                         )
                 );
 
-                registries.removeIf(reg -> reg.getMatch().equalsIgnoreCase(registry.getTeam()));
+                registries.removeIf(reg -> reg.getMatch().equalsIgnoreCase(temporal.getTeam()));
 
             }
 
-        });
+        }
 
     }
 
