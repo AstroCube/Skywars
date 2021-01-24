@@ -66,10 +66,6 @@ public class CoreDisqualificationHandler implements DisqualificationHandler {
 
             Registry temporal = userRegistry.get();
 
-            System.out.println("Registry is present");
-
-            System.out.println(userRegistry.get().getUser());
-
             registries.removeIf(reg -> reg.getUUID() == userRegistry.get().getUUID());
 
             registries.forEach(reg -> System.out.println(reg.getUser()));
