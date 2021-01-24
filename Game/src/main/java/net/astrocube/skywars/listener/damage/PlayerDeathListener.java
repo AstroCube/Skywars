@@ -27,6 +27,7 @@ public class PlayerDeathListener implements Listener {
             } else if ((player.getHealth() - damage) < 1) {
                 EntityDamageByEntityEvent damageEvent = (EntityDamageByEntityEvent) event;
                 Player killer = (Player) damageEvent.getDamager();
+                event.setCancelled(true);
                 Bukkit.getPluginManager().callEvent(new PlayerDisqualificationEvent(player, killer));
             }
         }
