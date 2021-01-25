@@ -1,0 +1,225 @@
+{
+  "tier": "CENTER",
+  "probabilities": [
+    {
+      "item": {
+        "material": "IRON_CHESTPLATE",
+        "enchantments": []
+      },
+      "minimum": 1,
+      "maximum": 1,
+      "chance": 40
+    },
+    {
+      "item": {
+        "material": "LEATHER_LEGGINGS",
+        "enchantments": []
+      },
+      "minimum": 1,
+      "maximum": 1,
+      "chance": 50
+    },
+    {
+      "item": {
+        "material": "GOLDEN_APPLE",
+        "enchantments": []
+      },
+      "minimum": 2,
+      "maximum": 4,
+      "chance": 35
+    },
+    {
+      "item": {
+        "material": "SNOW_BALL",
+        "enchantments": []
+      },
+      "minimum": 15,
+      "maximum": 16,
+      "chance": 30
+    },
+    {
+      "item": {
+        "material": "SNOW_BALL",
+        "enchantments": []
+      },
+      "minimum": 15,
+      "maximum": 16,
+      "chance": 30
+    },
+    {
+      "item": {
+        "material": "BOW",
+        "enchantments": []
+      },
+      "minimum": 1,
+      "maximum": 1,
+      "chance": 40
+    },
+    {
+      "item": {
+        "material": "ARROW",
+        "enchantments": []
+      },
+      "minimum": 64,
+      "maximum": 64,
+      "chance": 60
+    },
+    {
+      "item": {
+        "material": "LAVA_BUCKET",
+        "enchantments": []
+      },
+      "minimum": 1,
+      "maximum": 1,
+      "chance": 10
+    },
+    {
+      "item": {
+        "material": "EXP_BOTTLE",
+        "enchantments": []
+      },
+      "minimum": 5,
+      "maximum": 10,
+      "chance": 40
+    },
+    {
+      "item": {
+        "material": "COMPASS",
+        "enchantments": []
+      },
+      "minimum": 1,
+      "maximum": 1,
+      "chance": 10
+    },
+    {
+      "item": {
+        "material": "TNT",
+        "enchantments": []
+      },
+      "minimum": 2,
+      "maximum": 10,
+      "chance": 30
+    },
+    {
+      "item": {
+        "material": "FLINT_AND_STEEL",
+        "enchantments": []
+      },
+      "minimum": 1,
+      "maximum": 1,
+      "chance": 25
+    },
+    {
+      "item": {
+        "material": "WOOD",
+        "enchantments": []
+      },
+      "minimum": 10,
+      "maximum": 64,
+      "chance": 60
+    },
+    {
+      "item": {
+        "material": "COBBLESTONE",
+        "enchantments": []
+      },
+      "minimum": 10,
+      "maximum": 64,
+      "chance": 60
+    },
+    {
+      "item": {
+        "material": "POTION",
+        "code": 16385,
+        "enchantments": []
+      },
+      "minimum": 1,
+      "maximum": 2,
+      "chance": 30
+    },
+    {
+      "item": {
+        "material": "POTION",
+        "code": 16418,
+        "enchantments": []
+      },
+      "minimum": 1,
+      "maximum": 2,
+      "chance": 30
+    },
+    {
+      "item": {
+        "material": "FISHING_ROD",
+        "enchantments": [
+          {
+            "type": "KNOCKBACK",
+            "level": 1
+          }
+        ]
+      },
+      "minimum": 1,
+      "maximum": 1,
+      "chance": 50
+    },
+    {
+      "item": {
+        "material": "IRON_PICKAXE",
+        "enchantments": [
+          {
+            "type": "DIG_SPEED",
+            "level": 3
+          }
+        ]
+      },
+      "minimum": 1,
+      "maximum": 1,
+      "chance": 50
+    },
+    {
+      "item": {
+        "material": "IRON_AXE",
+        "enchantments": [
+          {
+            "type": "DIG_SPEED",
+            "level": 3
+          }
+        ]
+      },
+      "minimum": 1,
+      "maximum": 1,
+      "chance": 50
+    },
+    {
+      "item": {
+        "material": "DIAMOND_CHESTPLATE",
+        "enchantments": [
+          {
+            "type": "PROTECTION_ENVIRONMENTAL",
+            "level": 2
+          }
+        ]
+      },
+      "minimum": 1,
+      "maximum": 1,
+      "chance": 20
+    },
+    {
+      "item": {
+        "material": "DIAMOND_BOOTS",
+        "enchantments": [
+          {
+            "type": "PROTECTION_ENVIRONMENTAL",
+            "level": 5
+          },
+          {
+            "type": "PROTECTION_FIRE",
+            "level": 5
+          }
+        ]
+      },
+      "minimum": 1,
+      "maximum": 1,
+      "chance": 20
+    }
+  ]
+}

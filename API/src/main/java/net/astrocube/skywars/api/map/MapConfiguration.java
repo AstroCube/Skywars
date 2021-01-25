@@ -49,7 +49,7 @@ public interface MapConfiguration extends GameMapConfiguration {
          * Chest type to be filled
          */
         enum Tier {
-            NORMAL, CENTER, INSANE, INSANE_CENTER
+            NORMAL, CENTER
         }
 
     }
