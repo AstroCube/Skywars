@@ -3,7 +3,6 @@ package net.astrocube.skywars.listener.game;
 import com.google.inject.Inject;
 import net.astrocube.api.bukkit.game.event.spectator.SpectatorAssignEvent;
 import net.astrocube.api.bukkit.game.match.ActualMatchCache;
-import net.astrocube.api.bukkit.game.match.ActualMatchProvider;
 import net.astrocube.api.bukkit.game.match.control.MatchParticipantsProvider;
 import net.astrocube.api.bukkit.virtual.game.match.Match;
 import net.astrocube.skywars.api.event.PlayerDisqualificationEvent;
@@ -31,10 +30,9 @@ public class GameDisqualificationListener implements Listener {
 
         try {
 
-            Optional<Match> match =actualMatchCache.get(event.getPlayer().getDatabaseIdentifier());
+            Optional<Match> match = actualMatchCache.get(event.getPlayer().getDatabaseIdentifier());
 
             if (match.isPresent()) {
-
 
                 Bukkit.getPluginManager().callEvent(new SpectatorAssignEvent(event.getPlayer(), match.get().getId()));
 
