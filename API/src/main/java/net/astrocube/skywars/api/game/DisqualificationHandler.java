@@ -17,8 +17,6 @@ public interface DisqualificationHandler {
 
     interface Registry {
 
-        UUID getUUID();
-
         String getMatch();
 
         String getUser();

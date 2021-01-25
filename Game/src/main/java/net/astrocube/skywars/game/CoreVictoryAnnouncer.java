@@ -15,6 +15,8 @@ public class CoreVictoryAnnouncer implements VictoryAnnouncer {
     @Override
     public void sendVictoryTitle(Player player) {
 
+        System.out.println(player.getName());
+
         Title title = new Title(
                 messageHandler.get(player, "match.victory.title"),
                 messageHandler.get(player, "match.victory.sub")

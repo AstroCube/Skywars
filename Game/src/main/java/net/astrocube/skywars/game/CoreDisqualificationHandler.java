@@ -15,13 +15,12 @@ import javax.annotation.Nullable;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Singleton
 public class CoreDisqualificationHandler implements DisqualificationHandler {
 
-    private final Set<Registry> registries;
+    private Set<Registry> registries;
     private final MessageHandler<Player> messageHandler;
 
     @Inject
@@ -33,11 +32,6 @@ public class CoreDisqualificationHandler implements DisqualificationHandler {
     @Override
     public void ensureTeams(String match, Set<ProvisionedTeam> teams) {
         teams.forEach(team -> team.getMembers().forEach(teamMember -> registries.add(new Registry() {
-            @Override
-            public UUID getUUID() {
-                return UUID.randomUUID();
-            }
-
             @Override
             public String getMatch() {
                 return match;
@@ -66,20 +60,20 @@ public class CoreDisqualificationHandler implements DisqualificationHandler {
 
             Registry temporal = userRegistry.get();
 
-            registries.removeIf(reg -> reg.getUUID() == userRegistry.get().getUUID());
-
-            registries.forEach(reg -> System.out.println(reg.getUser()));
+            registries = registries.stream()
+                    .filter(registry -> !registry.getUser().equalsIgnoreCase(user))
+                    .collect(Collectors.toSet());
 
             Set<String> remainingTeams = new HashSet<>();
 
             // Check if there is only one team at remaining teams
             for (Registry in : registries) {
-                if (in.getTeam().equalsIgnoreCase(temporal.getTeam())) {
+                if (!in.getTeam().equalsIgnoreCase(temporal.getTeam())) {
                     remainingTeams.add(in.getTeam());
                 }
             }
 
-            if (remainingTeams.size() == 1) {
+            if (remainingTeams.size() < 2) {
 
                 // Call victory event and remove all remaining registries
                 Bukkit.getPluginManager().callEvent(
