@@ -18,7 +18,7 @@ import java.util.Set;
 public class CoreMatchStartProcessor implements MatchStartProcessor {
 
     private @Inject MatchCageSpawner matchCageSpawner;
-    private @Inject MessageHandler<Player> messageHandler;
+    private @Inject MessageHandler messageHandler;
     private @Inject Plugin plugin;
 
     @Override

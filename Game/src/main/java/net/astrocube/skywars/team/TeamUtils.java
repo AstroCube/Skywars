@@ -21,7 +21,7 @@ public class TeamUtils {
      * @param handler where the language will be provided
      * @param message to be used as translation
      */
-    public static void kickVoidedPlayers(Set<MatchDoc.TeamMember> members, MessageHandler<Player> handler, String message) {
+    public static void kickVoidedPlayers(Set<MatchDoc.TeamMember> members, MessageHandler handler, String message) {
         members.forEach(member -> {
 
             Player player = Bukkit.getPlayerByIdentifier(member.getUser());

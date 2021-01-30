@@ -3,11 +3,8 @@ package net.astrocube.skywars.game;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import me.yushust.message.MessageHandler;
-import me.yushust.message.StringList;
+import me.yushust.message.util.StringList;
 import net.astrocube.api.bukkit.virtual.game.map.GameMap;
-import net.astrocube.api.bukkit.virtual.game.match.Match;
-import net.astrocube.api.bukkit.virtual.game.match.MatchDoc;
-import net.astrocube.api.core.service.find.FindService;
 import net.astrocube.skywars.api.game.ScoreboardModifier;
 import net.astrocube.skywars.api.team.ProvisionedTeam;
 import net.astrocube.skywars.team.TeamUtils;
@@ -28,7 +25,7 @@ import java.util.stream.Collectors;
 @Singleton
 public class CoreScoreboardModifier implements ScoreboardModifier {
 
-    private @Inject MessageHandler<Player> messageHandler;
+    private @Inject MessageHandler messageHandler;
     private @Inject Plugin plugin;
 
     @Override
@@ -115,7 +112,7 @@ public class CoreScoreboardModifier implements ScoreboardModifier {
         String subMode = plugin.getConfig().getString("centauri.subMode", "");
 
         GameBoard board = player.getAttachedBoard();
-        StringList list = messageHandler.getMany(player, "scoreboard." + subMode + ".board");
+        me.yushust.message.util.StringList list = messageHandler.getMany(player, "scoreboard." + subMode + ".board");
 
         Collections.reverse(list);
 

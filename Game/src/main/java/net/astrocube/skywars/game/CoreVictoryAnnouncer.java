@@ -10,7 +10,7 @@ import org.github.paperspigot.Title;
 @Singleton
 public class CoreVictoryAnnouncer implements VictoryAnnouncer {
 
-    private @Inject MessageHandler<Player> messageHandler;
+    private @Inject MessageHandler messageHandler;
 
     @Override
     public void sendVictoryTitle(Player player) {

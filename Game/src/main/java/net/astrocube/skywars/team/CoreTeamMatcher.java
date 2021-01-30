@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @Singleton
 public class CoreTeamMatcher implements TeamMatcher {
 
-    private @Inject MessageHandler<Player> messageHandler;
+    private @Inject MessageHandler messageHandler;
 
     @Override
     public Set<ProvisionedTeam> linkTeams(Set<MatchDoc.Team> matchTeam, MapConfiguration configuration) {

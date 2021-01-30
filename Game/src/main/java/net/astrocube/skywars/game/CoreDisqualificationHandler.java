@@ -4,7 +4,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import me.yushust.message.MessageHandler;
 import net.astrocube.api.bukkit.game.event.match.MatchFinishEvent;
-import net.astrocube.api.bukkit.translation.mode.AlertMode;
+import net.astrocube.api.bukkit.translation.mode.AlertModes;
 import net.astrocube.skywars.api.game.DisqualificationHandler;
 import net.astrocube.skywars.api.team.ProvisionedTeam;
 import org.bukkit.Bukkit;
@@ -21,10 +21,10 @@ import java.util.stream.Collectors;
 public class CoreDisqualificationHandler implements DisqualificationHandler {
 
     private Set<Registry> registries;
-    private final MessageHandler<Player> messageHandler;
+    private final MessageHandler messageHandler;
 
     @Inject
-    public CoreDisqualificationHandler(MessageHandler<Player> messageHandler) {
+    public CoreDisqualificationHandler(MessageHandler messageHandler) {
         this.registries = new HashSet<>();
         this.messageHandler = messageHandler;
     }
@@ -99,7 +99,7 @@ public class CoreDisqualificationHandler implements DisqualificationHandler {
 
         if (killer != null) {
             messageHandler.sendReplacing(
-                    player, AlertMode.MUTED, "match.death-player",
+                    player, AlertModes.MUTED, "match.death-player",
                     "%%killer%%", ChatColor.WHITE + killer.getName(),
                     "%%target%%", ChatColor.WHITE + target.getName()
             );
@@ -107,7 +107,7 @@ public class CoreDisqualificationHandler implements DisqualificationHandler {
         }
 
         messageHandler.send(
-                player, AlertMode.MUTED, "match.death-natural",
+                player, AlertModes.MUTED, "match.death-natural",
                 "%%target%%", ChatColor.WHITE + target.getName()
         );
 
