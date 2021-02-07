@@ -21,7 +21,7 @@ public class CoreRefillAnnouncer implements RefillAnnouncer {
             if (seconds != 0) {
                 messageHandler.sendReplacing(
                         user, AlertModes.MUTED, "match.refill",
-                        "%%seconds%%", seconds + ""
+                        "%%seconds%%", (seconds + "")
                 );
             } else {
                 messageHandler.send(user, AlertModes.INFO, "match.refilled");
