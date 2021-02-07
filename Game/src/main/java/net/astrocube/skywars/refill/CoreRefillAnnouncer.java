@@ -7,8 +7,10 @@ import net.astrocube.api.bukkit.translation.mode.AlertModes;
 import net.astrocube.skywars.api.refill.RefillAnnouncer;
 import net.astrocube.skywars.api.team.ProvisionedTeam;
 import net.astrocube.skywars.team.TeamUtils;
+import org.bukkit.entity.Player;
 
 import java.util.Set;
+import java.util.function.Consumer;
 
 @Singleton
 public class CoreRefillAnnouncer implements RefillAnnouncer {
@@ -17,16 +19,18 @@ public class CoreRefillAnnouncer implements RefillAnnouncer {
 
     @Override
     public void announceRefill(Set<ProvisionedTeam> teams, int seconds) {
-        TeamUtils.getMatchPlayers(teams).forEach(user -> {
-            if (seconds != 0) {
-                messageHandler.sendReplacing(
-                        user, AlertModes.MUTED, "match.refill",
-                        "%%seconds%%", (seconds + "")
-                );
-            } else {
-                messageHandler.send(user, AlertModes.INFO, "match.refilled");
-            }
-        });
+        if (seconds != 0) {
+            sendMessage(teams, player -> messageHandler.sendReplacing(
+                    player, AlertModes.MUTED, "match.refill",
+                    "%%seconds%%", (seconds + "")
+            ));
+        } else {
+            sendMessage(teams, player -> messageHandler.send(player, AlertModes.INFO, "match.refilled"));
+        }
+    }
+
+    private void sendMessage(Set<ProvisionedTeam> teams, Consumer<Player> consumer) {
+        TeamUtils.getMatchPlayers(teams).forEach(consumer);
     }
 
 }
