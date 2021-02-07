@@ -25,7 +25,7 @@ public class PlayerInteractionListener implements Listener {
 
             Optional<Match> match = actualMatchCache.get(event.getPlayer().getDatabaseIdentifier());
 
-            if (match.isPresent() && match.get().getStatus() != MatchDoc.Status.RUNNING) {
+            if (match.isPresent() && match.get().getStatus() == MatchDoc.Status.RUNNING) {
                 return;
             }
 
@@ -44,7 +44,7 @@ public class PlayerInteractionListener implements Listener {
 
             Optional<Match> match = actualMatchCache.get(event.getPlayer().getDatabaseIdentifier());
 
-            if (match.isPresent() && match.get().getStatus() != MatchDoc.Status.RUNNING) {
+            if (match.isPresent() && match.get().getStatus() == MatchDoc.Status.RUNNING) {
                 return;
             }
 
