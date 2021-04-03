@@ -17,6 +17,38 @@
         <module>Game</module>
     </modules>
 
+    <repositories>
+        <!-- Public AstroCube repositories -->
+        <repository>
+            <id>astro-releases</id>
+            <url>https://repo.astrocube.net/repository/astro-releases</url>
+        </repository>
+        <repository>
+            <id>astro-snapshots</id>
+            <url>https://repo.astrocube.net/repository/astro-snapshots</url>
+        </repository>
+
+        <!-- Public AstroCube repositories -->
+        <repository>
+            <id>core-releases</id>
+            <url>https://repo.astrocube.net/repository/core-releases</url>
+        </repository>
+        <repository>
+            <id>core-snapshots</id>
+            <url>https://repo.astrocube.net/repository/core-snapshots</url>
+        </repository>
+
+        <!-- Public Unnamed repositories -->
+        <repository>
+            <id>unnamed-releases</id>
+            <url>https://repo.unnamed.team/repository/unnamed-releases</url>
+        </repository>
+        <repository>
+            <id>unnamed-snapshots</id>
+            <url>https://repo.unnamed.team/repository/unnamed-snapshots</url>
+        </repository>
+    </repositories>
+
     <build>
         <finalName>${project.artifactId}</finalName>
         <plugins>
