@@ -16,6 +16,11 @@ public interface Kit extends Customizable {
     String getIdentifier();
 
     /**
+     * @return The kit icon shown in kit menu
+     */
+    SerializableItem getIcon();
+
+    /**
      * @return serializable helmet to be placed
      */
     SerializableItem getHelmet();
@@ -44,6 +49,11 @@ public interface Kit extends Customizable {
      * @return serializable chest to be placed
      */
     Set<Pair> getInventory();
+
+    /**
+     * @return The kit price
+     */
+    int getPrice();
 
     interface Pair {
 
