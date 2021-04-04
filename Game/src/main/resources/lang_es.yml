@@ -1,6 +1,16 @@
 team:
   error:
     comparing: "%%red%%Ha ocurrido un error al establecerte en un grupo. Por favor intenta unirte a otra partida."
+gadget:
+  kit-select:
+    name: "&aSelección de Kit &7(Clic derecho)"
+    lore:
+    - ""
+    - "&7Haz clic derecho teniendo este"
+    - "&7ítem en tu mano para abrir el"
+    - "&7menú de selección de kits"
+    - ""
+    - "&a&lClic para abrir"
 menu:
   kit-buy:
     title: "%%black%%¿Comprar %%kit_name%%?"
