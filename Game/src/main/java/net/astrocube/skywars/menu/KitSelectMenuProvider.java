@@ -1,12 +1,11 @@
 package net.astrocube.skywars.menu;
 
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import me.yushust.message.MessageHandler;
 import net.astrocube.api.bukkit.game.exception.GameControlException;
 import net.astrocube.api.bukkit.menu.ShapedMenuGenerator;
-import net.astrocube.api.core.virtual.user.User;
 import net.astrocube.skywars.api.custom.CustomItemRepository;
-import net.astrocube.skywars.api.custom.SerializableItem;
 import net.astrocube.skywars.api.kit.Kit;
 import net.astrocube.skywars.api.perk.SkyWarsPerkManifest;
 import net.astrocube.skywars.api.perk.SkyWarsPerkProvider;
@@ -14,10 +13,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import team.unnamed.gui.core.item.type.ItemBuilder;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Consumer;
@@ -28,12 +25,14 @@ import java.util.logging.Level;
  * and opening the kit selection menu
  * for players
  */
+@Singleton
 public class KitSelectMenuProvider {
 
     private @Inject MessageHandler messageHandler;
     private @Inject ShapedMenuGenerator menuGenerator;
     private @Inject CustomItemRepository<Kit> kitRepository;
     private @Inject SkyWarsPerkProvider skyWarsPerkProvider;
+    private @Inject KitBuyConfirmMenuProvider kitBuyConfirmMenuProvider;
 
     public void open(Player player) throws Exception{
 
@@ -69,21 +68,7 @@ public class KitSelectMenuProvider {
                             player.closeInventory();
                         };
                     } else if (money > kit.getPrice()) {
-                        return clicker -> {
-                            boughtKits.add(kitId);
-                            perkManifest.setMoney(money - kit.getPrice());
-                            try {
-                                skyWarsPerkProvider.update(player.getDatabaseIdentifier(), perkManifest);
-                            } catch (Exception e) {
-                                Bukkit.getLogger().log(
-                                        Level.INFO,
-                                        "An error occurred while updating SkyWars" +
-                                                " perks for player " + player.getName(),
-                                        e
-                                );
-                            }
-                            player.closeInventory();
-                        };
+                        return clicker -> kitBuyConfirmMenuProvider.open(clicker, kit);
                     }
                     // dummy
                     return clicker -> {};
@@ -91,7 +76,6 @@ public class KitSelectMenuProvider {
 
                 @Override
                 public ItemStack getStack() {
-                    SerializableItem icon = kit.getIcon();
 
                     String footerPath = "menu.kit-select.kit.foot-";
 
@@ -105,31 +89,7 @@ public class KitSelectMenuProvider {
                         footerPath += "unavailable";
                     }
 
-                    List<String> header = messageHandler.getMany(player, "menu.kit-select.kit.head");
-                    List<String> description = messageHandler.getMany(
-                            player,
-                            "kits." + kitId + ".description"
-                    );
-                    List<String> footer = messageHandler.replacingMany(
-                            player,
-                            footerPath,
-                            "%%required%%", kit.getPrice() - money,
-                            "%%price%%", kit.getPrice()
-                    );
-
-                    header.addAll(description);
-                    header.addAll(footer);
-
-                    return ItemBuilder.newBuilder(
-                            icon.getMaterial(),
-                            icon.getNumber(),
-                            icon.getNumber().byteValue()
-                    )
-                            .setName(messageHandler.get(
-                                    player,
-                                    "kits." + kitId + ".title"
-                            ))
-                            .setLore(header)
+                    return KitIconUtil.getBuilderFor(player, perkManifest, kit, footerPath, messageHandler)
                             .build();
                 }
             });
