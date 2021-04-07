@@ -23,6 +23,11 @@ public class CoreKitMatcher implements KitMatcher {
             }
 
             @Override
+            public SerializableItem getIcon() {
+                return null;
+            }
+
+            @Override
             public SerializableItem getHelmet() {
                 return SerializableItem.getAir();
             }
@@ -50,6 +55,11 @@ public class CoreKitMatcher implements KitMatcher {
             @Override
             public Set<Pair> getInventory() {
                 return new HashSet<>();
+            }
+
+            @Override
+            public int getPrice() {
+                return 0;
             }
         });
     }
