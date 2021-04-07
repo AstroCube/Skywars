@@ -27,6 +27,7 @@ public class ListenerLoader implements Loader {
     private @Inject EntityExplodeListener entityExplodeListener;
 
     private @Inject GameReadyListener gameReadyListener;
+    private @Inject GameUserLeaveListener userLeaveListener;
     private @Inject GameInvalidationListener gameInvalidationListener;
     private @Inject GamePairEnableListener gamePairEnableListener;
     private @Inject GameDisqualificationListener gameDisqualificationListener;
@@ -47,6 +48,7 @@ public class ListenerLoader implements Loader {
         registerEvent(entityExplodeListener);
 
         registerEvent(gameReadyListener);
+        registerEvent(userLeaveListener);
         registerEvent(gameInvalidationListener);
         registerEvent(gamePairEnableListener);
         registerEvent(gameDisqualificationListener);
