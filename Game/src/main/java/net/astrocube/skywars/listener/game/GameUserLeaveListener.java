@@ -15,6 +15,8 @@ public class GameUserLeaveListener implements Listener {
         Player player = event.getPlayer();
         UserMatchJoiner.Origin origin = event.getOrigin();
 
+        System.out.println(event.getOrigin());
+
         if (origin == UserMatchJoiner.Origin.PLAYING) {
             Bukkit.getPluginManager().callEvent(new PlayerDisqualificationEvent(player, null));
         }
