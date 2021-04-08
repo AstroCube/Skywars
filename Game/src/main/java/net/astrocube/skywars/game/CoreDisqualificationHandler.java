@@ -98,7 +98,7 @@ public class CoreDisqualificationHandler implements DisqualificationHandler {
     public void alertDisqualify(Player player, Player target, @Nullable Player killer) {
 
         if (killer != null) {
-            messageHandler.sendReplacing(
+            messageHandler.sendReplacingIn(
                     player, AlertModes.MUTED, "match.death-player",
                     "%%killer%%", ChatColor.WHITE + killer.getName(),
                     "%%target%%", ChatColor.WHITE + target.getName()
@@ -106,7 +106,7 @@ public class CoreDisqualificationHandler implements DisqualificationHandler {
             return;
         }
 
-        messageHandler.send(
+        messageHandler.sendReplacingIn(
                 player, AlertModes.MUTED, "match.death-natural",
                 "%%target%%", ChatColor.WHITE + target.getName()
         );
