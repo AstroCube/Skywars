@@ -32,8 +32,8 @@ public class KitIconUtil {
         List<String> footer = messageHandler.replacingMany(
                 player,
                 footerPath,
-                "%%required%%", kit.getPrice() - perk.getMoney(),
-                "%%price%%", kit.getPrice()
+                "%required%", kit.getPrice() - perk.getMoney(),
+                "%price%", kit.getPrice()
         );
 
         header.addAll(description);

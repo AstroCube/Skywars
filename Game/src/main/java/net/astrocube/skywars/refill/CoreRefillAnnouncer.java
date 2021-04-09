@@ -22,7 +22,7 @@ public class CoreRefillAnnouncer implements RefillAnnouncer {
         if (seconds != 0) {
             sendMessage(teams, player -> messageHandler.sendReplacing(
                     player, "match.refill",
-                    "%%seconds%%", (seconds + "")
+                    "%seconds%", (seconds + "")
             ));
         } else {
             sendMessage(teams, player -> messageHandler.sendIn(player, AlertModes.INFO, "match.refilled"));

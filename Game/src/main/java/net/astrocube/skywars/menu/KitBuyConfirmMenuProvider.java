@@ -42,7 +42,7 @@ public class KitBuyConfirmMenuProvider {
                 messageHandler.replacing(
                         player,
                         "menu.kit-buy.title",
-                        "%%kit_name%", messageHandler.get(
+                        "%kit_name%", messageHandler.get(
                                 player,
                                 "kits." + kit.getIdentifier() + ".title"
                         )

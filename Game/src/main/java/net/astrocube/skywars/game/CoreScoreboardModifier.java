@@ -44,7 +44,7 @@ public class CoreScoreboardModifier implements ScoreboardModifier {
 
     @Override
     public void updateAlive(Set<Player> players) {
-        players.forEach(player -> fieldUpdate(player, "%%survivors%%", (players.size() - 1) + ""));
+        players.forEach(player -> fieldUpdate(player, "%survivors%", (players.size() - 1) + ""));
     }
 
     @Override
@@ -58,7 +58,7 @@ public class CoreScoreboardModifier implements ScoreboardModifier {
                 timer = messageHandler.get(player, "scoreboard.solo.empty");
             }
 
-            fieldUpdate(player, "%%time%%", timer);
+            fieldUpdate(player, "%time%", timer);
 
         });
 
@@ -77,9 +77,9 @@ public class CoreScoreboardModifier implements ScoreboardModifier {
 
         StringList list = messageHandler.replacingMany(player,
                 "scoreboard." + subMode + ".board",
-                "%%time%%", time,
-                "%%map%%", map,
-                "%%survivors%%", survivors
+                "%time%", time,
+                "%map%", map,
+                "%survivors%", survivors
         );
 
         Collections.reverse(list);

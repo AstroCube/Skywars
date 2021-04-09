@@ -40,7 +40,7 @@ public class CoreMatchStartProcessor implements MatchStartProcessor {
     private void announceCageOpen(Player player, int time) {
         messageHandler.sendReplacing(
                 player, "match.cages",
-                "%%seconds%%", time
+                "%seconds%", time
         );
     }
 

@@ -100,14 +100,14 @@ public class CoreDisqualificationHandler implements DisqualificationHandler {
         if (killer != null) {
             messageHandler.sendReplacingIn(
                     player, AlertModes.MUTED, "match.death-player",
-                    "%%killer%%", ChatColor.WHITE + killer.getName(),
-                    "%%target%%", ChatColor.WHITE + target.getName()
+                    "%killer%", ChatColor.WHITE + killer.getName(),
+                    "%target%", ChatColor.WHITE + target.getName()
             );
             return;
         }
         messageHandler.sendReplacingIn(
                 player, AlertModes.MUTED, "match.death-natural",
-                "%%target%%", ChatColor.WHITE + target.getName()
+                "%target%", ChatColor.WHITE + target.getName()
         );
 
     }
