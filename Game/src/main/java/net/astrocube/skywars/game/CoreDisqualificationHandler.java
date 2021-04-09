@@ -105,8 +105,7 @@ public class CoreDisqualificationHandler implements DisqualificationHandler {
             );
             return;
         }
-
-        messageHandler.sendIn(
+        messageHandler.sendReplacingIn(
                 player, AlertModes.MUTED, "match.death-natural",
                 "%%target%%", ChatColor.WHITE + target.getName()
         );
