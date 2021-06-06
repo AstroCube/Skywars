@@ -15,22 +15,22 @@ import java.util.function.Consumer;
 @Singleton
 public class CoreRefillAnnouncer implements RefillAnnouncer {
 
-    private @Inject MessageHandler messageHandler;
+	private @Inject MessageHandler messageHandler;
 
-    @Override
-    public void announceRefill(Set<ProvisionedTeam> teams, int seconds) {
-        if (seconds != 0) {
-            sendMessage(teams, player -> messageHandler.sendReplacing(
-                    player, "match.refill",
-                    "%seconds%", (seconds + "")
-            ));
-        } else {
-            sendMessage(teams, player -> messageHandler.sendIn(player, AlertModes.INFO, "match.refilled"));
-        }
-    }
+	@Override
+	public void announceRefill(Set<ProvisionedTeam> teams, int seconds) {
+		if (seconds != 0) {
+			sendMessage(teams, player -> messageHandler.sendReplacing(
+					player, "match.refill",
+					"%seconds%", (seconds + "")
+			));
+		} else {
+			sendMessage(teams, player -> messageHandler.sendIn(player, AlertModes.INFO, "match.refilled"));
+		}
+	}
 
-    private void sendMessage(Set<ProvisionedTeam> teams, Consumer<Player> consumer) {
-        TeamUtils.getMatchPlayers(teams).forEach(consumer);
-    }
+	private void sendMessage(Set<ProvisionedTeam> teams, Consumer<Player> consumer) {
+		TeamUtils.getMatchPlayers(teams).forEach(consumer);
+	}
 
 }

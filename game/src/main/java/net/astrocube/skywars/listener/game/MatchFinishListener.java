@@ -13,19 +13,19 @@ import java.util.Optional;
 
 public class MatchFinishListener implements Listener {
 
-    private @Inject RefillScheduler refillScheduler;
-    private @Inject VictoryAnnouncer announcer;
+	private @Inject RefillScheduler refillScheduler;
+	private @Inject VictoryAnnouncer announcer;
 
-    @EventHandler
-    public void onMatchFinish(MatchFinishEvent event) {
+	@EventHandler
+	public void onMatchFinish(MatchFinishEvent event) {
 
-        Optional.ofNullable(refillScheduler.getRefillTask(event.getMatch()))
-                .ifPresent(CountdownTimer::cancelCountdown);
+		Optional.ofNullable(refillScheduler.getRefillTask(event.getMatch()))
+				.ifPresent(CountdownTimer::cancelCountdown);
 
-        event.getWinners().stream().map(Bukkit::getPlayerByIdentifier).forEach(player -> {
-            announcer.sendVictoryTitle(player);
-        });
+		event.getWinners().stream().map(Bukkit::getPlayerByIdentifier).forEach(player -> {
+			announcer.sendVictoryTitle(player);
+		});
 
-    }
+	}
 
 }

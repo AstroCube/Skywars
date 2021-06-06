@@ -17,27 +17,27 @@ import java.util.Set;
 @Singleton
 public class CoreChestSpawner implements ChestSpawner {
 
-    private @Inject ChestFiller chestFiller;
+	private @Inject ChestFiller chestFiller;
 
-    @Override
-    public void spawnChest(String match, MapConfiguration.Chest chest) {
+	@Override
+	public void spawnChest(String match, MapConfiguration.Chest chest) {
 
-        World world = Bukkit.getWorld("match_" + match);
+		World world = Bukkit.getWorld("match_" + match);
 
-        if (world == null) {
-            return;
-        }
+		if (world == null) {
+			return;
+		}
 
-        Location chestLocation = new Location(world, chest.getLocation().getX(), chest.getLocation().getY(), chest.getLocation().getZ());
-        Block block = world.getBlockAt(chestLocation);
-        block.setType(Material.CHEST);
+		Location chestLocation = new Location(world, chest.getLocation().getX(), chest.getLocation().getY(), chest.getLocation().getZ());
+		Block block = world.getBlockAt(chestLocation);
+		block.setType(Material.CHEST);
 
-        chestFiller.fillChest(chest, (Chest) block.getState());
-    }
+		chestFiller.fillChest(chest, (Chest) block.getState());
+	}
 
-    @Override
-    public void spawnChests(String match, Set<MapConfiguration.Chest> chests) {
-        chests.forEach(chest -> spawnChest(match, chest));
-    }
+	@Override
+	public void spawnChests(String match, Set<MapConfiguration.Chest> chests) {
+		chests.forEach(chest -> spawnChest(match, chest));
+	}
 
 }

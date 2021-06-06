@@ -10,28 +10,28 @@ import org.bukkit.event.entity.EntityDamageEvent;
 
 public class PlayerDeathListener implements Listener {
 
-    @EventHandler
-    public void onEntityDamage(EntityDamageEvent event) {
+	@EventHandler
+	public void onEntityDamage(EntityDamageEvent event) {
 
-        if (!(event.getEntity() instanceof Player)) {
-            return;
-        }
+		if (!(event.getEntity() instanceof Player)) {
+			return;
+		}
 
-        double damage = event.getDamage();
-        Player player = (Player) event.getEntity();
+		double damage = event.getDamage();
+		Player player = (Player) event.getEntity();
 
-        if ((player.getHealth() - damage) < 1) {
-            if (event.getCause() != EntityDamageEvent.DamageCause.ENTITY_ATTACK) {
-                event.setCancelled(true);
-                Bukkit.getPluginManager().callEvent(new PlayerDisqualificationEvent(player,null));
-            } else if ((player.getHealth() - damage) < 1) {
-                EntityDamageByEntityEvent damageEvent = (EntityDamageByEntityEvent) event;
-                Player killer = (Player) damageEvent.getDamager();
-                event.setCancelled(true);
-                Bukkit.getPluginManager().callEvent(new PlayerDisqualificationEvent(player, killer));
-            }
-        }
+		if ((player.getHealth() - damage) < 1) {
+			if (event.getCause() != EntityDamageEvent.DamageCause.ENTITY_ATTACK) {
+				event.setCancelled(true);
+				Bukkit.getPluginManager().callEvent(new PlayerDisqualificationEvent(player, null));
+			} else if ((player.getHealth() - damage) < 1) {
+				EntityDamageByEntityEvent damageEvent = (EntityDamageByEntityEvent) event;
+				Player killer = (Player) damageEvent.getDamager();
+				event.setCancelled(true);
+				Bukkit.getPluginManager().callEvent(new PlayerDisqualificationEvent(player, killer));
+			}
+		}
 
-    }
+	}
 
 }

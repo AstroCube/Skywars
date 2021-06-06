@@ -4,6 +4,6 @@ import net.astrocube.api.core.virtual.user.User;
 
 public interface KitMatcher {
 
-    Kit getPlayerKit(User user);
+	Kit getPlayerKit(User user);
 
 }

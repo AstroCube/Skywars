@@ -7,12 +7,12 @@ import java.util.Set;
 
 public interface TeamMatcher {
 
-    /**
-     * Creates a set of configurable teams with the provided match teams.
-     * @param matchTeam to be used
-     * @param configuration where maps will be extracted
-     * @return linked teams with configurable map
-     */
-    Set<ProvisionedTeam> linkTeams(Set<MatchDoc.Team> matchTeam, MapConfiguration configuration);
+	/**
+	 * Creates a set of configurable teams with the provided match teams.
+	 * @param matchTeam     to be used
+	 * @param configuration where maps will be extracted
+	 * @return linked teams with configurable map
+	 */
+	Set<ProvisionedTeam> linkTeams(Set<MatchDoc.Team> matchTeam, MapConfiguration configuration);
 
 }

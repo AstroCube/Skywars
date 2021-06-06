@@ -14,26 +14,26 @@ import java.util.Set;
 @Singleton
 public class CoreTeamSpawner implements TeamSpawner {
 
-    @Override
-    public void spawn(Set<ProvisionedTeam> provisioned, String match) {
+	@Override
+	public void spawn(Set<ProvisionedTeam> provisioned, String match) {
 
-        World world = Bukkit.getWorld("match_" + match);
+		World world = Bukkit.getWorld("match_" + match);
 
-        if (world == null) {
-            Bukkit.getPluginManager().callEvent(new MatchInvalidateEvent(match, false));
-            return;
-        }
+		if (world == null) {
+			Bukkit.getPluginManager().callEvent(new MatchInvalidateEvent(match, false));
+			return;
+		}
 
-        provisioned.forEach(team ->
-                team.getMembers().forEach(teamMember ->  {
-                    Player player = Bukkit.getPlayerByIdentifier(teamMember.getUser());
-                    if (player != null) {
-                        player.teleport(TeamUtils.generateSpawn(team.getSpawn(), world, 0.5));
-                        player.setGameMode(GameMode.SURVIVAL);
-                    }
-                })
-        );
+		provisioned.forEach(team ->
+				team.getMembers().forEach(teamMember -> {
+					Player player = Bukkit.getPlayerByIdentifier(teamMember.getUser());
+					if (player != null) {
+						player.teleport(TeamUtils.generateSpawn(team.getSpawn(), world, 0.5));
+						player.setGameMode(GameMode.SURVIVAL);
+					}
+				})
+		);
 
-    }
+	}
 
 }

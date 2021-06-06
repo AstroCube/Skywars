@@ -1,95 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+				 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-    <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-    </properties>
+	<properties>
+		<maven.compiler.source>8</maven.compiler.source>
+		<maven.compiler.target>8</maven.compiler.target>
+	</properties>
 
-    <groupId>net.astrocube</groupId>
-    <artifactId>skywars</artifactId>
-    <packaging>pom</packaging>
-    <version>1.0</version>
+	<groupId>net.astrocube</groupId>
+	<artifactId>skywars</artifactId>
+	<packaging>pom</packaging>
+	<version>1.0</version>
 
-    <modules>
-        <module>api</module>
-        <module>game</module>
-    </modules>
+	<modules>
+		<module>api</module>
+		<module>game</module>
+	</modules>
 
-    <repositories>
-        <!-- Public AstroCube repositories -->
-        <repository>
-            <id>astro-releases</id>
-            <url>https://repo.astrocube.net/repository/astro-releases</url>
-        </repository>
-        <repository>
-            <id>astro-snapshots</id>
-            <url>https://repo.astrocube.net/repository/astro-snapshots</url>
-        </repository>
+	<repositories>
+		<!-- Public AstroCube repositories -->
+		<repository>
+			<id>astro-releases</id>
+			<url>https://repo.astrocube.net/repository/astro-releases</url>
+		</repository>
+		<repository>
+			<id>astro-snapshots</id>
+			<url>https://repo.astrocube.net/repository/astro-snapshots</url>
+		</repository>
 
-        <!-- Public AstroCube repositories -->
-        <repository>
-            <id>core-releases</id>
-            <url>https://repo.astrocube.net/repository/core-releases</url>
-        </repository>
-        <repository>
-            <id>core-snapshots</id>
-            <url>https://repo.astrocube.net/repository/core-snapshots</url>
-        </repository>
+		<!-- Public AstroCube repositories -->
+		<repository>
+			<id>core-releases</id>
+			<url>https://repo.astrocube.net/repository/core-releases</url>
+		</repository>
+		<repository>
+			<id>core-snapshots</id>
+			<url>https://repo.astrocube.net/repository/core-snapshots</url>
+		</repository>
 
-        <!-- Public Unnamed repositories -->
-        <repository>
-            <id>unnamed-releases</id>
-            <url>https://repo.unnamed.team/repository/unnamed-releases</url>
-        </repository>
-        <repository>
-            <id>unnamed-snapshots</id>
-            <url>https://repo.unnamed.team/repository/unnamed-snapshots</url>
-        </repository>
-    </repositories>
+		<!-- Public Unnamed repositories -->
+		<repository>
+			<id>unnamed-releases</id>
+			<url>https://repo.unnamed.team/repository/unnamed-releases</url>
+		</repository>
+		<repository>
+			<id>unnamed-snapshots</id>
+			<url>https://repo.unnamed.team/repository/unnamed-snapshots</url>
+		</repository>
+	</repositories>
 
-    <build>
-        <finalName>${project.artifactId}</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.1</version>
-                <configuration>
-                    <compilerArguments>
-                        <parameters />
-                    </compilerArguments>
-                </configuration>
-            </plugin>
-            <plugin>
-                <inherited>true</inherited>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.1</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <createDependencyReducedPom>false</createDependencyReducedPom>
-                    <filters>
-                        <filter>
-                            <artifact>*:*</artifact>
-                            <excludes>
-                                <exclude>META-INF/*.SF</exclude>
-                                <exclude>META-INF/*.DSA</exclude>
-                                <exclude>META-INF/*.RSA</exclude>
-                            </excludes>
-                        </filter>
-                    </filters>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.1</version>
+				<configuration>
+					<compilerArguments>
+						<parameters/>
+					</compilerArguments>
+				</configuration>
+			</plugin>
+			<plugin>
+				<inherited>true</inherited>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>3.2.1</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<createDependencyReducedPom>false</createDependencyReducedPom>
+					<filters>
+						<filter>
+							<artifact>*:*</artifact>
+							<excludes>
+								<exclude>META-INF/*.SF</exclude>
+								<exclude>META-INF/*.DSA</exclude>
+								<exclude>META-INF/*.RSA</exclude>
+							</excludes>
+						</filter>
+					</filters>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>

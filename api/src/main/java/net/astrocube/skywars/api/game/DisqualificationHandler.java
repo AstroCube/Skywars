@@ -5,24 +5,23 @@ import org.bukkit.entity.Player;
 
 import javax.annotation.Nullable;
 import java.util.Set;
-import java.util.UUID;
 
 public interface DisqualificationHandler {
 
-    void ensureTeams(String match, Set<ProvisionedTeam> teams);
+	void ensureTeams(String match, Set<ProvisionedTeam> teams);
 
-    void disqualify(String user);
+	void disqualify(String user);
 
-    void alertDisqualify(Player player, Player target, @Nullable Player killer);
+	void alertDisqualify(Player player, Player target, @Nullable Player killer);
 
-    interface Registry {
+	interface Registry {
 
-        String getMatch();
+		String getMatch();
 
-        String getUser();
+		String getUser();
 
-        String getTeam();
+		String getTeam();
 
-    }
+	}
 
 }

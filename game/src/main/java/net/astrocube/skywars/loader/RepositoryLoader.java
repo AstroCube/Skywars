@@ -8,13 +8,13 @@ import net.astrocube.skywars.api.custom.CustomItemRepository;
 
 public class RepositoryLoader implements Loader {
 
-    private @Inject CustomItemRepository<ChestTier> tierRepository;
-    private @Inject CustomItemRepository<Cage> cageRepository;
+	private @Inject CustomItemRepository<ChestTier> tierRepository;
+	private @Inject CustomItemRepository<Cage> cageRepository;
 
-    @Override
-    public void load() {
-        tierRepository.generate();
-        cageRepository.generate();
-    }
+	@Override
+	public void load() {
+		tierRepository.generate();
+		cageRepository.generate();
+	}
 
 }

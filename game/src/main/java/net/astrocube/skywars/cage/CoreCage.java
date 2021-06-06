@@ -7,11 +7,11 @@ import net.astrocube.skywars.api.cage.MatchCageSpawner;
 
 public class CoreCage extends ProtectedModule {
 
-    @Override
-    public void configure() {
-        bind(CageMatcher.class).to(CoreCageMatcher.class);
-        bind(CageSpawner.class).to(CoreCageSpawner.class);
-        bind(MatchCageSpawner.class).to(CoreMatchCageSpawner.class);
-    }
+	@Override
+	public void configure() {
+		bind(CageMatcher.class).to(CoreCageMatcher.class);
+		bind(CageSpawner.class).to(CoreCageSpawner.class);
+		bind(MatchCageSpawner.class).to(CoreMatchCageSpawner.class);
+	}
 
 }

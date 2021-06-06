@@ -14,19 +14,22 @@ import org.bukkit.plugin.Plugin;
 @AllArgsConstructor
 public class CustomModule extends ProtectedModule {
 
-    @Provides @Singleton
-    public CustomItemRepository<ChestTier> provideTierRepository(Plugin plugin, ObjectMapper mapper) {
-        return new CoreItemRepository<>("tiers", ChestTier.class, plugin, mapper);
-    }
+	@Provides
+	@Singleton
+	public CustomItemRepository<ChestTier> provideTierRepository(Plugin plugin, ObjectMapper mapper) {
+		return new CoreItemRepository<>("tiers", ChestTier.class, plugin, mapper);
+	}
 
-    @Provides @Singleton
-    public CustomItemRepository<Cage> provideCageRepository(Plugin plugin, ObjectMapper mapper) {
-        return new CoreItemRepository<>("cage", Cage.class, plugin, mapper);
-    }
+	@Provides
+	@Singleton
+	public CustomItemRepository<Cage> provideCageRepository(Plugin plugin, ObjectMapper mapper) {
+		return new CoreItemRepository<>("cage", Cage.class, plugin, mapper);
+	}
 
-    @Provides @Singleton
-    public CustomItemRepository<Kit> provideKitRepository(Plugin plugin, ObjectMapper mapper) {
-        return new CoreItemRepository<>("kit", Kit.class, plugin, mapper);
-    }
+	@Provides
+	@Singleton
+	public CustomItemRepository<Kit> provideKitRepository(Plugin plugin, ObjectMapper mapper) {
+		return new CoreItemRepository<>("kit", Kit.class, plugin, mapper);
+	}
 
 }

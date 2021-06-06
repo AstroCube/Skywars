@@ -10,15 +10,15 @@ import org.bukkit.event.Listener;
 
 public class GameUserLeaveListener implements Listener {
 
-    @EventHandler
-    public void onJoin(GameUserDisconnectEvent event) {
-        Player player = event.getPlayer();
-        UserMatchJoiner.Origin origin = event.getOrigin();
+	@EventHandler
+	public void onJoin(GameUserDisconnectEvent event) {
+		Player player = event.getPlayer();
+		UserMatchJoiner.Origin origin = event.getOrigin();
 
 
-        if (origin == UserMatchJoiner.Origin.PLAYING) {
-            Bukkit.getPluginManager().callEvent(new PlayerDisqualificationEvent(player, null));
-        }
-    }
+		if (origin == UserMatchJoiner.Origin.PLAYING) {
+			Bukkit.getPluginManager().callEvent(new PlayerDisqualificationEvent(player, null));
+		}
+	}
 
 }

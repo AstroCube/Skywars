@@ -6,10 +6,10 @@ import org.bukkit.event.player.PlayerItemDamageEvent;
 
 public class PlayerItemDamageListener implements Listener {
 
-    @EventHandler
-    public void repairWeapons(PlayerItemDamageEvent event) {
-        if (event.getItem() != null) {
-            event.setCancelled(true);
-        }
-    }
+	@EventHandler
+	public void repairWeapons(PlayerItemDamageEvent event) {
+		if (event.getItem() != null) {
+			event.setCancelled(true);
+		}
+	}
 }

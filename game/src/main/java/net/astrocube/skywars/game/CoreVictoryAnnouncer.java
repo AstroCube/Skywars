@@ -10,20 +10,20 @@ import org.github.paperspigot.Title;
 @Singleton
 public class CoreVictoryAnnouncer implements VictoryAnnouncer {
 
-    private @Inject MessageHandler messageHandler;
+	private @Inject MessageHandler messageHandler;
 
-    @Override
-    public void sendVictoryTitle(Player player) {
+	@Override
+	public void sendVictoryTitle(Player player) {
 
-        System.out.println(player.getName());
+		System.out.println(player.getName());
 
-        Title title = new Title(
-                messageHandler.get(player, "match.victory.title"),
-                messageHandler.get(player, "match.victory.sub")
-        );
+		Title title = new Title(
+				messageHandler.get(player, "match.victory.title"),
+				messageHandler.get(player, "match.victory.sub")
+		);
 
-        player.sendTitle(title);
+		player.sendTitle(title);
 
-    }
+	}
 
 }

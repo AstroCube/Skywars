@@ -16,35 +16,35 @@ import java.util.Set;
 
 public class CoreSkyWarsPerkProvider implements SkyWarsPerkProvider {
 
-    private @Inject ObjectMapper mapper;
-    private @Inject PerkManifestProvider perkManifestProvider;
-    private @Inject UpdateService<StorablePerk, StorablePerkDoc.Partial> updateService;
+	private @Inject ObjectMapper mapper;
+	private @Inject PerkManifestProvider perkManifestProvider;
+	private @Inject UpdateService<StorablePerk, StorablePerkDoc.Partial> updateService;
 
-    @Override
-    public Optional<SkyWarsPerkManifest> getManifest(String playerId) throws Exception {
-        return getFromUser(playerId)
-                .stream()
-                .map(manifest -> (SkyWarsPerkManifest) manifest.getStored())
-                .findFirst();
-    }
+	@Override
+	public Optional<SkyWarsPerkManifest> getManifest(String playerId) throws Exception {
+		return getFromUser(playerId)
+				.stream()
+				.map(manifest -> (SkyWarsPerkManifest) manifest.getStored())
+				.findFirst();
+	}
 
-    @Override
-    public void update(String playerId, SkyWarsPerkManifest manifest) throws Exception {
-        StorablePerk perk = getFromUser(playerId).stream().findAny().orElseThrow(
-                () -> new GameControlException("Not found any storable perk to be updated.")
-        );
+	@Override
+	public void update(String playerId, SkyWarsPerkManifest manifest) throws Exception {
+		StorablePerk perk = getFromUser(playerId).stream().findAny().orElseThrow(
+				() -> new GameControlException("Not found any storable perk to be updated.")
+		);
 
-        perk.setStored(manifest);
-        updateService.updateSync(perk);
-    }
+		perk.setStored(manifest);
+		updateService.updateSync(perk);
+	}
 
-    private Set<StorablePerk> getFromUser(String playerId) throws Exception {
-        ObjectNode node = mapper.createObjectNode();
+	private Set<StorablePerk> getFromUser(String playerId) throws Exception {
+		ObjectNode node = mapper.createObjectNode();
 
-        node.put("responsible", playerId);
-        node.put("type", "skywars_manifest");
+		node.put("responsible", playerId);
+		node.put("type", "skywars_manifest");
 
-        return perkManifestProvider.query(node, SkyWarsPerkManifest.class);
-    }
+		return perkManifestProvider.query(node, SkyWarsPerkManifest.class);
+	}
 
 }

@@ -6,8 +6,8 @@ import net.astrocube.skywars.api.perk.SkyWarsPerkProvider;
 
 public class PerkModule extends ProtectedModule {
 
-    @Override
-    protected void configure() {
-        bind(SkyWarsPerkProvider.class).to(CoreSkyWarsPerkProvider.class).in(Scopes.SINGLETON);
-    }
+	@Override
+	protected void configure() {
+		bind(SkyWarsPerkProvider.class).to(CoreSkyWarsPerkProvider.class).in(Scopes.SINGLETON);
+	}
 }

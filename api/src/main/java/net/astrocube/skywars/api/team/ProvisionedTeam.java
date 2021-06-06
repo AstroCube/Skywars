@@ -7,9 +7,9 @@ import java.util.Set;
 
 public interface ProvisionedTeam extends MapConfiguration.ConfigurableTeam {
 
-    /**
-     * @return members of the provisioned team
-     */
-    Set<MatchDoc.TeamMember> getMembers();
+	/**
+	 * @return members of the provisioned team
+	 */
+	Set<MatchDoc.TeamMember> getMembers();
 
 }

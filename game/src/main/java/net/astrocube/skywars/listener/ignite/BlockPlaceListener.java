@@ -10,16 +10,16 @@ import org.bukkit.event.block.BlockPlaceEvent;
 
 public class BlockPlaceListener implements Listener {
 
-    @EventHandler
-    public void blockPlaceListener(BlockPlaceEvent event) {
+	@EventHandler
+	public void blockPlaceListener(BlockPlaceEvent event) {
 
-        Block blockPlaced = event.getBlockPlaced();
-        World world = blockPlaced.getWorld();
+		Block blockPlaced = event.getBlockPlaced();
+		World world = blockPlaced.getWorld();
 
-        if (blockPlaced.getType() == Material.TNT) {
-            blockPlaced.setType(Material.AIR);
-            world.spawnEntity(blockPlaced.getLocation(), EntityType.PRIMED_TNT);
-        }
+		if (blockPlaced.getType() == Material.TNT) {
+			blockPlaced.setType(Material.AIR);
+			world.spawnEntity(blockPlaced.getLocation(), EntityType.PRIMED_TNT);
+		}
 
-    }
+	}
 }

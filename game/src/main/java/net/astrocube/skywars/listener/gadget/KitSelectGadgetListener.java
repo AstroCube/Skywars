@@ -12,23 +12,23 @@ import java.util.logging.Level;
 
 public class KitSelectGadgetListener implements Listener {
 
-    private @Inject KitSelectMenuProvider kitSelectMenuProvider;
+	private @Inject KitSelectMenuProvider kitSelectMenuProvider;
 
-    @EventHandler
-    public void onUse(ActionableItemEvent event) {
-        if (event.getAction().equals("kit_select")
-                && (event.getClick() == Action.RIGHT_CLICK_AIR
-                || event.getClick() == Action.RIGHT_CLICK_BLOCK)) {
-            try {
-                kitSelectMenuProvider.open(event.getPlayer());
-            } catch (Exception e) {
-                Bukkit.getLogger().log(
-                        Level.SEVERE,
-                        "An error occurred while opening kit selection menu",
-                        e
-                );
-            }
-        }
-    }
+	@EventHandler
+	public void onUse(ActionableItemEvent event) {
+		if (event.getAction().equals("kit_select")
+				&& (event.getClick() == Action.RIGHT_CLICK_AIR
+				|| event.getClick() == Action.RIGHT_CLICK_BLOCK)) {
+			try {
+				kitSelectMenuProvider.open(event.getPlayer());
+			} catch (Exception e) {
+				Bukkit.getLogger().log(
+						Level.SEVERE,
+						"An error occurred while opening kit selection menu",
+						e
+				);
+			}
+		}
+	}
 
 }

@@ -6,8 +6,8 @@ import java.util.Set;
 
 public interface MatchCageSpawner {
 
-    void spawn(String match, Set<ProvisionedTeam> teams);
+	void spawn(String match, Set<ProvisionedTeam> teams);
 
-    void remove(String match, Set<ProvisionedTeam> teams);
+	void remove(String match, Set<ProvisionedTeam> teams);
 
 }

@@ -14,24 +14,24 @@ import team.unnamed.gui.core.item.type.ItemBuilder;
 
 public class GameUserJoinListener implements Listener {
 
-    private @Inject MessageHandler messageHandler;
+	private @Inject MessageHandler messageHandler;
 
-    @EventHandler
-    public void onJoin(GameUserJoinEvent event) {
-        Player player = event.getPlayer();
-        UserMatchJoiner.Origin origin = event.getOrigin();
+	@EventHandler
+	public void onJoin(GameUserJoinEvent event) {
+		Player player = event.getPlayer();
+		UserMatchJoiner.Origin origin = event.getOrigin();
 
-        if (origin == UserMatchJoiner.Origin.WAITING) {
-            ItemStack gadget = ItemBuilder.newBuilder(Material.STONE_SWORD)
-                    .setName(messageHandler.get(player, "gadget.kit-select.name"))
-                    .setLore(messageHandler.get(player, "gadget.kit-select.lore"))
-                    .build();
-            gadget = NBTUtils.addString(gadget, "actionable", "kit_select");
-            player.getInventory().setItem(
-                    0,
-                    gadget
-            );
-        }
-    }
+		if (origin == UserMatchJoiner.Origin.WAITING) {
+			ItemStack gadget = ItemBuilder.newBuilder(Material.STONE_SWORD)
+					.setName(messageHandler.get(player, "gadget.kit-select.name"))
+					.setLore(messageHandler.get(player, "gadget.kit-select.lore"))
+					.build();
+			gadget = NBTUtils.addString(gadget, "actionable", "kit_select");
+			player.getInventory().setItem(
+					0,
+					gadget
+			);
+		}
+	}
 
 }

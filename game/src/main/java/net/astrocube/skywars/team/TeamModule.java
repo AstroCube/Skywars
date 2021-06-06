@@ -7,11 +7,11 @@ import net.astrocube.skywars.api.team.TeamSpawner;
 
 public class TeamModule extends ProtectedModule {
 
-    @Override
-    public void configure() {
-        bind(TeamMatcher.class).to(CoreTeamMatcher.class);
-        bind(TeamSpawner.class).to(CoreTeamSpawner.class);
-        bind(MatchStartProcessor.class).to(CoreMatchStartProcessor.class);
-    }
+	@Override
+	public void configure() {
+		bind(TeamMatcher.class).to(CoreTeamMatcher.class);
+		bind(TeamSpawner.class).to(CoreTeamSpawner.class);
+		bind(MatchStartProcessor.class).to(CoreMatchStartProcessor.class);
+	}
 
 }

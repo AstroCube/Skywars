@@ -6,6 +6,6 @@ import java.util.Set;
 
 public interface RefillAnnouncer {
 
-    void announceRefill(Set<ProvisionedTeam> teams, int seconds);
+	void announceRefill(Set<ProvisionedTeam> teams, int seconds);
 
 }

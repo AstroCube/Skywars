@@ -18,49 +18,48 @@ import java.util.Random;
 @Singleton
 public class CoreChestFiller implements ChestFiller {
 
-    private @Inject CustomItemRepository<ChestTier> tierRepository;
+	private static final int MAX_FILL_ATTEMPTS = 50;
+	private @Inject CustomItemRepository<ChestTier> tierRepository;
 
-    private static final int MAX_FILL_ATTEMPTS = 50;
+	@Override
+	public void fillChest(MapConfiguration.Chest chest, Chest mapChest) {
 
-    @Override
-    public void fillChest(MapConfiguration.Chest chest, Chest mapChest) {
+		Optional<ChestTier> tierOptional = tierRepository.getRegisteredItems().stream().filter(t -> t.getTier() == chest.getTier())
+				.findFirst();
 
-        Optional<ChestTier> tierOptional = tierRepository.getRegisteredItems().stream().filter(t -> t.getTier() == chest.getTier())
-                .findFirst();
+		tierOptional.ifPresent(t -> {
 
-        tierOptional.ifPresent(t -> {
+			Random generator = new Random(System.currentTimeMillis());
+			Inventory inventory = mapChest.getInventory();
 
-            Random generator = new Random(System.currentTimeMillis());
-            Inventory inventory = mapChest.getInventory();
+			for (ChestTier.Item item : t.getProbabilities()) {
 
-            for (ChestTier.Item item : t.getProbabilities()) {
+				ItemStack itemStack = ItemSerializer.serialize(item.getItem());
+				int amount = generator.nextInt(item.getMaximum() - (item.getMinimum() - 1)) + item.getMinimum();
+				itemStack.setAmount(amount);
 
-                ItemStack itemStack = ItemSerializer.serialize(item.getItem());
-                int amount = generator.nextInt(item.getMaximum() - (item.getMinimum() - 1)) + item.getMinimum();
-                itemStack.setAmount(amount);
+				if (
+						item.getChance() >= 100 ||
+								generator.nextInt(100) < item.getChance()
+				) {
+					int randomSlot = generator.nextInt(inventory.getSize());
+					int currentAttempts = 0;
+					while (!isEmpty(mapChest.getInventory(), randomSlot) && currentAttempts <= MAX_FILL_ATTEMPTS) {
+						randomSlot = generator.nextInt(inventory.getSize());
 
-                if (
-                        item.getChance() >= 100 ||
-                        generator.nextInt(100) < item.getChance()
-                ) {
-                    int randomSlot = generator.nextInt(inventory.getSize());
-                    int currentAttempts = 0;
-                    while (!isEmpty(mapChest.getInventory(), randomSlot) && currentAttempts <= MAX_FILL_ATTEMPTS) {
-                        randomSlot = generator.nextInt(inventory.getSize());
+						currentAttempts++;
+					}
+					inventory.setItem(randomSlot, itemStack);
+				}
+			}
 
-                        currentAttempts++;
-                    }
-                    inventory.setItem(randomSlot, itemStack);
-                }
-            }
-
-        });
+		});
 
 
-    }
+	}
 
-    private boolean isEmpty(Inventory inventory, int slot) {
-        return inventory.getItem(slot) == null || inventory.getItem(slot).getType() == Material.AIR;
-    }
+	private boolean isEmpty(Inventory inventory, int slot) {
+		return inventory.getItem(slot) == null || inventory.getItem(slot).getType() == Material.AIR;
+	}
 
 }

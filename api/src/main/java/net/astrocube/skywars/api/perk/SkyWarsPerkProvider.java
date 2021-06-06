@@ -8,46 +8,46 @@ import java.util.Set;
 
 public interface SkyWarsPerkProvider {
 
-    /**
-     * Retrieves perk manifest from {@link StorablePerk}.
-     * @param playerId to retrieve
-     * @return optional containing possible manifest
-     */
-    Optional<SkyWarsPerkManifest> getManifest(String playerId) throws Exception;
+	static SkyWarsPerkManifest generateDefault() {
+		return new SkyWarsPerkManifest() {
 
-    /**
-     * updates a certain manifest according to player stored {@link StorablePerk}.
-     * @param playerId to update
-     * @param manifest to update
-     */
-    void update(String playerId, SkyWarsPerkManifest manifest) throws Exception;
+			@Override
+			public Set<String> getBoughtKits() {
+				return Collections.emptySet();
+			}
 
-    static SkyWarsPerkManifest generateDefault() {
-        return new SkyWarsPerkManifest() {
+			@Override
+			public Optional<String> getSelectedKit() {
+				return Optional.empty();
+			}
 
-            @Override
-            public Set<String> getBoughtKits() {
-                return Collections.emptySet();
-            }
+			@Override
+			public void setSelectedKit(String kitIdentifier) {
+			}
 
-            @Override
-            public Optional<String> getSelectedKit() {
-                return Optional.empty();
-            }
+			@Override
+			public int getMoney() {
+				return 0;
+			}
 
-            @Override
-            public void setSelectedKit(String kitIdentifier) {
-            }
+			@Override
+			public void setMoney(int money) {
+			}
+		};
+	}
 
-            @Override
-            public int getMoney() {
-                return 0;
-            }
+	/**
+	 * Retrieves perk manifest from {@link StorablePerk}.
+	 * @param playerId to retrieve
+	 * @return optional containing possible manifest
+	 */
+	Optional<SkyWarsPerkManifest> getManifest(String playerId) throws Exception;
 
-            @Override
-            public void setMoney(int money) {
-            }
-        };
-    }
+	/**
+	 * updates a certain manifest according to player stored {@link StorablePerk}.
+	 * @param playerId to update
+	 * @param manifest to update
+	 */
+	void update(String playerId, SkyWarsPerkManifest manifest) throws Exception;
 
 }

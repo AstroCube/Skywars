@@ -10,22 +10,22 @@ import org.bukkit.event.entity.EntityDamageEvent;
 
 public class PlayerFallListener implements Listener {
 
-    private @Inject SpawnProtectionChecker spawnProtectionChecker;
+	private @Inject SpawnProtectionChecker spawnProtectionChecker;
 
-    @EventHandler(priority = EventPriority.LOWEST)
-    public void onEntityDamage(EntityDamageEvent event) {
+	@EventHandler(priority = EventPriority.LOWEST)
+	public void onEntityDamage(EntityDamageEvent event) {
 
-        if(event.getEntity() instanceof Player) {
-            Player player = (Player) event.getEntity();
-            if (
-                    event.getCause() == EntityDamageEvent.DamageCause.FALL &&
-                    spawnProtectionChecker.hasProtection(player.getDatabaseIdentifier())
-            ) {
-                spawnProtectionChecker.removeFromRegistry(player.getDatabaseIdentifier());
-                event.setCancelled(true);
-            }
-        }
+		if (event.getEntity() instanceof Player) {
+			Player player = (Player) event.getEntity();
+			if (
+					event.getCause() == EntityDamageEvent.DamageCause.FALL &&
+							spawnProtectionChecker.hasProtection(player.getDatabaseIdentifier())
+			) {
+				spawnProtectionChecker.removeFromRegistry(player.getDatabaseIdentifier());
+				event.setCancelled(true);
+			}
+		}
 
-    }
+	}
 
 }

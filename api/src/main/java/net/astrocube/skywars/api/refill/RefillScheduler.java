@@ -8,12 +8,12 @@ import java.util.Set;
 
 public interface RefillScheduler {
 
-    void scheduleRefill(String match, Set<MapConfiguration.Chest> chests, Set<ProvisionedTeam> teams, int count);
+	void scheduleRefill(String match, Set<MapConfiguration.Chest> chests, Set<ProvisionedTeam> teams, int count);
 
-    void scheduleRefill(String match, Set<MapConfiguration.Chest> chests, Set<ProvisionedTeam> teams);
+	void scheduleRefill(String match, Set<MapConfiguration.Chest> chests, Set<ProvisionedTeam> teams);
 
-    CountdownTimer getRefillTask(String match);
+	CountdownTimer getRefillTask(String match);
 
-    int getSchedulerTimer(String match);
+	int getSchedulerTimer(String match);
 
 }

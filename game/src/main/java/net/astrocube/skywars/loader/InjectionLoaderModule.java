@@ -12,17 +12,17 @@ import net.astrocube.skywars.team.TeamModule;
 
 public class InjectionLoaderModule extends ProtectedModule {
 
-    @Override
-    public void configure() {
-        install(new LoaderModule());
-        install(new TranslationModule());
-        install(new TeamModule());
-        install(new CoreCage());
-        install(new ChestModule());
-        install(new GameModule());
-        install(new RefillModule());
-        install(new CustomModule());
-        install(new PerkModule());
-    }
+	@Override
+	public void configure() {
+		install(new LoaderModule());
+		install(new TranslationModule());
+		install(new TeamModule());
+		install(new CoreCage());
+		install(new ChestModule());
+		install(new GameModule());
+		install(new RefillModule());
+		install(new CustomModule());
+		install(new PerkModule());
+	}
 
 }

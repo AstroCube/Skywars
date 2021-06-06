@@ -20,34 +20,34 @@ import java.util.logging.Level;
 
 public class GameDisqualificationListener implements Listener {
 
-    private @Inject DisqualificationHandler disqualificationHandler;
-    private @Inject ActualMatchCache actualMatchCache;
-    private @Inject ScoreboardModifier scoreboardModifier;
-    private @Inject Plugin plugin;
+	private @Inject DisqualificationHandler disqualificationHandler;
+	private @Inject ActualMatchCache actualMatchCache;
+	private @Inject ScoreboardModifier scoreboardModifier;
+	private @Inject Plugin plugin;
 
-    @EventHandler
-    public void onGameDisqualification(PlayerDisqualificationEvent event) {
+	@EventHandler
+	public void onGameDisqualification(PlayerDisqualificationEvent event) {
 
-        try {
+		try {
 
-            Optional<Match> match = actualMatchCache.get(event.getPlayer().getDatabaseIdentifier());
+			Optional<Match> match = actualMatchCache.get(event.getPlayer().getDatabaseIdentifier());
 
-            if (match.isPresent()) {
+			if (match.isPresent()) {
 
-                Bukkit.getPluginManager().callEvent(new SpectatorAssignEvent(event.getPlayer(), match.get().getId()));
+				Bukkit.getPluginManager().callEvent(new SpectatorAssignEvent(event.getPlayer(), match.get().getId()));
 
-                Set<Player> players = MatchParticipantsProvider.getOnlinePlayers(match.get());
-                scoreboardModifier.updateAlive(players);
-                disqualificationHandler.disqualify(event.getPlayer().getDatabaseIdentifier());
+				Set<Player> players = MatchParticipantsProvider.getOnlinePlayers(match.get());
+				scoreboardModifier.updateAlive(players);
+				disqualificationHandler.disqualify(event.getPlayer().getDatabaseIdentifier());
 
-                players.forEach(player ->
-                        disqualificationHandler.alertDisqualify(player, event.getPlayer(), event.getKiller()));
-            }
+				players.forEach(player ->
+						disqualificationHandler.alertDisqualify(player, event.getPlayer(), event.getKiller()));
+			}
 
-        } catch (Exception e) {
-            plugin.getLogger().log(Level.SEVERE, "Error while obtaining player match", e);
-        }
+		} catch (Exception e) {
+			plugin.getLogger().log(Level.SEVERE, "Error while obtaining player match", e);
+		}
 
-    }
+	}
 
 }

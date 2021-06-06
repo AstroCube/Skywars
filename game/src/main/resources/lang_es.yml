@@ -5,12 +5,12 @@ gadget:
   kit-select:
     name: "&aSelección de Kit &7(Clic derecho)"
     lore:
-    - ""
-    - "&7Haz clic derecho teniendo este"
-    - "&7ítem en tu mano para abrir el"
-    - "&7menú de selección de kits"
-    - ""
-    - "&a&lClic para abrir"
+      - ""
+      - "&7Haz clic derecho teniendo este"
+      - "&7ítem en tu mano para abrir el"
+      - "&7menú de selección de kits"
+      - ""
+      - "&a&lClic para abrir"
 menu:
   kit-buy:
     title: "%black%¿Comprar %kit_name%?"
@@ -22,33 +22,33 @@ menu:
       # Lines placed before the
       # kit description
       head:
-      - "&8Kit"
-      - ""
+        - "&8Kit"
+        - ""
       # Lines placed after the
       # kit description
       foot-bought:
-      - ""
-      - "&a&lClick para seleccionar"
+        - ""
+        - "&a&lClick para seleccionar"
       foot-selected:
-      - ""
-      - "&e&lSeleccionado"
+        - ""
+        - "&e&lSeleccionado"
       foot-purchasable:
-      - ""
-      - "&fPrecio: &a%price%"
-      - ""
-      - "&e&lClick para comprar"
+        - ""
+        - "&fPrecio: &a%price%"
+        - ""
+        - "&e&lClick para comprar"
       foot-unavailable:
-      - ""
-      - "&c&lNecesitas %required%"
-      - "&c&lmonedas más para comprar"
-      - "&c&leste kit"
+        - ""
+        - "&c&lNecesitas %required%"
+        - "&c&lmonedas más para comprar"
+        - "&c&leste kit"
 kits:
   default:
     title: "&7Por Defecto"
     description:
-    - "&7Kit por defecto, contiene"
-    - "&7cosas básicas para tu"
-    - "&7supervivencia. ¡Suerte!"
+      - "&7Kit por defecto, contiene"
+      - "&7cosas básicas para tu"
+      - "&7supervivencia. ¡Suerte!"
 match:
   cages: "%blue%¡Las cápsulas se abrirán en%white% %seconds% %blue%segundos!"
   refill: "%blue%¡Los cofres se rellenarán en%white% %seconds% %blue%segundos!"

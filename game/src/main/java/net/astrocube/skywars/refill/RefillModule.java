@@ -6,10 +6,10 @@ import net.astrocube.skywars.api.refill.RefillScheduler;
 
 public class RefillModule extends ProtectedModule {
 
-    @Override
-    public void configure() {
-        bind(RefillAnnouncer.class).to(CoreRefillAnnouncer.class);
-        bind(RefillScheduler.class).to(CoreRefillScheduler.class);
-    }
+	@Override
+	public void configure() {
+		bind(RefillAnnouncer.class).to(CoreRefillAnnouncer.class);
+		bind(RefillScheduler.class).to(CoreRefillScheduler.class);
+	}
 
 }

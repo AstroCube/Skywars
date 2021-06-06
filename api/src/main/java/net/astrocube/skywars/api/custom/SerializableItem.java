@@ -10,62 +10,62 @@ import java.util.Set;
  */
 public interface SerializableItem {
 
-    /**
-     * @return material of the item
-     */
-    Material getMaterial();
+	static SerializableItem getAir() {
+		return new SerializableItem() {
+			@Override
+			public Material getMaterial() {
+				return Material.AIR;
+			}
 
-    /**
-     * @return material code
-     */
-    Short getCode();
+			@Override
+			public Short getCode() {
+				return 0;
+			}
 
-    /**
-     * @return item quantity
-     */
-    Integer getNumber();
+			@Override
+			public Integer getNumber() {
+				return 0;
+			}
 
-    /**
-     * @return enchantments of the item
-     */
-    Set<EnchantmentCompound> getEnchantments();
+			@Override
+			public Set<EnchantmentCompound> getEnchantments() {
+				return new HashSet<>();
+			}
+		};
+	}
 
-    interface EnchantmentCompound {
+	/**
+	 * @return material of the item
+	 */
+	Material getMaterial();
 
-        /**
-         * @return enchantment to be applied
-         */
-        String getType();
+	/**
+	 * @return material code
+	 */
+	Short getCode();
 
-        /**
-         * @return level of the enchantment
-         */
-        int getLevel();
+	/**
+	 * @return item quantity
+	 */
+	Integer getNumber();
 
-    }
+	/**
+	 * @return enchantments of the item
+	 */
+	Set<EnchantmentCompound> getEnchantments();
 
-    static SerializableItem getAir() {
-        return new SerializableItem() {
-            @Override
-            public Material getMaterial() {
-                return Material.AIR;
-            }
+	interface EnchantmentCompound {
 
-            @Override
-            public Short getCode() {
-                return 0;
-            }
+		/**
+		 * @return enchantment to be applied
+		 */
+		String getType();
 
-            @Override
-            public Integer getNumber() {
-                return 0;
-            }
+		/**
+		 * @return level of the enchantment
+		 */
+		int getLevel();
 
-            @Override
-            public Set<EnchantmentCompound> getEnchantments() {
-                return new HashSet<>();
-            }
-        };
-    }
+	}
 
 }

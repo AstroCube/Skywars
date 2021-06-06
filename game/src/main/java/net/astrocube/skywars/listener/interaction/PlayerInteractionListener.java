@@ -15,46 +15,46 @@ import java.util.logging.Level;
 
 public class PlayerInteractionListener implements Listener {
 
-    private @Inject ActualMatchCache actualMatchCache;
-    private @Inject Plugin plugin;
+	private @Inject ActualMatchCache actualMatchCache;
+	private @Inject Plugin plugin;
 
-    @EventHandler
-    public void onBlockPlaceEvent(BlockPlaceEvent event) {
+	@EventHandler
+	public void onBlockPlaceEvent(BlockPlaceEvent event) {
 
-        try {
+		try {
 
-            Optional<Match> match = actualMatchCache.get(event.getPlayer().getDatabaseIdentifier());
+			Optional<Match> match = actualMatchCache.get(event.getPlayer().getDatabaseIdentifier());
 
-            if (match.isPresent() && match.get().getStatus() == MatchDoc.Status.RUNNING) {
-                return;
-            }
+			if (match.isPresent() && match.get().getStatus() == MatchDoc.Status.RUNNING) {
+				return;
+			}
 
-        } catch (Exception e) {
-            plugin.getLogger().log(Level.SEVERE, "Error while detecing if player can place item", e);
-        }
+		} catch (Exception e) {
+			plugin.getLogger().log(Level.SEVERE, "Error while detecing if player can place item", e);
+		}
 
-        event.setCancelled(true);
+		event.setCancelled(true);
 
-    }
+	}
 
-    @EventHandler
-    public void onBlockBreakEvent(BlockBreakEvent event) {
+	@EventHandler
+	public void onBlockBreakEvent(BlockBreakEvent event) {
 
-        try {
+		try {
 
-            Optional<Match> match = actualMatchCache.get(event.getPlayer().getDatabaseIdentifier());
+			Optional<Match> match = actualMatchCache.get(event.getPlayer().getDatabaseIdentifier());
 
-            if (match.isPresent() && match.get().getStatus() == MatchDoc.Status.RUNNING) {
-                return;
-            }
+			if (match.isPresent() && match.get().getStatus() == MatchDoc.Status.RUNNING) {
+				return;
+			}
 
-        } catch (Exception e) {
-            plugin.getLogger().log(Level.SEVERE, "Error while detecing if player can break item", e);
-        }
+		} catch (Exception e) {
+			plugin.getLogger().log(Level.SEVERE, "Error while detecing if player can break item", e);
+		}
 
-        event.setCancelled(true);
+		event.setCancelled(true);
 
-    }
+	}
 
 
 }

@@ -9,13 +9,13 @@ import org.bukkit.event.Listener;
 
 public class GameInvalidationListener implements Listener {
 
-    @Inject private RefillScheduler refillScheduler;
+	@Inject private RefillScheduler refillScheduler;
 
-    @EventHandler
-    public void gameInvalidationListener(MatchInvalidateEvent event){
-        CountdownTimer cancellableRefill = this.refillScheduler.getRefillTask(event.getMatch());
-        if (cancellableRefill != null) {
-            cancellableRefill.cancelCountdown();
-        }
-    }
+	@EventHandler
+	public void gameInvalidationListener(MatchInvalidateEvent event) {
+		CountdownTimer cancellableRefill = this.refillScheduler.getRefillTask(event.getMatch());
+		if (cancellableRefill != null) {
+			cancellableRefill.cancelCountdown();
+		}
+	}
 }

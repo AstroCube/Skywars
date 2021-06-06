@@ -17,31 +17,31 @@ import java.util.Set;
 @Singleton
 public class CoreMatchStartProcessor implements MatchStartProcessor {
 
-    private @Inject MatchCageSpawner matchCageSpawner;
-    private @Inject MessageHandler messageHandler;
-    private @Inject Plugin plugin;
+	private @Inject MatchCageSpawner matchCageSpawner;
+	private @Inject MessageHandler messageHandler;
+	private @Inject Plugin plugin;
 
-    @Override
-    public void scheduleStart(Set<ProvisionedTeam> teams, String match) {
+	@Override
+	public void scheduleStart(Set<ProvisionedTeam> teams, String match) {
 
-        CountdownTimer timer = new CountdownTimer(
-                plugin,
-                10,
-                (time) -> TeamUtils.getMatchPlayers(teams).forEach(player -> announceCageOpen(player, time.getSecondsLeft())),
-                () -> {
-                    matchCageSpawner.remove(match, teams);
-                    Bukkit.getPluginManager().callEvent(new MatchStartEvent(match));
-                }
-        );
+		CountdownTimer timer = new CountdownTimer(
+				plugin,
+				10,
+				(time) -> TeamUtils.getMatchPlayers(teams).forEach(player -> announceCageOpen(player, time.getSecondsLeft())),
+				() -> {
+					matchCageSpawner.remove(match, teams);
+					Bukkit.getPluginManager().callEvent(new MatchStartEvent(match));
+				}
+		);
 
-        timer.scheduleTimer();
-    }
+		timer.scheduleTimer();
+	}
 
-    private void announceCageOpen(Player player, int time) {
-        messageHandler.sendReplacing(
-                player, "match.cages",
-                "%seconds%", time
-        );
-    }
+	private void announceCageOpen(Player player, int time) {
+		messageHandler.sendReplacing(
+				player, "match.cages",
+				"%seconds%", time
+		);
+	}
 
 }
