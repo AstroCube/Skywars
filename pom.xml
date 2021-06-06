@@ -8,13 +8,13 @@
     </properties>
 
     <groupId>net.astrocube</groupId>
-    <artifactId>SkyWars</artifactId>
+    <artifactId>skywars</artifactId>
     <packaging>pom</packaging>
     <version>1.0</version>
 
     <modules>
-        <module>API</module>
-        <module>Game</module>
+        <module>api</module>
+        <module>game</module>
     </modules>
 
     <repositories>

@@ -3,18 +3,29 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>SkyWars</artifactId>
+        <artifactId>skywars</artifactId>
         <groupId>net.astrocube</groupId>
         <version>1.0</version>
     </parent>
 
-    <artifactId>SkyWars-API</artifactId>
+    <artifactId>skywars-game</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>net.astrocube</groupId>
             <artifactId>api-bukkit</artifactId>
             <version>1.0-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.astrocube</groupId>
+            <artifactId>skywars-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.16</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
