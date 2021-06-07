@@ -8,7 +8,7 @@ import java.util.Set;
 
 public interface ScoreboardModifier {
 
-	void createBoard(Set<ProvisionedTeam> players, GameMap gameMap);
+	void updateInitial(Set<ProvisionedTeam> players, GameMap gameMap);
 
 	void updateAlive(Set<Player> players);
 

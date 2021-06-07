@@ -3,17 +3,16 @@ package net.astrocube.skywars.game;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import me.yushust.message.MessageHandler;
-import me.yushust.message.util.StringList;
+import net.astrocube.api.bukkit.board.Board;
+import net.astrocube.api.bukkit.board.BoardProvider;
 import net.astrocube.api.bukkit.virtual.game.map.GameMap;
 import net.astrocube.skywars.api.game.ScoreboardModifier;
 import net.astrocube.skywars.api.team.ProvisionedTeam;
 import net.astrocube.skywars.team.TeamUtils;
-import org.bukkit.craftbukkit.v1_8_R3.scoreboard.CraftGameBoard;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.scoreboard.GameBoard;
 
-import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -21,12 +20,13 @@ import java.util.stream.Collectors;
 public class CoreScoreboardModifier implements ScoreboardModifier {
 
 	private @Inject MessageHandler messageHandler;
+	private @Inject BoardProvider boardProvider;
 	private @Inject Plugin plugin;
 
 	@Override
-	public void createBoard(Set<ProvisionedTeam> players, GameMap gameMap) {
+	public void updateInitial(Set<ProvisionedTeam> players, GameMap gameMap) {
 		TeamUtils.getMatchPlayers(players).forEach(player ->
-				setupScoreboard(
+				updateScoreboard(
 						player,
 						gameMap.getName(),
 						getRemainingFromSeconds(plugin.getConfig().getInt("wars.interval")),
@@ -34,7 +34,6 @@ public class CoreScoreboardModifier implements ScoreboardModifier {
 								.collect(Collectors.toSet()).size() + ""
 				)
 		);
-
 	}
 
 	@Override
@@ -59,35 +58,37 @@ public class CoreScoreboardModifier implements ScoreboardModifier {
 
 	}
 
-	private void setupScoreboard(Player player, String map, String time, String survivors) {
+	private Board getBoardOrCreate(Player player, String subMode) {
+		return boardProvider.get(player).orElseGet(() ->
+				boardProvider.create(player, messageHandler.get(player, "scoreboard." + subMode + ".title")));
+	}
+
+	private void updateScoreboard(Player player, String map, String time, String survivors) {
 
 		String subMode = plugin.getConfig().getString("centauri.subMode", "");
 
-		GameBoard board = new CraftGameBoard(
-				messageHandler.get(
-						player,
-						"scoreboard." + subMode + ".title"
-				)
-		);
-
-		StringList list = messageHandler.replacingMany(player,
-				"scoreboard." + subMode + ".board",
+		List<String> content = messageHandler.replacingMany(
+				player, "scoreboard." + subMode + ".board",
 				"%time%", time,
 				"%map%", map,
 				"%survivors%", survivors
 		);
 
-		Collections.reverse(list);
+		getBoardOrCreate(player, subMode).setLines(content);
+	}
 
-		for (int i = (list.size() - 1); i >= 0; i--) {
-			board.addLine(i, list.get(i));
+	private void fieldUpdate(Player player, String placeholder, String value) {
+		// TODO: This should be changed
+		String subMode = plugin.getConfig().getString("centauri.subMode", "");
+		Board board = getBoardOrCreate(player, subMode);
+		List<String> content = messageHandler.replacingMany(player, "scoreboard." + subMode + ".board");
+
+		for (int i = 0; i < content.size(); i++) {
+			String line = content.get(i);
+			if (line.contains(placeholder)) {
+				board.set(content.size() - i - 1, line.replace(placeholder, value));
+			}
 		}
-
-		if (player.hasAttachedBoard()) {
-			player.removeScoreboard();
-		}
-
-		player.setAttachedBoard(board);
 	}
 
 	private String getRemainingFromSeconds(int seconds) {
@@ -100,29 +101,6 @@ public class CoreScoreboardModifier implements ScoreboardModifier {
 		}
 
 		return String.format("%02d:%02d:%02d", hours, minutes, fSeconds);
-	}
-
-	private void fieldUpdate(Player player, String field, String value) {
-
-		String subMode = plugin.getConfig().getString("centauri.subMode", "");
-
-		GameBoard board = player.getAttachedBoard();
-		me.yushust.message.util.StringList list = messageHandler.getMany(player, "scoreboard." + subMode + ".board");
-
-		Collections.reverse(list);
-
-		if (board != null) {
-
-			for (int i = (list.size() - 1); i >= 0; i--) {
-
-				if (list.get(i).contains(field)) {
-					board.setLine(i, list.get(i).replace(field, value));
-				}
-
-			}
-
-		}
-
 	}
 
 }
