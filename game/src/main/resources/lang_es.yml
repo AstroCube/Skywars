@@ -3,52 +3,52 @@ team:
     comparing: "%red%Ha ocurrido un error al establecerte en un grupo. Por favor intenta unirte a otra partida."
 gadget:
   kit-select:
-    name: "&aSelección de Kit &7(Clic derecho)"
+    name: "%green%Selección de Kit %gray%(Clic derecho)"
     lore:
       - ""
-      - "&7Haz clic derecho teniendo este"
-      - "&7ítem en tu mano para abrir el"
-      - "&7menú de selección de kits"
+      - "%gray%Haz clic derecho teniendo este"
+      - "%gray%ítem en tu mano para abrir el"
+      - "%gray%menú de selección de kits"
       - ""
-      - "&a&lClic para abrir"
+      - "%green%%bold%Clic para abrir"
 menu:
   kit-buy:
     title: "%black%¿Comprar %kit_name%?"
-    accept: "&a&lJoder, claro que si"
-    reject: "&c&lAhorita no, joven"
+    accept: "%green%%bold%Joder, claro que si"
+    reject: "%red%%bold%Ahorita no, joven"
   kit-select:
     title: "%black%Selecciona un kit"
     kit:
       # Lines placed before the
       # kit description
       head:
-        - "&8Kit"
+        - "%dark_gray%Kit"
         - ""
       # Lines placed after the
       # kit description
       foot-bought:
         - ""
-        - "&a&lClick para seleccionar"
+        - "%green%%bold%Click para seleccionar"
       foot-selected:
         - ""
-        - "&e&lSeleccionado"
+        - "%yellow%%bold%Seleccionado"
       foot-purchasable:
         - ""
-        - "&fPrecio: &a%price%"
+        - "%white%Precio: %green%%price%"
         - ""
-        - "&e&lClick para comprar"
+        - "%yellow%%bold%Click para comprar"
       foot-unavailable:
         - ""
-        - "&c&lNecesitas %required%"
-        - "&c&lmonedas más para comprar"
-        - "&c&leste kit"
+        - "%red%%bold%Necesitas %required%"
+        - "%red%%bold%monedas más para comprar"
+        - "%red%%bold%este kit"
 kits:
   default:
-    title: "&7Por Defecto"
+    title: "%gray%Por Defecto"
     description:
-      - "&7Kit por defecto, contiene"
-      - "&7cosas básicas para tu"
-      - "&7supervivencia. ¡Suerte!"
+      - "%gray%Kit por defecto, contiene"
+      - "%gray%cosas básicas para tu"
+      - "%gray%supervivencia. ¡Suerte!"
 match:
   cages: "%blue%¡Las cápsulas se abrirán en%white% %seconds% %blue%segundos!"
   refill: "%blue%¡Los cofres se rellenarán en%white% %seconds% %blue%segundos!"
