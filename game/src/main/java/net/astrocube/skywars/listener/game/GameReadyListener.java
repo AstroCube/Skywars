@@ -70,7 +70,7 @@ public class GameReadyListener implements Listener {
 
 					// Will not stop the game when failed
 					try {
-						scoreboardModifier.updateInitial(event.getMatch(), provisionedTeams, gameMap);
+						scoreboardModifier.updateInitial(provisionedTeams, gameMap);
 					} catch (Exception e) {
 						plugin.getLogger().log(Level.WARNING, "Error while generating scoreboard", e);
 					}
