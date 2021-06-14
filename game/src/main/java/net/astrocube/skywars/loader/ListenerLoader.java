@@ -14,6 +14,7 @@ import net.astrocube.skywars.listener.game.GameUserJoinListener;
 import net.astrocube.skywars.listener.game.GameUserLeaveListener;
 import net.astrocube.skywars.listener.game.MatchFinishListener;
 import net.astrocube.skywars.listener.ignite.BlockPlaceListener;
+import net.astrocube.skywars.listener.ignite.EntityExplodeListener;
 import net.astrocube.skywars.listener.interaction.PlayerInteractionListener;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
