@@ -18,14 +18,12 @@ public class PlayerFallListener implements Listener {
 		if (event.getEntity() instanceof Player) {
 			Player player = (Player) event.getEntity();
 			if (
-					event.getCause() == EntityDamageEvent.DamageCause.FALL &&
-							spawnProtectionChecker.hasProtection(player.getDatabaseIdentifier())
+				event.getCause() == EntityDamageEvent.DamageCause.FALL &&
+					spawnProtectionChecker.hasProtection(player.getDatabaseIdentifier())
 			) {
 				spawnProtectionChecker.removeFromRegistry(player.getDatabaseIdentifier());
 				event.setCancelled(true);
 			}
 		}
-
 	}
-
 }

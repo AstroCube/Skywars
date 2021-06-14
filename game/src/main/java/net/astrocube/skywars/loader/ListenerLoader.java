@@ -14,7 +14,6 @@ import net.astrocube.skywars.listener.game.GameUserJoinListener;
 import net.astrocube.skywars.listener.game.GameUserLeaveListener;
 import net.astrocube.skywars.listener.game.MatchFinishListener;
 import net.astrocube.skywars.listener.ignite.BlockPlaceListener;
-import net.astrocube.skywars.listener.ignite.EntityExplodeListener;
 import net.astrocube.skywars.listener.interaction.PlayerInteractionListener;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
@@ -30,7 +29,6 @@ public class ListenerLoader implements Loader {
 	private @Inject PlayerFallListener playerFallListener;
 
 	private @Inject BlockPlaceListener blockPlaceListener;
-	private @Inject EntityExplodeListener entityExplodeListener;
 
 	private @Inject GameReadyListener gameReadyListener;
 	private @Inject GameUserLeaveListener userLeaveListener;
@@ -51,7 +49,6 @@ public class ListenerLoader implements Loader {
 		registerEvent(playerFallListener);
 
 		registerEvent(blockPlaceListener);
-		registerEvent(entityExplodeListener);
 
 		registerEvent(gameReadyListener);
 		registerEvent(userLeaveListener);
@@ -68,5 +65,4 @@ public class ListenerLoader implements Loader {
 	private void registerEvent(Listener listener) {
 		plugin.getServer().getPluginManager().registerEvents(listener, plugin);
 	}
-
 }
