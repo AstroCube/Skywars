@@ -20,6 +20,5 @@ public class BlockPlaceListener implements Listener {
 			blockPlaced.setType(Material.AIR);
 			world.spawnEntity(blockPlaced.getLocation(), EntityType.PRIMED_TNT);
 		}
-
 	}
 }

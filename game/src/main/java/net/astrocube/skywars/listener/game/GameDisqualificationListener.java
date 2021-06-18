@@ -29,25 +29,23 @@ public class GameDisqualificationListener implements Listener {
 	public void onGameDisqualification(PlayerDisqualificationEvent event) {
 
 		try {
-
-			Optional<Match> match = actualMatchCache.get(event.getPlayer().getDatabaseIdentifier());
+			Optional<Match> match =
+				actualMatchCache.get(event.getPlayer().getDatabaseIdentifier());
 
 			if (match.isPresent()) {
 
 				Bukkit.getPluginManager().callEvent(new SpectatorAssignEvent(event.getPlayer(), match.get().getId()));
 
-				Set<Player> players = MatchParticipantsProvider.getOnlinePlayers(match.get());
+				Set<Player> players = MatchParticipantsProvider.getOnlinePlayers(match.get(), teamMember -> true);
 				scoreboardModifier.updateAlive(players);
 				disqualificationHandler.disqualify(event.getPlayer().getDatabaseIdentifier());
 
 				players.forEach(player ->
-						disqualificationHandler.alertDisqualify(player, event.getPlayer(), event.getKiller()));
+					disqualificationHandler.alertDisqualify(player, event.getPlayer(), event.getKiller()));
 			}
 
-		} catch (Exception e) {
-			plugin.getLogger().log(Level.SEVERE, "Error while obtaining player match", e);
+		} catch (Exception exception) {
+			plugin.getLogger().log(Level.SEVERE, "Error while obtaining player match", exception);
 		}
-
 	}
-
 }
