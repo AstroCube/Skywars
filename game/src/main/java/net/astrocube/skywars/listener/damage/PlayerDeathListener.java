@@ -20,16 +20,24 @@ public class PlayerDeathListener implements Listener {
 		double damage = event.getDamage();
 		Player player = (Player) event.getEntity();
 
-		if ((player.getHealth() - damage) < 1) {
-			if (event.getCause() != EntityDamageEvent.DamageCause.ENTITY_ATTACK) {
-				event.setCancelled(true);
-				Bukkit.getPluginManager().callEvent(new PlayerDisqualificationEvent(player, null));
-			} else if ((player.getHealth() - damage) < 1) {
-				EntityDamageByEntityEvent damageEvent = (EntityDamageByEntityEvent) event;
-				Player killer = (Player) damageEvent.getDamager();
-				event.setCancelled(true);
-				Bukkit.getPluginManager().callEvent(new PlayerDisqualificationEvent(player, killer));
+		if (event.getCause() == EntityDamageEvent.DamageCause.VOID
+				|| (player.getHealth() - damage) < 1) {
+
+			if (!(event instanceof EntityDamageByEntityEvent)) {
+				EntityDamageEvent lastDamageCause = player.getLastDamageCause();
+				if (lastDamageCause instanceof EntityDamageByEntityEvent) {
+					event = lastDamageCause;
+				} else {
+					event.setCancelled(true);
+					Bukkit.getPluginManager().callEvent(new PlayerDisqualificationEvent(player, null));
+					return;
+				}
 			}
+
+			EntityDamageByEntityEvent damageEvent = (EntityDamageByEntityEvent) event;
+			Player killer = (Player) damageEvent.getDamager();
+			event.setCancelled(true);
+			Bukkit.getPluginManager().callEvent(new PlayerDisqualificationEvent(player, killer));
 		}
 
 	}
