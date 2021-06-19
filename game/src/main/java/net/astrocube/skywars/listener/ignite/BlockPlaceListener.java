@@ -11,14 +11,17 @@ import org.bukkit.event.block.BlockPlaceEvent;
 public class BlockPlaceListener implements Listener {
 
 	@EventHandler
-	public void blockPlaceListener(BlockPlaceEvent event) {
+	public void onBlockPlace(BlockPlaceEvent event) {
 
-		Block blockPlaced = event.getBlockPlaced();
-		World world = blockPlaced.getWorld();
+		Block block = event.getBlockPlaced();
+		World world = block.getWorld();
 
-		if (blockPlaced.getType() == Material.TNT) {
-			blockPlaced.setType(Material.AIR);
-			world.spawnEntity(blockPlaced.getLocation(), EntityType.PRIMED_TNT);
+		if (block.getType() == Material.TNT) {
+			block.setType(Material.AIR);
+			world.spawnEntity(
+					block.getLocation().clone().add(0.5, 0, 0.5),
+					EntityType.PRIMED_TNT
+			);
 		}
 	}
 }
