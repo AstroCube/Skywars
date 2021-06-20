@@ -47,6 +47,8 @@ public class GameReadyListener implements Listener {
 	@EventHandler
 	public void onGameReady(GameReadyEvent event) {
 
+		System.out.println(event.getTeams().size());
+
 		findService.find(event.getMatch()).callback(response -> {
 			try {
 

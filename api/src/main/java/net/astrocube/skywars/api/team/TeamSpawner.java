@@ -7,6 +7,7 @@ public interface TeamSpawner {
 	/**
 	 * Spawn all the match teams in their respective
 	 * map spawns.
+	 *
 	 * @param provisioned players
 	 * @param match       where the players belong
 	 */

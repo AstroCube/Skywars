@@ -26,13 +26,13 @@ public class CoreScoreboardModifier implements ScoreboardModifier {
 	@Override
 	public void updateInitial(Set<ProvisionedTeam> players, GameMap gameMap) {
 		TeamUtils.getMatchPlayers(players).forEach(player ->
-				updateScoreboard(
-						player,
-						gameMap.getName(),
-						getRemainingFromSeconds(plugin.getConfig().getInt("wars.interval")),
-						players.stream().filter(t -> t.getMembers().size() > 0)
-								.collect(Collectors.toSet()).size() + ""
-				)
+			updateScoreboard(
+				player,
+				gameMap.getName(),
+				getRemainingFromSeconds(plugin.getConfig().getInt("wars.interval")),
+				players.stream().filter(t -> t.getMembers().size() > 0)
+					.collect(Collectors.toSet()).size() + ""
+			)
 		);
 	}
 
@@ -53,14 +53,12 @@ public class CoreScoreboardModifier implements ScoreboardModifier {
 			}
 
 			fieldUpdate(player, "%time%", timer);
-
 		});
-
 	}
 
 	private Board getBoardOrCreate(Player player, String subMode) {
 		return boardProvider.get(player).orElseGet(() ->
-				boardProvider.create(player, messageHandler.get(player, "scoreboard." + subMode + ".title")));
+			boardProvider.create(player, messageHandler.get(player, "scoreboard." + subMode + ".title")));
 	}
 
 	private void updateScoreboard(Player player, String map, String time, String survivors) {
@@ -68,12 +66,11 @@ public class CoreScoreboardModifier implements ScoreboardModifier {
 		String subMode = plugin.getConfig().getString("centauri.subMode", "");
 
 		List<String> content = messageHandler.replacingMany(
-				player, "scoreboard." + subMode + ".board",
-				"%time%", time,
-				"%map%", map,
-				"%survivors%", survivors
+			player, "scoreboard." + subMode + ".board",
+			"%time%", time,
+			"%map%", map,
+			"%survivors%", survivors
 		);
-
 		getBoardOrCreate(player, subMode).setLines(content);
 	}
 
@@ -102,5 +99,4 @@ public class CoreScoreboardModifier implements ScoreboardModifier {
 
 		return String.format("%02d:%02d:%02d", hours, minutes, fSeconds);
 	}
-
 }

@@ -56,7 +56,5 @@ public class PlayerDeathListener implements Listener {
 
 			Bukkit.getPluginManager().callEvent(new PlayerDisqualificationEvent(player, killer));
 		}
-
 	}
-
 }

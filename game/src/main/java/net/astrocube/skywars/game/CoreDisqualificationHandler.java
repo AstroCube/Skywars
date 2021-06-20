@@ -53,16 +53,16 @@ public class CoreDisqualificationHandler implements DisqualificationHandler {
 	public void disqualify(String user) {
 
 		Optional<Registry> userRegistry = registries.stream()
-				.filter(registry -> registry.getUser().equalsIgnoreCase(user))
-				.findFirst();
+			.filter(registry -> registry.getUser().equalsIgnoreCase(user))
+			.findFirst();
 
 		if (userRegistry.isPresent()) {
 
 			Registry temporal = userRegistry.get();
 
 			registries = registries.stream()
-					.filter(registry -> !registry.getUser().equalsIgnoreCase(user))
-					.collect(Collectors.toSet());
+				.filter(registry -> !registry.getUser().equalsIgnoreCase(user))
+				.collect(Collectors.toSet());
 
 			Set<String> remainingTeams = new HashSet<>();
 
@@ -77,39 +77,33 @@ public class CoreDisqualificationHandler implements DisqualificationHandler {
 
 				// Call victory event and remove all remaining registries
 				Bukkit.getPluginManager().callEvent(
-						new MatchFinishEvent(
-								temporal.getMatch(),
-								registries.stream()
-										.filter(t -> remainingTeams.contains(t.getTeam()))
-										.map(Registry::getUser)
-										.collect(Collectors.toSet())
-						)
+					new MatchFinishEvent(
+						temporal.getMatch(),
+						registries.stream()
+							.filter(t -> remainingTeams.contains(t.getTeam()))
+							.map(Registry::getUser)
+							.collect(Collectors.toSet())
+					)
 				);
-
 				registries.removeIf(reg -> reg.getMatch().equalsIgnoreCase(temporal.getTeam()));
-
 			}
-
 		}
-
 	}
 
 	@Override
 	public void alertDisqualify(Player player, Player target, @Nullable Player killer) {
 
-		if (killer != null) {
+		if (killer != null && !killer.getName().equalsIgnoreCase(player.getName())) {
 			messageHandler.sendReplacingIn(
-					player, AlertModes.MUTED, "match.death-player",
-					"%killer%", ChatColor.WHITE + killer.getName(),
-					"%target%", ChatColor.WHITE + target.getName()
+				player, AlertModes.MUTED, "match.death-player",
+				"%killer%", ChatColor.WHITE + killer.getName(),
+				"%target%", ChatColor.WHITE + target.getName()
 			);
 			return;
 		}
 		messageHandler.sendReplacingIn(
-				player, AlertModes.MUTED, "match.death-natural",
-				"%target%", ChatColor.WHITE + target.getName()
+			player, AlertModes.MUTED, "match.death-natural",
+			"%target%", ChatColor.WHITE + target.getName()
 		);
-
 	}
-
 }

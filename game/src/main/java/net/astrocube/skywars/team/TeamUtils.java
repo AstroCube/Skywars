@@ -33,12 +33,12 @@ public class TeamUtils {
 		});
 	}
 
-	public static Location generateSpawn(CoordinatePoint coordinatePoint, World world, double addition) {
+	public static Location generateSpawn(CoordinatePoint coordinatePoint, World world) {
 		return new Location(
 				world,
-				coordinatePoint.getX() + (addition),
+				coordinatePoint.getX(),
 				coordinatePoint.getY(),
-				coordinatePoint.getZ() + (addition)
+				coordinatePoint.getZ()
 		);
 	}
 

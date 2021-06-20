@@ -44,7 +44,7 @@ public class CoreMatchCageSpawner implements MatchCageSpawner {
 		teams.forEach(provisionedTeam ->
 				cageSpawner.spawnCage(
 						place ? cageMatcher.getHighestCage(provisionedTeam) : CageMatcher.getEmptyCage(),
-						TeamUtils.generateSpawn(provisionedTeam.getSpawn(), world, 0),
+						TeamUtils.generateSpawn(provisionedTeam.getSpawn(), world),
 						area
 				)
 		);
