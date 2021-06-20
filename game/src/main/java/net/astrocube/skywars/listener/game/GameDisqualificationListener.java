@@ -5,6 +5,7 @@ import net.astrocube.api.bukkit.game.event.spectator.SpectatorAssignEvent;
 import net.astrocube.api.bukkit.game.match.ActualMatchCache;
 import net.astrocube.api.bukkit.game.match.control.MatchParticipantsProvider;
 import net.astrocube.api.bukkit.virtual.game.match.Match;
+import net.astrocube.api.bukkit.virtual.game.match.MatchDoc;
 import net.astrocube.skywars.api.event.PlayerDisqualificationEvent;
 import net.astrocube.skywars.api.game.DisqualificationHandler;
 import net.astrocube.skywars.api.game.ScoreboardModifier;
@@ -36,7 +37,7 @@ public class GameDisqualificationListener implements Listener {
 
 				Bukkit.getPluginManager().callEvent(new SpectatorAssignEvent(event.getPlayer(), match.get().getId()));
 
-				Set<Player> players = MatchParticipantsProvider.getOnlinePlayers(match.get(), teamMember -> true);
+				Set<Player> players = MatchParticipantsProvider.getOnlinePlayers(match.get(), MatchDoc.TeamMember::isActive);
 				scoreboardModifier.updateAlive(players);
 				disqualificationHandler.disqualify(event.getPlayer().getDatabaseIdentifier());
 
