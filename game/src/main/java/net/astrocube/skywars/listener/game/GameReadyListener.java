@@ -13,6 +13,7 @@ import net.astrocube.skywars.api.chest.ChestSpawner;
 import net.astrocube.skywars.api.game.DisqualificationHandler;
 import net.astrocube.skywars.api.game.ScoreboardModifier;
 import net.astrocube.skywars.api.game.SpawnProtectionChecker;
+import net.astrocube.skywars.api.kit.KitMatcher;
 import net.astrocube.skywars.api.map.MapConfiguration;
 import net.astrocube.skywars.api.refill.RefillScheduler;
 import net.astrocube.skywars.api.team.MatchStartProcessor;
@@ -43,11 +44,10 @@ public class GameReadyListener implements Listener {
 	private @Inject RefillScheduler refillScheduler;
 	private @Inject DisqualificationHandler disqualificationHandler;
 	private @Inject ChestSpawner chestSpawner;
+	private @Inject KitMatcher kitMatcher;
 
 	@EventHandler
 	public void onGameReady(GameReadyEvent event) {
-
-		System.out.println(event.getTeams().size());
 
 		findService.find(event.getMatch()).callback(response -> {
 			try {
@@ -57,7 +57,7 @@ public class GameReadyListener implements Listener {
 				}
 
 				MapConfiguration configuration =
-						configurationProvider.parseConfiguration(event.getConfiguration(), MapConfiguration.class);
+					configurationProvider.parseConfiguration(event.getConfiguration(), MapConfiguration.class);
 
 				Set<ProvisionedTeam> provisionedTeams = teamMatcher.linkTeams(event.getTeams(), configuration);
 
@@ -70,11 +70,19 @@ public class GameReadyListener implements Listener {
 					spawnProtectionChecker.registerMatch(provisionedTeams);
 					disqualificationHandler.ensureTeams(event.getMatch(), provisionedTeams);
 
+					provisionedTeams.forEach(provisionedTeam -> {
+						try {
+							kitMatcher.applyTeamKits(provisionedTeam);
+						} catch (Exception exception) {
+							exception.printStackTrace();
+						}
+					});
+
 					// Will not stop the game when failed
 					try {
 						scoreboardModifier.updateInitial(provisionedTeams, gameMap);
-					} catch (Exception e) {
-						plugin.getLogger().log(Level.WARNING, "Error while generating scoreboard", e);
+					} catch (Exception exception) {
+						plugin.getLogger().log(Level.WARNING, "Error while generating scoreboard", exception);
 					}
 
 					matchStartProcessor.scheduleStart(provisionedTeams, event.getMatch());
@@ -82,18 +90,15 @@ public class GameReadyListener implements Listener {
 
 
 				Bukkit.getScheduler().runTaskLater(
-						plugin,
-						() -> refillScheduler.scheduleRefill(event.getMatch(), configuration.getChests(), provisionedTeams),
-						200L
+					plugin,
+					() -> refillScheduler.scheduleRefill(event.getMatch(), configuration.getChests(), provisionedTeams),
+					200L
 				);
 
-			} catch (Exception e) {
-				plugin.getLogger().log(Level.SEVERE, "There was an error processing game ready event.", e);
+			} catch (Exception exception) {
+				plugin.getLogger().log(Level.SEVERE, "There was an error processing game ready event.", exception);
 				Bukkit.getPluginManager().callEvent(new MatchInvalidateEvent(event.getMatch(), false));
 			}
-
 		});
-
 	}
-
 }
