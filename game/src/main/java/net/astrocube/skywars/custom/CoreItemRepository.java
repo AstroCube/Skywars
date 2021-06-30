@@ -36,24 +36,25 @@ public class CoreItemRepository<T extends Customizable> implements CustomItemRep
 
 		File folder = new File(plugin.getDataFolder(), name);
 
-		if (folder.exists() && folder.isDirectory()) {
+		if (!folder.exists() && folder.isDirectory()) {
+			folder.mkdirs();
+		}
 
-			for (File file : folder.listFiles()) {
+		File[] files = folder.listFiles();
+
+		if (files != null) {
+			for (File file : files) {
 
 				if (!file.isDirectory() && FilenameUtils.getExtension(file.getName()).equalsIgnoreCase("json")) {
 
 					try {
 						cache.add(mapper.readValue(file, clazz));
-					} catch (IOException ex) {
+					} catch (IOException exception) {
 						plugin.getLogger().log(Level.WARNING, "Error while parsing {0}", file.getName());
-						ex.printStackTrace();
+						exception.printStackTrace();
 					}
 				}
-
 			}
-
-		} else {
-			folder.mkdir();
 		}
 
 		generated = true;
@@ -64,5 +65,4 @@ public class CoreItemRepository<T extends Customizable> implements CustomItemRep
 	public Set<T> getRegisteredItems() {
 		return cache;
 	}
-
 }
