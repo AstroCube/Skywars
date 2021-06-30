@@ -17,18 +17,17 @@ public class KitSelectGadgetListener implements Listener {
 	@EventHandler
 	public void onUse(ActionableItemEvent event) {
 		if (event.getAction().equals("kit_select")
-				&& (event.getClick() == Action.RIGHT_CLICK_AIR
-				|| event.getClick() == Action.RIGHT_CLICK_BLOCK)) {
+			&& (event.getClick() == Action.RIGHT_CLICK_AIR
+			|| event.getClick() == Action.RIGHT_CLICK_BLOCK)) {
 			try {
 				kitSelectMenuProvider.open(event.getPlayer());
-			} catch (Exception e) {
+			} catch (Exception exception) {
 				Bukkit.getLogger().log(
-						Level.SEVERE,
-						"An error occurred while opening kit selection menu",
-						e
+					Level.SEVERE,
+					"An error occurred while opening kit selection menu",
+					exception
 				);
 			}
 		}
 	}
-
 }
