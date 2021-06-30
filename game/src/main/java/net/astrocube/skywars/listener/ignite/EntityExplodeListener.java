@@ -14,7 +14,7 @@ public class EntityExplodeListener implements Listener {
 			event.blockList().clear();
 
 			event.getLocation().getWorld()
-				.getNearbyEntities(event.getLocation(), 10, 10, 10)
+				.getNearbyEntities(event.getLocation(), 5, 5, 5)
 				.stream()
 				.filter(entity -> entity instanceof Player)
 				.map(entity -> (Player) entity)
