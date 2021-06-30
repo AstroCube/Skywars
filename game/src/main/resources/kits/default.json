@@ -1,0 +1,12 @@
+{
+	"identifier": "default",
+	"icon": {
+		"material": "WOOD_SWORD",
+		"code": 0,
+		"number": "1",
+		"enchantments": []
+	},
+	"teamSupport": true,
+	"inventory": [],
+	"price": "0"
+}
