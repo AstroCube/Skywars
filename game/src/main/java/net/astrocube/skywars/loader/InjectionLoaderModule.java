@@ -6,6 +6,7 @@ import net.astrocube.skywars.cage.CoreCage;
 import net.astrocube.skywars.chest.ChestModule;
 import net.astrocube.skywars.custom.CustomModule;
 import net.astrocube.skywars.game.GameModule;
+import net.astrocube.skywars.kit.KitModule;
 import net.astrocube.skywars.perk.PerkModule;
 import net.astrocube.skywars.refill.RefillModule;
 import net.astrocube.skywars.team.TeamModule;
@@ -23,6 +24,6 @@ public class InjectionLoaderModule extends ProtectedModule {
 		install(new RefillModule());
 		install(new CustomModule());
 		install(new PerkModule());
+		install(new KitModule());
 	}
-
 }

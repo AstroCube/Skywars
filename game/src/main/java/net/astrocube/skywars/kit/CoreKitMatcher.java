@@ -1,67 +1,50 @@
 package net.astrocube.skywars.kit;
 
+import net.astrocube.api.bukkit.game.exception.GameControlException;
+import net.astrocube.api.bukkit.virtual.game.match.MatchDoc;
 import net.astrocube.api.core.virtual.user.User;
 import net.astrocube.skywars.api.custom.CustomItemRepository;
-import net.astrocube.skywars.api.custom.SerializableItem;
 import net.astrocube.skywars.api.kit.Kit;
 import net.astrocube.skywars.api.kit.KitMatcher;
+import net.astrocube.skywars.api.perk.SkyWarsPerkManifest;
+import net.astrocube.skywars.api.perk.SkyWarsPerkProvider;
+import net.astrocube.skywars.api.team.ProvisionedTeam;
+import org.bukkit.Bukkit;
 
 import javax.inject.Inject;
-import java.util.HashSet;
-import java.util.Set;
 
 public class CoreKitMatcher implements KitMatcher {
 
-	private @Inject CustomItemRepository<Kit> customItemRepository;
+	private @Inject SkyWarsPerkProvider skyWarsPerkProvider;
+	private @Inject CustomItemRepository<Kit> kitRepository;
 
 	@Override
-	public Kit getPlayerKit(User user) {
-		return customItemRepository.getRegisteredItems().stream().findAny().orElse(new Kit() {
-			@Override
-			public String getIdentifier() {
-				return "";
-			}
+	public Kit getPlayerKit(MatchDoc.TeamMember member) throws Exception {
 
-			@Override
-			public SerializableItem getIcon() {
-				return null;
-			}
+		String userIdentification = member.getUser();
 
-			@Override
-			public SerializableItem getHelmet() {
-				return SerializableItem.getAir();
-			}
+		SkyWarsPerkManifest perkManifest =
+			skyWarsPerkProvider.getManifest(userIdentification)
+				.orElseThrow(() -> new GameControlException("Perk manifest of player" + userIdentification + "not found"));
 
-			@Override
-			public SerializableItem getChest() {
-				return SerializableItem.getAir();
-			}
-
-			@Override
-			public SerializableItem getLeggings() {
-				return SerializableItem.getAir();
-			}
-
-			@Override
-			public SerializableItem getBoots() {
-				return SerializableItem.getAir();
-			}
-
-			@Override
-			public boolean hasTeamSupport() {
-				return true;
-			}
-
-			@Override
-			public Set<Pair> getInventory() {
-				return new HashSet<>();
-			}
-
-			@Override
-			public int getPrice() {
-				return 0;
-			}
-		});
+		return kitRepository.getRegisteredItems()
+			.stream()
+			.filter(kit -> kit.getIdentifier().equalsIgnoreCase(
+				perkManifest.getSelectedKit()
+					.orElse("default"))
+			)
+			.findAny()
+			.orElseThrow(() ->
+				new GameControlException(
+					"An error occurred while matching the kit of the user " + userIdentification + ", the problem seems an error of the kit generation."
+				)
+			);
 	}
 
+	@Override
+	public void applyTeamKits(ProvisionedTeam team) throws Exception {
+		for(MatchDoc.TeamMember member : team.getMembers()) {
+			Kit.build(Bukkit.getPlayerByIdentifier(member.getUser()), getPlayerKit(member));
+		}
+	}
 }
