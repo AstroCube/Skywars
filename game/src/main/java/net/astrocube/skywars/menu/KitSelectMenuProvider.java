@@ -38,72 +38,72 @@ public class KitSelectMenuProvider {
 	public void open(Player player) throws Exception {
 
 		SkyWarsPerkManifest perkManifest =
-				skyWarsPerkProvider.getManifest(player.getDatabaseIdentifier())
-						.orElseThrow(() -> new GameControlException("Manifest not found"));
+			skyWarsPerkProvider.getManifest(player.getDatabaseIdentifier())
+				.orElseThrow(() -> new GameControlException("Manifest not found"));
 
 		Set<String> boughtKits = perkManifest.getBoughtKits();
 		Optional<String> selectedKit = perkManifest.getSelectedKit();
 		int money = perkManifest.getMoney();
 
 		Inventory inventory = menuGenerator.generate(
-				player,
-				messageHandler.get(player, "menu.kit-select.title"),
-				() -> {},
-				Kit.class,
-				kitRepository.getRegisteredItems(),
-				kit -> {
-					String kitId = kit.getIdentifier();
-					boolean selected = selectedKit.isPresent() && selectedKit.get().equals(kitId);
-					String footerPath = "menu.kit-select.kit.foot-";
+			player,
+			messageHandler.get(player, "menu.kit-select.title"),
+			() -> {
+			},
+			Kit.class,
+			kitRepository.getRegisteredItems(),
+			kit -> {
+				String kitId = kit.getIdentifier();
+				boolean selected = selectedKit.isPresent() && selectedKit.get().equals(kitId);
+				String footerPath = "menu.kit-select.kit.foot-";
 
-					if (selected) {
-						footerPath += "selected";
-					} else if (boughtKits.contains(kitId)) {
-						footerPath += "bought";
-					} else if (money > kit.getPrice()) {
-						footerPath += "purchasable";
-					} else {
-						footerPath += "unavailable";
-					}
-
-					ItemStack item = KitIconUtil.getBuilderFor(player, perkManifest, kit, footerPath, messageHandler)
-							.build();
-
-					Predicate<InventoryClickEvent> action;
-
-					if (boughtKits.contains(kitId)) {
-						action = event -> {
-							perkManifest.setSelectedKit(kitId);
-							try {
-								skyWarsPerkProvider.update(player.getDatabaseIdentifier(), perkManifest);
-							} catch (Exception e) {
-								Bukkit.getLogger().log(
-										Level.INFO,
-										"An error occurred while updating SkyWars" +
-												" perks for player " + player.getName(),
-										e
-								);
-							}
-							player.closeInventory();
-							return true;
-						};
-					} else if (money > kit.getPrice()) {
-						action = event -> {
-							kitBuyConfirmMenuProvider.open(player, kit);
-							return true;
-						};
-					} else {
-						action = event -> true;
-					}
-
-					return ItemClickable.builder()
-							.setItemStack(item)
-							.setAction(action)
-							.build();
+				if (selected) {
+					footerPath += "selected";
+				} else if (boughtKits.contains(kitId)) {
+					footerPath += "bought";
+				} else if (money > kit.getPrice()) {
+					footerPath += "purchasable";
+				} else {
+					footerPath += "unavailable";
 				}
+
+				ItemStack item = KitIconUtil.getBuilderFor(player, perkManifest, kit, footerPath, messageHandler)
+					.build();
+
+				Predicate<InventoryClickEvent> action;
+
+				if (boughtKits.contains(kitId)) {
+					action = event -> {
+						perkManifest.setSelectedKit(kitId);
+						try {
+							skyWarsPerkProvider.update(player.getDatabaseIdentifier(), perkManifest);
+						} catch (Exception e) {
+							Bukkit.getLogger().log(
+								Level.INFO,
+								"An error occurred while updating SkyWars" +
+									" perks for player " + player.getName(),
+								e
+							);
+						}
+						player.closeInventory();
+						return true;
+					};
+				} else if (money > kit.getPrice()) {
+					action = event -> {
+						kitBuyConfirmMenuProvider.open(player, kit);
+						return true;
+					};
+				} else {
+					action = event -> true;
+				}
+
+				return ItemClickable.builder()
+					.setItemStack(item)
+					.setAction(action)
+					.build();
+			}
 		);
 
 		player.openInventory(inventory);
 	}
-
 }

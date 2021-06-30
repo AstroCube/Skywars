@@ -11,16 +11,17 @@ public interface Kit extends Customizable {
 
 	/**
 	 * Build kit at a player inventory
+	 *
 	 * @param player to be used
 	 * @param kit    to be built
 	 */
 	static void build(Player player, Kit kit) {
 		player.getInventory().setHelmet(ItemSerializer.serialize(kit.getHelmet()));
-		player.getInventory().setChestplate(ItemSerializer.serialize(kit.getChest()));
+		player.getInventory().setChestplate(ItemSerializer.serialize(kit.getChestPlate()));
 		player.getInventory().setLeggings(ItemSerializer.serialize(kit.getLeggings()));
 		player.getInventory().setBoots(ItemSerializer.serialize(kit.getBoots()));
 		kit.getInventory().forEach(item ->
-				player.getInventory().setItem(item.getPosition(), ItemSerializer.serialize(item.getItem())));
+			player.getInventory().setItem(item.getPosition(), ItemSerializer.serialize(item.getItem())));
 	}
 
 	/**
@@ -41,7 +42,7 @@ public interface Kit extends Customizable {
 	/**
 	 * @return serializable chest to be placed
 	 */
-	SerializableItem getChest();
+	SerializableItem getChestPlate();
 
 	/**
 	 * @return serializable leggings to be placed
@@ -81,5 +82,4 @@ public interface Kit extends Customizable {
 		int getPosition();
 
 	}
-
 }

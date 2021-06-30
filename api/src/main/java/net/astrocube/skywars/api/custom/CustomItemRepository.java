@@ -13,5 +13,4 @@ public interface CustomItemRepository<T extends Customizable> {
 	 * @return set of generated items.
 	 */
 	Set<T> getRegisteredItems();
-
 }
