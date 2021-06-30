@@ -29,7 +29,6 @@ public class CustomModule extends ProtectedModule {
 	@Provides
 	@Singleton
 	public CustomItemRepository<Kit> provideKitRepository(Plugin plugin, ObjectMapper mapper) {
-		return new CoreItemRepository<>("kit", Kit.class, plugin, mapper);
+		return new CoreItemRepository<>("kits", Kit.class, plugin, mapper);
 	}
-
 }
