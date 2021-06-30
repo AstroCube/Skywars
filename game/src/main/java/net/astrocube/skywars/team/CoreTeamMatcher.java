@@ -23,13 +23,16 @@ public class CoreTeamMatcher implements TeamMatcher {
 	public Set<ProvisionedTeam> linkTeams(Set<MatchDoc.Team> matchTeam, MapConfiguration configuration) {
 		return matchTeam.stream().map(team -> {
 
-			Optional<MapConfiguration.ConfigurableTeam> configurableTeam = configuration
-					.getTeams().stream().filter(c -> c.getName().equalsIgnoreCase(team.getName())).findFirst();
+			Optional<MapConfiguration.ConfigurableTeam> optionalConfigurableTeam = configuration
+				.getTeams().stream().filter(configurableTeam -> configurableTeam.getName().equalsIgnoreCase(team.getName())).findFirst();
 
-			if (!configurableTeam.isPresent()) {
+			if (!optionalConfigurableTeam.isPresent()) {
 				TeamUtils.kickVoidedPlayers(team.getMembers(), messageHandler, "team.error.comparing");
 				return null;
 			}
+
+			MapConfiguration.ConfigurableTeam configurableTeam =
+				optionalConfigurableTeam.get();
 
 			return new ProvisionedTeam() {
 				@Override
@@ -39,21 +42,20 @@ public class CoreTeamMatcher implements TeamMatcher {
 
 				@Override
 				public CoordinatePoint getSpawn() {
-					return configurableTeam.get().getSpawn();
+					return configurableTeam.getSpawn();
 				}
 
 				@Override
 				public String getName() {
-					return configurableTeam.get().getName();
+					return configurableTeam.getName();
 				}
 
 				@Override
 				public String getColor() {
-					return configurableTeam.get().getColor();
+					return configurableTeam.getColor();
 				}
 			};
 
 		}).filter(Objects::nonNull).collect(Collectors.toSet());
 	}
-
 }
