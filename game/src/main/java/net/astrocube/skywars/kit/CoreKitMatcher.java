@@ -2,7 +2,6 @@ package net.astrocube.skywars.kit;
 
 import net.astrocube.api.bukkit.game.exception.GameControlException;
 import net.astrocube.api.bukkit.virtual.game.match.MatchDoc;
-import net.astrocube.api.core.virtual.user.User;
 import net.astrocube.skywars.api.custom.CustomItemRepository;
 import net.astrocube.skywars.api.kit.Kit;
 import net.astrocube.skywars.api.kit.KitMatcher;
