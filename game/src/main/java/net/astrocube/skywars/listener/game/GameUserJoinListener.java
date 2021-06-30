@@ -23,15 +23,14 @@ public class GameUserJoinListener implements Listener {
 
 		if (origin == UserMatchJoiner.Origin.WAITING) {
 			ItemStack gadget = ItemBuilder.newBuilder(Material.STONE_SWORD)
-					.setName(messageHandler.get(player, "gadget.kit-select.name"))
-					.setLore(messageHandler.get(player, "gadget.kit-select.lore"))
-					.build();
+				.setName(messageHandler.get(player, "gadget.kit-select.name"))
+				.setLore(messageHandler.get(player, "gadget.kit-select.lore"))
+				.build();
 			gadget = NBTUtils.addString(gadget, "actionable", "kit_select");
 			player.getInventory().setItem(
-					0,
-					gadget
+				0,
+				gadget
 			);
 		}
 	}
-
 }
