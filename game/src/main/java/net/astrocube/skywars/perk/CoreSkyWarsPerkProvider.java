@@ -10,6 +10,7 @@ import net.astrocube.api.core.virtual.perk.StorablePerk;
 import net.astrocube.api.core.virtual.perk.StorablePerkDoc;
 import net.astrocube.skywars.api.perk.SkyWarsPerkManifest;
 import net.astrocube.skywars.api.perk.SkyWarsPerkProvider;
+import org.bukkit.plugin.Plugin;
 
 import java.util.Optional;
 import java.util.Set;
@@ -17,21 +18,22 @@ import java.util.Set;
 public class CoreSkyWarsPerkProvider implements SkyWarsPerkProvider {
 
 	private @Inject ObjectMapper mapper;
+	private @Inject Plugin plugin;
 	private @Inject PerkManifestProvider perkManifestProvider;
 	private @Inject UpdateService<StorablePerk, StorablePerkDoc.Partial> updateService;
 
 	@Override
 	public Optional<SkyWarsPerkManifest> getManifest(String playerId) throws Exception {
 		return getFromUser(playerId)
-				.stream()
-				.map(manifest -> (SkyWarsPerkManifest) manifest.getStored())
-				.findFirst();
+			.stream()
+			.map(manifest -> (SkyWarsPerkManifest) manifest.getStored())
+			.findFirst();
 	}
 
 	@Override
 	public void update(String playerId, SkyWarsPerkManifest manifest) throws Exception {
 		StorablePerk perk = getFromUser(playerId).stream().findAny().orElseThrow(
-				() -> new GameControlException("Not found any storable perk to be updated.")
+			() -> new GameControlException("Not found any storable perk to be updated.")
 		);
 
 		perk.setStored(manifest);
@@ -43,8 +45,23 @@ public class CoreSkyWarsPerkProvider implements SkyWarsPerkProvider {
 
 		node.put("responsible", playerId);
 		node.put("type", "skywars_manifest");
+		node.put("subGamemode", plugin.getConfig().getString("centauri.subMode"));
 
-		return perkManifestProvider.query(node, SkyWarsPerkManifest.class);
+		Set<StorablePerk> perks = perkManifestProvider.query(node, SkyWarsPerkManifest.class);
+
+		if (perks == null || perks.size() == 0) {
+
+			perkManifestProvider.createRegistry(
+				playerId,
+				plugin.getConfig().getString("centauri.mode"),
+				plugin.getConfig().getString("centauri.subMode"),
+				"skywars_manifest",
+				SkyWarsPerkProvider.generateDefault()
+			);
+
+			return getFromUser(playerId);
+		}
+
+		return perks;
 	}
-
 }
