@@ -10,6 +10,7 @@ import net.astrocube.api.core.virtual.perk.StorablePerk;
 import net.astrocube.api.core.virtual.perk.StorablePerkDoc;
 import net.astrocube.skywars.api.perk.SkyWarsPerkManifest;
 import net.astrocube.skywars.api.perk.SkyWarsPerkProvider;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.Plugin;
 
 import java.util.Optional;
@@ -41,20 +42,24 @@ public class CoreSkyWarsPerkProvider implements SkyWarsPerkProvider {
 	}
 
 	private Set<StorablePerk> getFromUser(String playerId) throws Exception {
+
+		FileConfiguration config = plugin.getConfig();
+		String subMode = config.getString("centauri.subMode");
+
 		ObjectNode node = mapper.createObjectNode();
 
 		node.put("responsible", playerId);
 		node.put("type", "skywars_manifest");
-		node.put("subGamemode", plugin.getConfig().getString("centauri.subMode"));
+		node.put("subGameMode", subMode);
 
 		Set<StorablePerk> perks = perkManifestProvider.query(node, SkyWarsPerkManifest.class);
 
-		if (perks == null || perks.size() == 0) {
+		if (perks.size() == 0) {
 
 			perkManifestProvider.createRegistry(
 				playerId,
-				plugin.getConfig().getString("centauri.mode"),
-				plugin.getConfig().getString("centauri.subMode"),
+				config.getString("centauri.mode"),
+				subMode,
 				"skywars_manifest",
 				SkyWarsPerkProvider.generateDefault()
 			);
