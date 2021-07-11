@@ -17,7 +17,7 @@ public interface SkyWarsPerkManifest extends AbstractPerk {
 	 * Returns the last selected
 	 * kit identifier
 	 */
-	Optional<String> getSelectedKit();
+	String getSelectedKit();
 
 	/**
 	 * Sets the selected kit identifier
@@ -35,5 +35,4 @@ public interface SkyWarsPerkManifest extends AbstractPerk {
 	 * of the player
 	 */
 	void setMoney(int money);
-
 }
