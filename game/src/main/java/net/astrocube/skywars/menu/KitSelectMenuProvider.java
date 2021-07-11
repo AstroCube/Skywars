@@ -16,7 +16,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import team.unnamed.gui.abstraction.item.ItemClickable;
 
-import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Level;
@@ -61,7 +60,7 @@ public class KitSelectMenuProvider {
 					footerPath += "selected";
 				} else if (boughtKits.contains(kitId)) {
 					footerPath += "bought";
-				} else if (money > kit.getPrice()) {
+				} else if (money >= kit.getPrice()) {
 					footerPath += "purchasable";
 				} else {
 					footerPath += "unavailable";
@@ -88,7 +87,7 @@ public class KitSelectMenuProvider {
 						player.closeInventory();
 						return true;
 					};
-				} else if (money > kit.getPrice()) {
+				} else if (money >= kit.getPrice()) {
 					action = event -> {
 						kitBuyConfirmMenuProvider.open(player, kit);
 						return true;
