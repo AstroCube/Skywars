@@ -17,8 +17,8 @@ public interface SkyWarsPerkProvider {
 			}
 
 			@Override
-			public Optional<String> getSelectedKit() {
-				return Optional.empty();
+			public String getSelectedKit() {
+				return null;
 			}
 
 			@Override
@@ -38,6 +38,7 @@ public interface SkyWarsPerkProvider {
 
 	/**
 	 * Retrieves perk manifest from {@link StorablePerk}.
+	 *
 	 * @param playerId to retrieve
 	 * @return optional containing possible manifest
 	 */
@@ -45,9 +46,9 @@ public interface SkyWarsPerkProvider {
 
 	/**
 	 * updates a certain manifest according to player stored {@link StorablePerk}.
+	 *
 	 * @param playerId to update
 	 * @param manifest to update
 	 */
 	void update(String playerId, SkyWarsPerkManifest manifest) throws Exception;
-
 }

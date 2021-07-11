@@ -42,7 +42,7 @@ public class KitSelectMenuProvider {
 				.orElseThrow(() -> new GameControlException("Manifest not found"));
 
 		Set<String> boughtKits = perkManifest.getBoughtKits();
-		Optional<String> selectedKit = perkManifest.getSelectedKit();
+		String selectedKit = perkManifest.getSelectedKit();
 		int money = perkManifest.getMoney();
 
 		Inventory inventory = menuGenerator.generate(
@@ -54,7 +54,7 @@ public class KitSelectMenuProvider {
 			kitRepository.getRegisteredItems(),
 			kit -> {
 				String kitId = kit.getIdentifier();
-				boolean selected = selectedKit.isPresent() && selectedKit.get().equals(kitId);
+				boolean selected = selectedKit != null && selectedKit.equals(kitId);
 				String footerPath = "menu.kit-select.kit.foot-";
 
 				if (selected) {

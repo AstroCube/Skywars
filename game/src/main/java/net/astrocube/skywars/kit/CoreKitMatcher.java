@@ -26,11 +26,13 @@ public class CoreKitMatcher implements KitMatcher {
 			skyWarsPerkProvider.getManifest(userIdentification)
 				.orElseThrow(() -> new GameControlException("Perk manifest of player" + userIdentification + "not found"));
 
+		String selectedKit = perkManifest.getSelectedKit();
+
 		return kitRepository.getRegisteredItems()
 			.stream()
 			.filter(kit -> kit.getIdentifier().equalsIgnoreCase(
-				perkManifest.getSelectedKit()
-					.orElse("default"))
+				selectedKit == null ? "default" : selectedKit
+				)
 			)
 			.findAny()
 			.orElseThrow(() ->
@@ -42,7 +44,7 @@ public class CoreKitMatcher implements KitMatcher {
 
 	@Override
 	public void applyTeamKits(ProvisionedTeam team) throws Exception {
-		for(MatchDoc.TeamMember member : team.getMembers()) {
+		for (MatchDoc.TeamMember member : team.getMembers()) {
 			Kit.build(Bukkit.getPlayerByIdentifier(member.getUser()), getPlayerKit(member));
 		}
 	}
