@@ -13,7 +13,7 @@ public interface SkyWarsPerkProvider {
 
 			@Override
 			public Set<String> getBoughtKits() {
-				return Collections.emptySet();
+				return Collections.singleton("default");
 			}
 
 			@Override
