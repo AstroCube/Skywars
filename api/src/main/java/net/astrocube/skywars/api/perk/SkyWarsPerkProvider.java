@@ -18,7 +18,7 @@ public interface SkyWarsPerkProvider {
 
 			@Override
 			public String getSelectedKit() {
-				return null;
+				return "default";
 			}
 
 			@Override
