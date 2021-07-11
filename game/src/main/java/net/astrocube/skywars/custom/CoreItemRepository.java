@@ -36,7 +36,7 @@ public class CoreItemRepository<T extends Customizable> implements CustomItemRep
 
 		File folder = new File(plugin.getDataFolder(), name);
 
-		if (!folder.exists() && folder.isDirectory()) {
+		if (folder.isDirectory() && !folder.exists()) {
 			folder.mkdirs();
 		}
 
