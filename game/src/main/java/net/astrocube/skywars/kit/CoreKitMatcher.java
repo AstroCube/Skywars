@@ -26,12 +26,10 @@ public class CoreKitMatcher implements KitMatcher {
 			skyWarsPerkProvider.getManifest(userIdentification)
 				.orElseThrow(() -> new GameControlException("Perk manifest of player" + userIdentification + "not found"));
 
-		String selectedKit = perkManifest.getSelectedKit();
-
 		return kitRepository.getRegisteredItems()
 			.stream()
 			.filter(kit -> kit.getIdentifier().equalsIgnoreCase(
-				selectedKit == null ? "default" : selectedKit
+				perkManifest.getSelectedKit()
 				)
 			)
 			.findAny()
