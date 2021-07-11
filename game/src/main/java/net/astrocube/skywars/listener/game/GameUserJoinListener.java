@@ -8,6 +8,7 @@ import net.astrocube.api.bukkit.user.inventory.nbt.NBTUtils;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 import team.unnamed.gui.core.item.type.ItemBuilder;
@@ -16,7 +17,7 @@ public class GameUserJoinListener implements Listener {
 
 	private @Inject MessageHandler messageHandler;
 
-	@EventHandler
+	@EventHandler(priority = EventPriority.MONITOR)
 	public void onJoin(GameUserJoinEvent event) {
 		Player player = event.getPlayer();
 
