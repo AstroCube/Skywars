@@ -88,7 +88,6 @@ public class GameReadyListener implements Listener {
 					matchStartProcessor.scheduleStart(provisionedTeams, event.getMatch());
 				});
 
-
 				Bukkit.getScheduler().runTaskLater(
 					plugin,
 					() -> refillScheduler.scheduleRefill(event.getMatch(), configuration.getChests(), provisionedTeams),

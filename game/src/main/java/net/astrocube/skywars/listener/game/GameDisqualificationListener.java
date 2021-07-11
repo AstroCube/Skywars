@@ -30,14 +30,17 @@ public class GameDisqualificationListener implements Listener {
 	public void onGameDisqualification(PlayerDisqualificationEvent event) {
 
 		try {
-			Optional<Match> match =
+			Optional<Match> optionalMatch =
 				actualMatchCache.get(event.getPlayer().getDatabaseIdentifier());
 
-			if (match.isPresent()) {
+			if (optionalMatch.isPresent()) {
 
-				Bukkit.getPluginManager().callEvent(new SpectatorAssignEvent(event.getPlayer(), match.get().getId()));
+				Match match = optionalMatch.get();
 
-				Set<Player> players = MatchParticipantsProvider.getOnlinePlayers(match.get(), MatchDoc.TeamMember::isActive);
+				Bukkit.getPluginManager().callEvent(new SpectatorAssignEvent(event.getPlayer(), match.getId()));
+
+				Set<Player> players = MatchParticipantsProvider.getOnlinePlayers(match, MatchDoc.TeamMember::isActive);
+
 				scoreboardModifier.updateAlive(players);
 				disqualificationHandler.disqualify(event.getPlayer().getDatabaseIdentifier());
 

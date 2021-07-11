@@ -1,7 +1,6 @@
 package net.astrocube.skywars.listener.ignite;
 
 import org.bukkit.Material;
-import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
@@ -14,13 +13,12 @@ public class BlockPlaceListener implements Listener {
 	public void onBlockPlace(BlockPlaceEvent event) {
 
 		Block block = event.getBlockPlaced();
-		World world = block.getWorld();
 
 		if (block.getType() == Material.TNT) {
 			block.setType(Material.AIR);
-			world.spawnEntity(
-					block.getLocation().clone().add(0.5, 0, 0.5),
-					EntityType.PRIMED_TNT
+			block.getWorld().spawnEntity(
+				block.getLocation().clone().add(0.5, 0, 0.5),
+				EntityType.PRIMED_TNT
 			);
 		}
 	}

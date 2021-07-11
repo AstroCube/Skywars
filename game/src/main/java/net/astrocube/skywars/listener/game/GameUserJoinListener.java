@@ -19,9 +19,8 @@ public class GameUserJoinListener implements Listener {
 	@EventHandler
 	public void onJoin(GameUserJoinEvent event) {
 		Player player = event.getPlayer();
-		UserMatchJoiner.Origin origin = event.getOrigin();
 
-		if (origin == UserMatchJoiner.Origin.WAITING) {
+		if (event.getOrigin() == UserMatchJoiner.Origin.WAITING) {
 			ItemStack gadget = ItemBuilder.newBuilder(Material.STONE_SWORD)
 				.setName(messageHandler.get(player, "gadget.kit-select.name"))
 				.setLore(messageHandler.get(player, "gadget.kit-select.lore"))

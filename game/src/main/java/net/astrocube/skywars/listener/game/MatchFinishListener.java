@@ -20,12 +20,9 @@ public class MatchFinishListener implements Listener {
 	public void onMatchFinish(MatchFinishEvent event) {
 
 		Optional.ofNullable(refillScheduler.getRefillTask(event.getMatch()))
-				.ifPresent(CountdownTimer::cancelCountdown);
+			.ifPresent(CountdownTimer::cancelCountdown);
 
-		event.getWinners().stream().map(Bukkit::getPlayerByIdentifier).forEach(player -> {
-			announcer.sendVictoryTitle(player);
-		});
-
+		event.getWinners().stream().map(Bukkit::getPlayerByIdentifier)
+			.forEach(player -> announcer.sendVictoryTitle(player));
 	}
-
 }

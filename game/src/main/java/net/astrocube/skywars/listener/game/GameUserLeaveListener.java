@@ -13,10 +13,8 @@ public class GameUserLeaveListener implements Listener {
 	@EventHandler
 	public void onDisconnect(GameUserDisconnectEvent event) {
 		Player player = event.getPlayer();
-		UserMatchJoiner.Origin origin = event.getOrigin();
 
-
-		if (origin == UserMatchJoiner.Origin.PLAYING) {
+		if (event.getOrigin() == UserMatchJoiner.Origin.PLAYING) {
 			Bukkit.getPluginManager().callEvent(new PlayerDisqualificationEvent(player, null));
 		}
 	}

@@ -16,9 +16,10 @@ public class KitSelectGadgetListener implements Listener {
 
 	@EventHandler
 	public void onUse(ActionableItemEvent event) {
+		Action action = event.getClick();
 		if (event.getAction().equals("kit_select")
-			&& (event.getClick() == Action.RIGHT_CLICK_AIR
-			|| event.getClick() == Action.RIGHT_CLICK_BLOCK)) {
+			&& (action == Action.RIGHT_CLICK_AIR
+			|| action == Action.RIGHT_CLICK_BLOCK)) {
 			try {
 				kitSelectMenuProvider.open(event.getPlayer());
 			} catch (Exception exception) {
