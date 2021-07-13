@@ -20,6 +20,7 @@ public class GameUserJoinListener implements Listener {
 	private @Inject Plugin plugin;
 	private @Inject MessageHandler messageHandler;
 
+	@EventHandler
 	public void onJoin(GameUserJoinEvent event) {
 		Player player = event.getPlayer();
 
