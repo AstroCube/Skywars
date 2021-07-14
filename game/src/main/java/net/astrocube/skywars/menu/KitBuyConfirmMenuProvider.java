@@ -52,7 +52,7 @@ public class KitBuyConfirmMenuProvider {
 			3
 		)
 			.addItem(
-				ItemClickable.builder(3)
+				ItemClickable.builder(11)
 					.setItemStack(
 						ItemBuilder.newBuilder(Material.STAINED_GLASS_PANE, 1, (byte) 13)
 							.setName(messageHandler.get(player, "menu.kit-buy.accept"))
@@ -79,7 +79,7 @@ public class KitBuyConfirmMenuProvider {
 					.build()
 			)
 			.addItem(
-				ItemClickable.builder(5)
+				ItemClickable.builder(13)
 					.setItemStack(KitIconUtil.getBuilderFor(
 						player,
 						perkManifest,
@@ -90,7 +90,7 @@ public class KitBuyConfirmMenuProvider {
 					.build()
 			)
 			.addItem(
-				ItemClickable.builder(7)
+				ItemClickable.builder(15)
 					.setItemStack(
 						ItemBuilder.newBuilder(Material.STAINED_GLASS_PANE, 1, (byte) 14)
 							.setName(messageHandler.get(player, "menu.kit-buy.reject"))
