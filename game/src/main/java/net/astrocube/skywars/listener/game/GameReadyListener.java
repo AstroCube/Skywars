@@ -1,6 +1,7 @@
 package net.astrocube.skywars.listener.game;
 
 import com.google.inject.Inject;
+
 import net.astrocube.api.bukkit.game.event.game.GameReadyEvent;
 import net.astrocube.api.bukkit.game.event.match.MatchInvalidateEvent;
 import net.astrocube.api.bukkit.game.exception.GameControlException;
@@ -13,13 +14,13 @@ import net.astrocube.skywars.api.chest.ChestSpawner;
 import net.astrocube.skywars.api.game.DisqualificationHandler;
 import net.astrocube.skywars.api.game.ScoreboardModifier;
 import net.astrocube.skywars.api.game.SpawnProtectionChecker;
-import net.astrocube.skywars.api.kit.KitMatcher;
 import net.astrocube.skywars.api.map.MapConfiguration;
 import net.astrocube.skywars.api.refill.RefillScheduler;
 import net.astrocube.skywars.api.team.MatchStartProcessor;
 import net.astrocube.skywars.api.team.ProvisionedTeam;
 import net.astrocube.skywars.api.team.TeamMatcher;
 import net.astrocube.skywars.api.team.TeamSpawner;
+
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -44,7 +45,6 @@ public class GameReadyListener implements Listener {
 	private @Inject RefillScheduler refillScheduler;
 	private @Inject DisqualificationHandler disqualificationHandler;
 	private @Inject ChestSpawner chestSpawner;
-	private @Inject KitMatcher kitMatcher;
 
 	@EventHandler
 	public void onGameReady(GameReadyEvent event) {
@@ -69,14 +69,6 @@ public class GameReadyListener implements Listener {
 					chestSpawner.spawnChests(event.getMatch(), configuration.getChests());
 					spawnProtectionChecker.registerMatch(provisionedTeams);
 					disqualificationHandler.ensureTeams(event.getMatch(), provisionedTeams);
-
-					provisionedTeams.forEach(provisionedTeam -> {
-						try {
-							kitMatcher.applyTeamKits(provisionedTeam);
-						} catch (Exception exception) {
-							exception.printStackTrace();
-						}
-					});
 
 					// Will not stop the game when failed
 					try {

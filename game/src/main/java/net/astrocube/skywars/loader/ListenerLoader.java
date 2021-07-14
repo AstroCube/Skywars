@@ -6,13 +6,7 @@ import net.astrocube.skywars.listener.damage.PlayerDeathListener;
 import net.astrocube.skywars.listener.damage.PlayerFallListener;
 import net.astrocube.skywars.listener.damage.PlayerItemDamageListener;
 import net.astrocube.skywars.listener.gadget.KitSelectGadgetListener;
-import net.astrocube.skywars.listener.game.GameDisqualificationListener;
-import net.astrocube.skywars.listener.game.GameInvalidationListener;
-import net.astrocube.skywars.listener.game.GamePairEnableListener;
-import net.astrocube.skywars.listener.game.GameReadyListener;
-import net.astrocube.skywars.listener.game.GameUserJoinListener;
-import net.astrocube.skywars.listener.game.GameUserLeaveListener;
-import net.astrocube.skywars.listener.game.MatchFinishListener;
+import net.astrocube.skywars.listener.game.*;
 import net.astrocube.skywars.listener.ignite.BlockPlaceListener;
 import net.astrocube.skywars.listener.ignite.EntityExplodeListener;
 import net.astrocube.skywars.listener.interaction.PlayerInteractionListener;
@@ -40,6 +34,7 @@ public class ListenerLoader implements Loader {
 	private @Inject MatchFinishListener matchFinishListener;
 	private @Inject PlayerInteractionListener playerInteractionListener;
 	private @Inject KitSelectGadgetListener kitSelectGadgetListener;
+	private @Inject MatchStartListener matchStartListener;
 
 	@Override
 	public void load() {
@@ -61,6 +56,7 @@ public class ListenerLoader implements Loader {
 		registerEvent(matchFinishListener);
 		registerEvent(playerInteractionListener);
 		registerEvent(kitSelectGadgetListener);
+		registerEvent(matchStartListener);
 	}
 
 	private void registerEvent(Listener listener) {
