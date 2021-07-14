@@ -10,6 +10,7 @@ import net.astrocube.skywars.api.perk.SkyWarsPerkProvider;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import team.unnamed.gui.abstraction.item.ItemClickable;
 import team.unnamed.gui.core.gui.type.GUIBuilder;
@@ -39,7 +40,7 @@ public class KitBuyConfirmMenuProvider {
 			return;
 		}
 
-		GUIBuilder.builder(
+		Inventory inventory = GUIBuilder.builder(
 			messageHandler.replacing(
 				player,
 				"menu.kit-buy.title",
@@ -103,5 +104,7 @@ public class KitBuyConfirmMenuProvider {
 					.build()
 			)
 			.build();
+
+		player.openInventory(inventory);
 	}
 }

@@ -31,14 +31,16 @@
 		"enchantments": []
 	},
 	"teamSupport": true,
-	"inventory": {
-		"item": {
-			"material": "IRON_SWORD",
-			"code": 0,
-			"number": 1,
-			"enchantments": []
-		},
-		"position": 0
-	},
+	"inventory": [
+		{
+			"item": {
+				"material": "IRON_SWORD",
+				"code": 0,
+				"number": 1,
+				"enchantments": []
+			},
+			"position": 0
+		}
+	],
 	"price": 1000
 }
