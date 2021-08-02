@@ -10,6 +10,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 import team.unnamed.gui.core.item.type.ItemBuilder;
@@ -30,6 +31,7 @@ public class GameUserJoinListener implements Listener {
 					ItemStack gadget = ItemBuilder.newBuilder(Material.STONE_SWORD)
 						.setName(messageHandler.get(player, "gadget.kit-select.name"))
 						.setLore(messageHandler.getMany(player, "gadget.kit-select.lore"))
+						.setFlags(ItemFlag.values())
 						.build();
 					gadget = NBTUtils.addString(gadget, "actionable", "kit_select");
 					player.getInventory().setItem(
