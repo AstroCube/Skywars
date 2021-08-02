@@ -49,11 +49,81 @@ kits:
       - "%gray%Kit por defecto, contiene"
       - "%gray%cosas básicas para tu"
       - "%gray%supervivencia. ¡Suerte!"
-  golem:
-      title: "%gray%Golem"
+  bow:
+      title: "%gray%Arquero"
       description:
-          - "%gray%Kit golem, ¿Quién será"
-          - "%gray%capaz de acabar contigo?"
+          - "%gray%Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+          - "%gray%Aut illum ipsum itaque placeat voluptatum. Animi doloremque maxime rerum ut voluptatum?"
+  builder:
+      title: "%gray%Constructor"
+      description:
+          - "%gray%Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+          - "%gray%Aut illum ipsum itaque placeat voluptatum. Animi doloremque maxime rerum ut voluptatum?"
+  combat:
+      title: "%gray%Luchador"
+      description:
+          - "%gray%Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+          - "%gray%Aut illum ipsum itaque placeat voluptatum. Animi doloremque maxime rerum ut voluptatum?"
+  defense:
+      title: "%gray%Defensor"
+      description:
+          - "%gray%Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+          - "%gray%Aut illum ipsum itaque placeat voluptatum. Animi doloremque maxime rerum ut voluptatum?"
+  dinamite:
+      title: "%gray%Mohammed Aimed"
+      description:
+          - "%gray%Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+          - "%gray%Aut illum ipsum itaque placeat voluptatum. Animi doloremque maxime rerum ut voluptatum?"
+  enchanced_defense:
+      title: "%gray%Defensa reforzada"
+      description:
+          - "%gray%Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+          - "%gray%Aut illum ipsum itaque placeat voluptatum. Animi doloremque maxime rerum ut voluptatum?"
+  fisherman:
+      title: "%gray%Pescador"
+      description:
+          - "%gray%Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+          - "%gray%Aut illum ipsum itaque placeat voluptatum. Animi doloremque maxime rerum ut voluptatum?"
+  food:
+      title: "%gray%Comelón"
+      description:
+          - "%gray%Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+          - "%gray%Aut illum ipsum itaque placeat voluptatum. Animi doloremque maxime rerum ut voluptatum?"
+  gold:
+      title: "%gray%Luchador de oro"
+      description:
+          - "%gray%Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+          - "%gray%Aut illum ipsum itaque placeat voluptatum. Animi doloremque maxime rerum ut voluptatum?"
+  miner:
+      title: "%gray%Minero"
+      description:
+          - "%gray%Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+          - "%gray%Aut illum ipsum itaque placeat voluptatum. Animi doloremque maxime rerum ut voluptatum?"
+  naturalist:
+      title: "%gray%Naturalista"
+      description:
+          - "%gray%Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+          - "%gray%Aut illum ipsum itaque placeat voluptatum. Animi doloremque maxime rerum ut voluptatum?"
+  sniper:
+      title: "%gray%Campero"
+      description:
+          - "%gray%Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+          - "%gray%Aut illum ipsum itaque placeat voluptatum. Animi doloremque maxime rerum ut voluptatum?"
+  spiderman:
+      title: "%gray%Hombre araña"
+      description:
+          - "%gray%Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+          - "%gray%Aut illum ipsum itaque placeat voluptatum. Animi doloremque maxime rerum ut voluptatum?"
+  stick:
+      title: "%gray%Palito mágico"
+      description:
+          - "%gray%Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+          - "%gray%Aut illum ipsum itaque placeat voluptatum. Animi doloremque maxime rerum ut voluptatum?"
+  wizard:
+      title: "%gray%Mago"
+      description:
+          - "%gray%Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+          - "%gray%Aut illum ipsum itaque placeat voluptatum. Animi doloremque maxime rerum ut voluptatum?"
 match:
   cages: "%blue%¡Las cápsulas se abrirán en%white% %seconds% %blue%segundos!"
   refill: "%blue%¡Los cofres se rellenarán en%white% %seconds% %blue%segundos!"
