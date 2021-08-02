@@ -29,7 +29,7 @@ public class GameUserJoinListener implements Listener {
 				() -> {
 					ItemStack gadget = ItemBuilder.newBuilder(Material.STONE_SWORD)
 						.setName(messageHandler.get(player, "gadget.kit-select.name"))
-						.setLore(messageHandler.get(player, "gadget.kit-select.lore"))
+						.setLore(messageHandler.getMany(player, "gadget.kit-select.lore"))
 						.build();
 					gadget = NBTUtils.addString(gadget, "actionable", "kit_select");
 					player.getInventory().setItem(
