@@ -1,0 +1,45 @@
+{
+	"identifier": "wizard",
+	"icon": {
+		"material": "ENCHANTMENT_TABLE",
+		"code": 0,
+		"number": 1,
+		"enchantments": []
+	},
+	"teamSupport": true,
+	"inventory": [
+		{
+			"item": {
+				"material": "ENCHANTMENT_TABLE",
+				"code": 0,
+				"number": 8,
+				"enchantments": []
+			},
+			"position": 0
+		},
+		{
+			"item": {
+				"material": "EXP_BOTTLE",
+				"code": 0,
+				"number": 16,
+				"enchantments": []
+			},
+			"position": 1
+		},
+		{
+			"item": {
+				"material": "ENCHANTMENT_BOOK",
+				"code": 0,
+				"number": 16,
+				"enchantments": [
+					{
+						"type": "DAMAGE_ALL",
+						"level": 2
+					}
+				]
+			},
+			"position": 2
+		}
+	],
+	"price": 1000
+}

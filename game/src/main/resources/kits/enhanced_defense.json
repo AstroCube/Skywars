@@ -1,0 +1,36 @@
+{
+	"identifier": "enhanced_defense",
+	"icon": {
+		"material": "IRON_CHESTPLATE",
+		"code": 0,
+		"number": 1,
+		"enchantments": []
+	},
+	"helmet": {
+		"material": "IRON_HELMET",
+		"code": 0,
+		"number": 1,
+		"enchantments": []
+	},
+	"chestPlate": {
+		"material": "IRON_CHESTPLATE",
+		"code": 0,
+		"number": 1,
+		"enchantments": []
+	},
+	"leggings": {
+		"material": "IRON_LEGGINGS",
+		"code": 0,
+		"number": 1,
+		"enchantments": []
+	},
+	"boots": {
+		"material": "IRON_BOOTS",
+		"code": 0,
+		"number": 1,
+		"enchantments": []
+	},
+	"teamSupport": true,
+	"inventory": [],
+	"price": 1000
+}

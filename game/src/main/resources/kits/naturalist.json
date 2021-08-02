@@ -1,0 +1,58 @@
+{
+	"identifier": "naturalist",
+	"icon": {
+		"material": "WOOD_SWORD",
+		"code": 0,
+		"number": 1,
+		"enchantments": []
+	},
+	"teamSupport": true,
+	"inventory": [
+		{
+			"item": {
+				"material": "WOOD_SWORD",
+				"code": 0,
+				"number": 1,
+				"enchantments": []
+			},
+			"position": 0
+		},
+		{
+			"item": {
+				"material": "WOOD_SPADE",
+				"code": 0,
+				"number": 1,
+				"enchantments": []
+			},
+			"position": 1
+		},
+		{
+			"item": {
+				"material": "WOOD_PICKAXE",
+				"code": 0,
+				"number": 1,
+				"enchantments": []
+			},
+			"position": 2
+		},
+		{
+			"item": {
+				"material": "WOOD_AXE",
+				"code": 0,
+				"number": 1,
+				"enchantments": []
+			},
+			"position": 3
+		},
+		{
+			"item": {
+				"material": "WOOD_HOE",
+				"code": 0,
+				"number": 1,
+				"enchantments": []
+			},
+			"position": 4
+		}
+	],
+	"price": 1000
+}

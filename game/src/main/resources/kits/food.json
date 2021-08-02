@@ -1,0 +1,40 @@
+{
+	"identifier": "food",
+	"icon": {
+		"material": "COOKED_BEEF",
+		"code": 0,
+		"number": 1,
+		"enchantments": []
+	},
+	"teamSupport": true,
+	"inventory": [
+		{
+			"item": {
+				"material": "APPLE",
+				"code": 0,
+				"number": 8,
+				"enchantments": []
+			},
+			"position": 0
+		},
+		{
+			"item": {
+				"material": "BREAD",
+				"code": 0,
+				"number": 8,
+				"enchantments": []
+			},
+			"position": 1
+		},
+		{
+			"item": {
+				"material": "COOKED_FISH",
+				"code": 0,
+				"number": 8,
+				"enchantments": []
+			},
+			"position": 2
+		}
+	],
+	"price": 1000
+}

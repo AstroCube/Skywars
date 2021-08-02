@@ -1,0 +1,36 @@
+{
+	"identifier": "bow",
+	"icon": {
+		"material": "BOW",
+		"code": 0,
+		"number": 1,
+		"enchantments": []
+	},
+	"teamSupport": true,
+	"inventory": [
+		{
+			"item": {
+				"material": "BOW",
+				"code": 0,
+				"number": 1,
+				"enchantments": [
+					{
+						"type": "ARROW_INFINITE",
+						"level": 1
+					}
+				]
+			},
+			"position": 0
+		},
+		{
+			"item": {
+				"material": "ARROW",
+				"code": 0,
+				"number": 8,
+				"enchantments": []
+			},
+			"position": 8
+		}
+	],
+	"price": 1000
+}

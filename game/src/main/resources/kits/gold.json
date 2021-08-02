@@ -1,0 +1,55 @@
+{
+	"identifier": "gold",
+	"icon": {
+		"material": "GOLD_AXE",
+		"code": 0,
+		"number": 1,
+		"enchantments": []
+	},
+	"helmet": {
+		"material": "GOLD_HELMET",
+		"code": 0,
+		"number": 1,
+		"enchantments": []
+	},
+	"chestPlate": {
+		"material": "GOLD_CHESTPLATE",
+		"code": 0,
+		"number": 1,
+		"enchantments": []
+	},
+	"leggings": {
+		"material": "GOLD_LEGGINGS",
+		"code": 0,
+		"number": 1,
+		"enchantments": []
+	},
+	"boots": {
+		"material": "GOLD_BOOTS",
+		"code": 0,
+		"number": 1,
+		"enchantments": []
+	},
+	"teamSupport": true,
+	"inventory": [
+		{
+			"item": {
+				"material": "GOLD_SWORD",
+				"code": 0,
+				"number": 1,
+				"enchantments": []
+			},
+			"position": 0
+		},
+		{
+			"item": {
+				"material": "GOLDEN_APPLE",
+				"code": 0,
+				"number": 3,
+				"enchantments": []
+			},
+			"position": 1
+		}
+	],
+	"price": 1000
+}

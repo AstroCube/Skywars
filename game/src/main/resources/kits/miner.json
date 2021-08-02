@@ -1,0 +1,37 @@
+{
+	"identifier": "miner",
+	"icon": {
+		"material": "DIAMOND_PICKAXE",
+		"code": 0,
+		"number": 1,
+		"enchantments": []
+	},
+	"boots": {
+		"material": "DIAMOND_BOOTS",
+		"code": 0,
+		"number": 1,
+		"enchantments": []
+	},
+	"teamSupport": true,
+	"inventory": [
+		{
+			"item": {
+				"material": "DIAMOND_PICKAXE",
+				"code": 0,
+				"number": 1,
+				"enchantments": []
+			},
+			"position": 0
+		},
+		{
+			"item": {
+				"material": "DIAMOND",
+				"code": 0,
+				"number": 8,
+				"enchantments": []
+			},
+			"position": 1
+		}
+	],
+	"price": 1000
+}

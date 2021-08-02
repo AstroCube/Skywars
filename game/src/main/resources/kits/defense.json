@@ -1,46 +1,36 @@
 {
-	"identifier": "golem",
+	"identifier": "defense",
 	"icon": {
-		"material": "IRON_HELMET",
+		"material": "LEATHER_CHESTPLATE",
 		"code": 0,
 		"number": 1,
 		"enchantments": []
 	},
 	"helmet": {
-		"material": "IRON_HELMET",
+		"material": "LEATHER_HELMET",
 		"code": 0,
 		"number": 1,
 		"enchantments": []
 	},
 	"chestPlate": {
-		"material": "IRON_CHESTPLATE",
+		"material": "LEATHER_CHESTPLATE",
 		"code": 0,
 		"number": 1,
 		"enchantments": []
 	},
 	"leggings": {
-		"material": "IRON_LEGGINGS",
+		"material": "LEATHER_LEGGINGS",
 		"code": 0,
 		"number": 1,
 		"enchantments": []
 	},
 	"boots": {
-		"material": "IRON_BOOTS",
+		"material": "LEATHER_BOOTS",
 		"code": 0,
 		"number": 1,
 		"enchantments": []
 	},
 	"teamSupport": true,
-	"inventory": [
-		{
-			"item": {
-				"material": "IRON_SWORD",
-				"code": 0,
-				"number": 1,
-				"enchantments": []
-			},
-			"position": 0
-		}
-	],
+	"inventory": [],
 	"price": 1000
 }

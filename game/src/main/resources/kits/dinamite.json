@@ -1,0 +1,40 @@
+{
+	"identifier": "dynamite",
+	"icon": {
+		"material": "TNT",
+		"code": 0,
+		"number": 1,
+		"enchantments": []
+	},
+	"teamSupport": true,
+	"inventory": [
+		{
+			"item": {
+				"material": "TNT",
+				"code": 0,
+				"number": 32,
+				"enchantments": []
+			},
+			"position": 0
+		},
+		{
+			"item": {
+				"material": "STONE_PLATE",
+				"code": 0,
+				"number": 3,
+				"enchantments": []
+			},
+			"position": 1
+		},
+		{
+			"item": {
+				"material": "FLINT_AND_STEEL",
+				"code": 0,
+				"number": 1,
+				"enchantments": []
+			},
+			"position": 2
+		}
+	],
+	"price": 1000
+}

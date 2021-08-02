@@ -1,0 +1,27 @@
+{
+	"identifier": "combat",
+	"icon": {
+		"material": "IRON_SWORD",
+		"code": 0,
+		"number": 1,
+		"enchantments": []
+	},
+	"teamSupport": true,
+	"inventory": [
+		{
+			"item": {
+				"material": "IRON_SWORD",
+				"code": 0,
+				"number": 32,
+				"enchantments": [
+					{
+						"type": "DAMAGE_ALL",
+						"level": 2
+					}
+				]
+			},
+			"position": 0
+		}
+	],
+	"price": 1000
+}

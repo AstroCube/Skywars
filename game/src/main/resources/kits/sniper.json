@@ -1,0 +1,58 @@
+{
+	"identifier": "sniper",
+	"icon": {
+		"material": "SNOW_BALL",
+		"code": 0,
+		"number": 1,
+		"enchantments": []
+	},
+	"teamSupport": true,
+	"inventory": [
+		{
+			"item": {
+				"material": "SNOW_BALL",
+				"code": 0,
+				"number": 16,
+				"enchantments": []
+			},
+			"position": 0
+		},
+		{
+			"item": {
+				"material": "SNOW_BALL",
+				"code": 0,
+				"number": 16,
+				"enchantments": []
+			},
+			"position": 1
+		},
+		{
+			"item": {
+				"material": "EGG",
+				"code": 0,
+				"number": 16,
+				"enchantments": []
+			},
+			"position": 2
+		},
+		{
+			"item": {
+				"material": "EGG",
+				"code": 0,
+				"number": 16,
+				"enchantments": []
+			},
+			"position": 3
+		},
+		{
+			"item": {
+				"material": "EGG",
+				"code": 0,
+				"number": 16,
+				"enchantments": []
+			},
+			"position": 4
+		}
+	],
+	"price": 1000
+}

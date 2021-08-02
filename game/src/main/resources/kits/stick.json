@@ -1,0 +1,27 @@
+{
+	"identifier": "stick",
+	"icon": {
+		"material": "STICK",
+		"code": 0,
+		"number": 1,
+		"enchantments": []
+	},
+	"teamSupport": true,
+	"inventory": [
+		{
+			"item": {
+				"material": "STICK",
+				"code": 0,
+				"number": 16,
+				"enchantments": [
+					{
+						"type": "KNOCKBACK",
+						"level": 2
+					}
+				]
+			},
+			"position": 0
+		}
+	],
+	"price": 1000
+}

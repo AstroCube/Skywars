@@ -1,0 +1,31 @@
+{
+	"identifier": "builder",
+	"icon": {
+		"material": "COBBLESTONE",
+		"code": 0,
+		"number": 1,
+		"enchantments": []
+	},
+	"teamSupport": true,
+	"inventory": [
+		{
+			"item": {
+				"material": "WOOD",
+				"code": 0,
+				"number": 32,
+				"enchantments": []
+			},
+			"position": 0
+		},
+		{
+			"item": {
+				"material": "COBBLESTONE",
+				"code": 0,
+				"number": 16,
+				"enchantments": []
+			},
+			"position": 1
+		}
+	],
+	"price": 1000
+}

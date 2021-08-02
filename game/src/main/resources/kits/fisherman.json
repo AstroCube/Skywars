@@ -1,0 +1,49 @@
+{
+	"identifier": "fisherman",
+	"icon": {
+		"material": "FISHING_ROD",
+		"code": 0,
+		"number": 1,
+		"enchantments": []
+	},
+	"teamSupport": true,
+	"inventory": [
+		{
+			"item": {
+				"material": "FISHING_ROD",
+				"code": 0,
+				"number": 1,
+				"enchantments": []
+			},
+			"position": 0
+		},
+		{
+			"item": {
+				"material": "STONE_SWORD",
+				"code": 0,
+				"number": 1,
+				"enchantments": []
+			},
+			"position": 1
+		},
+		{
+			"item": {
+				"material": "COOKED_FISH",
+				"code": 0,
+				"number": 16,
+				"enchantments": []
+			},
+			"position": 2
+		},
+		{
+			"item": {
+				"material": "RAW_FISH",
+				"code": 0,
+				"number": 6,
+				"enchantments": []
+			},
+			"position": 3
+		}
+	],
+	"price": 1000
+}

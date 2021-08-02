@@ -1,0 +1,31 @@
+{
+	"identifier": "spider-man",
+	"icon": {
+		"material": "WEB",
+		"code": 0,
+		"number": 1,
+		"enchantments": []
+	},
+	"teamSupport": true,
+	"inventory": [
+		{
+			"item": {
+				"material": "WEB",
+				"code": 0,
+				"number": 16,
+				"enchantments": []
+			},
+			"position": 0
+		},
+		{
+			"item": {
+				"material": "MONSTER_EGG",
+				"code": 59,
+				"number": 3,
+				"enchantments": []
+			},
+			"position": 1
+		}
+	],
+	"price": 1000
+}
